@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Banka | Sign in</title>
+    <title>Banka | Admin dashboard</title>
     <link rel="stylesheet" href="css/styles.css">
     <script src="./js/main.js"></script>
 </head>
@@ -19,19 +19,21 @@
                     <div class="nav-style navbar">
                     <ul>
                         <li><a href="index.html">Home</a></li>
-                        <li class="current"><a href="sign-in.html">Sign in</a></li>
-                        <li><a href="register.html">Register</a></li>
+                        <li class="current"><a href="dashboard-client.html">Profile</a></li>
+                        <li><a href="create-account.html">Open an Account</a></li>
+                        <li><a href="index.html">Sign Out</a></li>
                     </ul>
                     </div>
                 </div>
                 <div class="nav-not-full">
-                        <div class="hidden-navbar">
-                                <img id="menu" class="nav-style" src="./img/menu.png" alt="" onclick=toggleSidebar()>
-                                <div id="sidebar">
+                    <div class="hidden-navbar">
+                        <img id="menu" class="nav-style" src="./img/menu.png" alt="" onclick=toggleSidebar()>
+                        <div id="sidebar">
                         <ul>
                             <li><a href="index.html">Home</a></li>
-                            <li class="current"><a href="sign-in.html">Sign in</a></li>
-                            <li><a href="register.html">Register</a></li>
+                            <li class="current"><a href="dashboard-client.html">Profile</a></li>
+                            <li><a href="create-account.html">Open an Account</a></li>
+                            <li><a href="index.html">Sign Out</a></li>
                         </ul> 
                     </div> 
                     </div>  
@@ -41,26 +43,25 @@
     </header>
 
     <main>
-        <section id ="login-section" class="padding-bot border shadow">
-            <div>
-                <h1 class= "heading-title-login">SIGN IN</h1>
-                <p class="center"> Not registered with us yet? <a href="register.html">Sign up</a></p>
-            </div>
-            <div class="form-div"> 
-                <form>
-                    <div>
-                        <label>EMAIL ADDRESS</label><br>
-                        <input type="email", placeholder="Email Address">
+        <div class="container-dashboard">
+            <div class="dashboard">
+                <div class="user-profile shadow">
+                    <img id="profile-pix" src="./img/fb.png" alt="">
+                    <h2 class="m1 md-text">Chineye Adigun</h2>
+                    <h4 class="sm-text">chineyeadigun@gmail.com</h4>
+                    <p class="top-border">Admin</p>
+                </div>
+                <div class="acct-profile">
+                    <div class="admin-dashboard">
+                        <div class="active-deactive dasboard-style shadow">Activate/Deactivate Account</div>
+                        <div class="create-admin-staff dasboard-style shadow">Create Admin/Staff Account</div>
+                        <div class="view-an-acct dasboard-style shadow">View An Account Record</div>
+                        <div class="view-all-acct dasboard-style shadow">View All Bank Accounts</div>
                     </div>
-                    <div>
-                        <label> <p id="password-label">PASSWORD </p></label>
-                        <input type="password", placeholder="*******">
-                        <a href=""><p id="forgot-password-ptag">Forgot your password?</p></a>
-                    </div>
-                    <button class="btn"><a class="btn1" href="dashboard-admin.html">SIGN IN</a></button> 
-                </form>
+                    <div class="dashboard-delete shadow">Delete an Account</div>
+                </div> 
             </div>
-        </section>
+        </div>
     </main>
 
     <footer>
