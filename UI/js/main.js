@@ -1,9 +1,20 @@
 const toggleSidebar = () => {
-    const sideba = document.getElementById('sidebar');
-    if (sideba.style.display === 'none') {
-      sideba.style.display = 'block';
+    const sidebar = document.getElementById('sidebar');
+    if (sidebar.style.display === 'none') {
+      sidebar.style.display = 'block';
     } else {
-      sideba.style.display = 'none';
+      sidebar.style.display = 'none';
     }
   };
   
+  const openModal = () => {
+    const modal = document.getElementsByClassName('modal')[0];
+      modal.style.display = 'block';
+  };
+
+  const closeModal = () => {
+    const modal = document.getElementsByClassName('modal')[0];
+      modal.style.display = 'none';
+  };
+
+   

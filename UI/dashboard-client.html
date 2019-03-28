@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Banka | Client dashboard</title>
     <link rel="stylesheet" href="css/styles.css">
-    <script src="/js/main.js"></script>
+    <script src="./js/main.js"></script>
 </head>
 <body>
     <header class="shadow">    
@@ -27,9 +27,7 @@
                 </div>
                 <div class="nav-not-full">
                     <div class="hidden-navbar">
-                        <a href="" id="menu" class="nav-style">
-                                <img src="./img/menu.png" alt="" onclick=toggleSidebar()>
-                        </a>
+                        <img id="menu" class="nav-style" src="./img/menu.png" alt="" onclick=toggleSidebar()>
                         <div id="sidebar">
                         <ul>
                             <li><a href="index.html">Home</a></li>
@@ -61,7 +59,19 @@
                         <p><span class="b1">Status:</span> Active</p>
                         <p><span class="b1">Account balance:</span> #10,000.00</p>
                     </div>
-                    <div class="history shadow"><a href="">View transaction history</a></div>
+                    <div id= "view-transact" class="history shadow" onclick=openModal()>View transaction history</div>
+                    <div id="view-transaction-modal" class="modal">
+                        <div class="transaction-content shadow">
+                            <span class="close-btn" onclick=closeModal()>&times;</span>
+                            <h4 class="m2">TRANSACTION HISTORY</h4>
+                            <p class="sm-text">01/01/2019 #3000 credit </p>
+                            <p class="sm-text">01/01/2019 #9000 debit </p>
+                            <p class="sm-text">01/01/2019 #5000 credit </p>
+                            <p class="sm-text"> 01/01/2019 #3000 debit </p>
+                            <p class="sm-text">01/01/2019 #7000 debit </p>
+                            <a id= "view-more" href="#">View more</a>
+                        </div>
+                    </div>
                 </div> 
             </div>
         </div>
