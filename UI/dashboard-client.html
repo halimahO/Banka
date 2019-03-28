@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Banka | Client dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="/js/main.js"></script>
+</head>
+<body>
+    <header class="shadow">    
+        <div class="container">
+            <div id="branding">
+                <a href=""><img id="branding" src="./img/logo-blue.png" alt="logo-white"></a>
+            </div>
+            <nav>
+                <div class="nav-full">
+                    <div class="nav-style navbar">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li class="current"><a href="">Profile</a></li>
+                        <li><a href="">Open an Account</a></li>
+                        <li><a href="index.html">Sign Out</a></li>
+                    </ul>
+                    </div>
+                </div>
+                <div class="nav-not-full">
+                    <div class="hidden-navbar">
+                        <a href="" id="menu" class="nav-style">
+                                <img src="./img/menu.png" alt="" onclick=toggleSidebar()>
+                        </a>
+                        <div id="sidebar">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li class="current"><a href="">Profile</a></li>
+                            <li><a href="">Open an Account</a></li>
+                            <li><a href="index.html">Sign Out</a></li>
+                        </ul> 
+                    </div> 
+                    </div>  
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container-dashboard">
+            <div class="dashboard">
+                <div class="user-profile shadow">
+                    <img id="profile-pix" src="./img/fb.png" alt="">
+                    <h2 class="m1 md-text">Halimah Oladosu</h2>
+                    <h4 class="sm-text">halimaholadosu@gmail.com</h4>
+                    <p class="top-border">Client</p>
+                </div>
+                <div class="acct-profile shadow">
+                    <div class="acct-summary shadow">
+                        <h3 class="m2">ACCOUNT SUMMARY</h3>
+                        <p> <span class="b1">Account Number:</span> 0123456789</p>
+                        <p><span class="b1">Account type:</span> Savings</p>
+                        <p><span class="b1">Status:</span> Active</p>
+                        <p><span class="b1">Account balance:</span> #10,000.00</p>
+                    </div>
+                    <div class="history shadow"><a href="">View transaction history</a></div>
+                </div> 
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <h3>Follow Us</h3>
+        <div class="social">
+            <div class="socialmedia-img inline-style">
+                <a href="https://facebook.com/"><img src="img/fb.png" alt="facebook"></a>
+            </div>
+            <div class="socialmedia-img inline-style">
+                <a href="https://twitter.com/"><img src="img/twitter.png" alt="twitter"></a>
+            </div>
+            <div class="socialmedia-img inline-style">
+                <a href="https://instagram.com/"><img src="img/instagram.png" alt="Instagram"></a>
+            </div>
+        </div>
+        <p>Banka, copyright &copy; 2019</p>
+        
+    </footer>
+</body>
+</html>
