@@ -239,12 +239,18 @@ label{
     color: #F1F1F2;
 }
 
-#login a, .history a{
+#login-section a, .history a{
     color: rgba(23, 37, 85, 0.986);
     font-size: 0.8rem;
 }
 
-#login a:hover{
+#login-section a:hover{
+    text-decoration: underline;
+}
+.btn1{
+    color: #F1F1F2 !important;
+}
+.btn1:hover{
     text-decoration: underline;
 }
 
@@ -326,7 +332,9 @@ input, select, textarea{
     font-size: 0.9rem;
     font-weight: 600;
 }
-.history:hover, .history:focus{
+.history:hover, .history:focus,
+.dasboard-style:hover, .dasboard-style:focus,
+.dashboard-delete:hover,.dashboard-style:focus{
     cursor: pointer;
     text-decoration: underline;
 }
@@ -364,6 +372,26 @@ input, select, textarea{
     cursor: pointer;
     font-weight: bold;
 }
+
+.admin-dashboard{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1em;
+    text-align: center;
+
+}
+.dasboard-style{
+    font-size: 1.05rem;
+    color:rgba(23, 37, 85, 0.986);
+    padding-top: 17%
+}
+.dashboard-delete{
+    font-size: 1.05rem;
+    color:red;
+    padding-top: 8%;
+    padding-left: 35%;
+}
+
 
 footer{
     text-align: center;
