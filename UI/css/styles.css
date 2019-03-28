@@ -214,11 +214,13 @@ header{
 }
 
 .border h1{
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: bold;
-    padding-top: 1.5rem;  
+    padding-top: 1.5rem;
+    padding-bottom: rem;  
 }
 label{
+    font-size: 0.9rem;
     font-weight: 700;
     color:  rgba(23, 37, 85, 0.986);
 }
