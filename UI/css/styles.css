@@ -19,8 +19,11 @@ h1,h2,h3,ul{
     padding: 0;
     margin: 0;
 }
+
 a{
     text-decoration: none;
+    color: #F1F1F2;
+    font-size: 15px;
 }
 
 header{
@@ -42,6 +45,9 @@ header{
     background:  rgba(23, 37, 85, 0.986);
     color: #F1F1F2;
     font-size: 15px;
+}
+.current a{
+    text-decoration: underline;
 }
 
 .hidden-navbar ul {
@@ -174,6 +180,95 @@ header{
     padding-top: 2rem;
     height: 15rem;  
 }
+
+.shadow{
+    box-shadow: 0 15px 30px 0 rgba(32, 16, 58, 0.11), 0 5px 15px 0 rgba(0, 0, 0, .01);
+}
+.padding-bot{
+    padding-bottom: 100px;
+}
+.heading-title-login{
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+    color: rgba(28, 35, 61, 0.986)
+}
+.center{
+    text-align: center;
+}
+.border{
+    width: 55vh;
+    margin: auto;
+    padding: 20px;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    border-radius: 7px;
+
+}
+
+.form-div{
+    width: 90%;
+    margin: auto;
+}
+
+.border h1{
+    font-size: 2rem;
+    font-weight: bold;
+    padding-top: 1.5rem;  
+}
+label{
+    font-weight: 700;
+    color:  rgba(23, 37, 85, 0.986);
+}
+.border p{
+    padding-bottom: 2rem;
+}
+
+.btn{
+    margin-top:20px;
+    background:  rgba(23, 37, 85, 0.986);
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #F1F1F2;
+}
+.blue-link{
+    
+}
+#login a{
+    color: rgba(23, 37, 85, 0.986);
+    font-size: 0.8rem;
+}
+
+#login a:hover{
+    text-decoration: underline;
+}
+
+
+input, textarea{
+    width: 100%;
+    padding: 15px 10px;
+    margin: 9px 0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+#password-label{
+    margin-top: 5px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+#forgot-password-ptag{
+    padding: 0;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
 footer{
     text-align: center;
     padding: 2rem 1rem;
@@ -207,4 +302,33 @@ footer{
         padding: 0.5rem 0.8rem;
         font-weight: 550; 
     }  
+}
+
+@media (min-height: 500px) {
+    .border{
+        width: 16rem;
+        margin: auto;
+        margin-top: 2rem;
+    }
+    .padding-bot{
+        margin-bottom: 79px;
+    }
+}
+@media (min-height: 1020px) {
+    .border{
+        margin-top: 8rem;
+        width: 60vh;
+    }
+    .padding-bot{
+        margin-bottom: 185px;
+    }
+}
+@media (min-height: 1030px) {
+    .border{
+        width: 65vh;
+        margin-top: 20rem;
+    }
+    .padding-bot{
+        margin-bottom: 335px;
+    }
 }

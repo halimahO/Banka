@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Banka | Welcome</title>
+    <title>Banka | Sign in</title>
     <link rel="stylesheet" href="css/styles.css">
     <script src="/js/main.js"></script>
 </head>
 <body>
-    <header>    
+    <header class="shadow">    
         <div class="container">
             <div id="branding">
                 <a href=""><img id="branding" src="./img/logo-blue.png" alt="logo-white"></a>
@@ -18,8 +18,8 @@
                 <div class="nav-full">
                     <div class="nav-style navbar">
                     <ul>
-                        <li class= "current"><a href="index.html">Home</a></li>
-                        <li><a href="sign-in.html">Sign in</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li class="current"><a href="sign-in.html">Sign in</a></li>
                         <li>Register</li>
                     </ul>
                     </div>
@@ -31,8 +31,8 @@
                         </a>
                         <div id="sidebar">
                         <ul>
-                            <li class= "current"><a href="index.html">Home</a></li>
-                            <li><a href="sign-in.html">Sign in</a></li>
+                            <li><a href="index.html">Home</a></li>
+                            <li class="current"><a href="sign-in.html">Sign in</a></li>
                             <li>Register</li>
                         </ul> 
                     </div> 
@@ -43,41 +43,27 @@
     </header>
 
     <main>
-        <section id = "section-hero">
-            <div class="container-hero">
-                <h1 class="bg-text">Banka</h1>
-                <h2 class="md-text">A banking app that guarantees the best banking experience.</h1>
-                <h3 class="sm-text">Sign in to get started</h3>
-                <div class="hero-button">
-                    <div class="hero-btn inline-style">Admin</div>
-                    <div class="hero-btn inline-style">Staff</div>
-                    <div class="hero-btn inline-style">User</div>
-                </div>
-                <div class="register hero-btn">
-                    <h4>New here?</p>
-                    <p>Register</p>
-                </div>
+        <section id ="login" class="padding-bot border shadow">
+            <div>
+                <h1 class= "heading-title-login">LOGIN</h1>
+                <p class="center"> Not registered with us yet? <a href="sign-up.html">Sign up</a></p>
             </div>
-            
-        </section>
-        <section class="values">
-            <div class="container">
-                <div class="values-desc">
-                    <h3 class="md-text">Our Values</h3>
-                    <p class="sm-text">
-                        At Andela, our values can be summarized as EPIC - Excellence, Passion, Integrity, and Collaboration.
-                    </p>
-                    <p class="sm-text">
-                        With this life approach, I aspire to be the best possible version of myself. I know that my work is a representation of who I am, 
-                        and I hold everything I do and everyone I interact with to the highest standards. I am a lifelong learner who strives for mastery of my craft.
-                    </p>
-                </div>
-                <div class="values-img">
-                    <img src="./img/epic.png" alt="">
-                </div>
+            <div class="form-div"> 
+                <form>
+                    <div>
+                        <label>EMAIL ADDRESS</label><br>
+                        <input type="email", placeholder="Email Address">
+                    </div>
+                    <div>
+                        <label> <p id="password-label">PASSWORD </p></label>
+                        <input type="password", placeholder="*******">
+                        <a href=""><p id="forgot-password-ptag">Forgot your password?</p></a>
+                    </div>
+                    <button class="btn">LOGIN</button>
+                </form>
             </div>
         </section>
-        </main>
+    </main>
 
     <footer>
         <h3>Follow Us</h3>
