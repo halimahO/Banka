@@ -23,7 +23,7 @@ h1,h2,h3,ul{
 a{
     text-decoration: none;
     color: #F1F1F2;
-    font-size: 12px;
+    font-size: 13px;
 }
 
 header{
@@ -49,7 +49,9 @@ header{
 .current a{
     text-decoration: underline;
 }
-
+#menu:hover, #menu:focus{
+    cursor: pointer;
+}
 .hidden-navbar ul {
     height: 40%;
     width: 100%;
@@ -71,7 +73,7 @@ header{
 .hidden-navbar img{
     width: 40px;
     margin-left: 160px;
-    margin-top: -13px;
+    margin-top: -77px;
     
 }
 
@@ -319,15 +321,50 @@ input, select, textarea{
     font-weight: 600;
     font-size: 0.9rem;
 }
-.history a{
+.history, #view-more{
     color: rgba(23, 37, 85, 0.986);
     font-size: 0.9rem;
     font-weight: 600;
 }
-
-.history a:hover{
+.history:hover, .history:focus{
+    cursor: pointer;
     text-decoration: underline;
 }
+
+.history a:hover, #view-more:hover{
+    text-decoration: underline;
+}
+.modal{
+    display:none;
+    position:fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.transaction-content{
+    background-color:  #F1F1F2;;
+    margin: 11% auto;
+    padding: 20px;
+    width: 400px;
+    height: 350px;
+    text-align: center;
+}
+.close-btn{
+    color: rgba(23, 37, 85, 0.986);
+    float: right;
+    font-size: 30px;
+}
+.close-btn:hover, .close-btn:focus{
+    color:rgba(23, 37, 85, 0.986);
+    cursor: pointer;
+    font-weight: bold;
+}
+
 footer{
     text-align: center;
     padding: 2rem 1rem;
