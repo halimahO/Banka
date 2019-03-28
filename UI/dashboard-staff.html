@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Banka | Staff dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="./js/main.js"></script>
+</head>
+<body>
+    <header class="shadow">    
+        <div class="container">
+            <div id="branding">
+                <a href="index.html"><img id="branding" src="./img/logo-blue.png" alt="logo-white"></a>
+            </div>
+            <nav>
+                <div class="nav-full">
+                    <div class="nav-style navbar">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li class="current"><a href="dashboard-client.html">Profile</a></li>
+                        <li><a href="create-account.html">Open an Account</a></li>
+                        <li><a href="index.html">Sign Out</a></li>
+                    </ul>
+                    </div>
+                </div>
+                <div class="nav-not-full">
+                    <div class="hidden-navbar">
+                        <img id="menu" class="nav-style" src="./img/menu.png" alt="" onclick=toggleSidebar()>
+                        <div id="sidebar">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li class="current"><a href="dashboard-client.html">Profile</a></li>
+                            <li><a href="create-account.html">Open an Account</a></li>
+                            <li><a href="index.html">Sign Out</a></li>
+                        </ul> 
+                    </div> 
+                    </div>  
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container-dashboard">
+            <div class="dashboard">
+                <div class="user-profile shadow">
+                    <img id="profile-pix" src="./img/fb.png" alt="">
+                    <h2 class="m1 md-text">Ngozi Adamu</h2>
+                    <h4 class="sm-text">ngoziadamu@gmail.com</h4>
+                    <p class="top-border">Staff</p>
+                </div>
+                <div class="acct-profile">
+                    <div class="admin-dashboard">
+                        <div class="credit-account dasboard-style shadow">Credit an Account</div>
+                        <div class="debit-account-staff dasboard-style shadow">Debit an Account</div>
+                        <div class="view-an-acct dasboard-style shadow">View An Account Record</div>
+                        <div class="view-all-acct dasboard-style shadow">View All Bank Accounts</div>
+                    </div>
+                    <div class="dashboard-delete shadow">Delete an Account</div>
+                </div> 
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <h3>Follow Us</h3>
+        <div class="social">
+            <div class="socialmedia-img inline-style">
+                <a href="https://facebook.com/"><img src="img/fb.png" alt="facebook"></a>
+            </div>
+            <div class="socialmedia-img inline-style">
+                <a href="https://twitter.com/"><img src="img/twitter.png" alt="twitter"></a>
+            </div>
+            <div class="socialmedia-img inline-style">
+                <a href="https://instagram.com/"><img src="img/instagram.png" alt="Instagram"></a>
+            </div>
+        </div>
+        <p>Banka, copyright &copy; 2019</p>
+        
+    </footer>
+</body>
+</html>
