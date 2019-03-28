@@ -212,7 +212,7 @@ header{
 }
 
 .border h1{
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: bold;
     padding-top: 1.5rem;
     padding-bottom: rem;  
@@ -247,7 +247,7 @@ label{
 }
 
 
-input, textarea{
+input, select, textarea{
     width: 100%;
     padding: 15px 10px;
     margin: 9px 0;
@@ -381,6 +381,9 @@ footer{
     .padding-bot{
         margin-bottom: 185px;
     }
+    .container-dashboard{
+        margin-bottom: 300px
+    }
 }
 @media (min-height: 1030px) {
     .border{
@@ -389,6 +392,10 @@ footer{
     }
     .padding-bot{
         margin-bottom: 335px;
+    }
+    .container-dashboard{
+        margin-top: 300px;
+        margin-bottom: 380px;
     }
 }
 @media (max-width:700px) {
