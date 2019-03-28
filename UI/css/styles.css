@@ -23,7 +23,7 @@ h1,h2,h3,ul{
 a{
     text-decoration: none;
     color: #F1F1F2;
-    font-size: 15px;
+    font-size: 12px;
 }
 
 header{
@@ -32,7 +32,7 @@ header{
 
 .nav-style{
     float: right;
-    margin-top: -85px;
+    margin-top: -65px;
     padding-right: 20px; 
 }
 .navbar{
@@ -41,7 +41,7 @@ header{
 .navbar li{
     display:inline;
     margin: 20px;
-    padding: 10px;
+    padding: 7px;
     background:  rgba(23, 37, 85, 0.986);
     color: #F1F1F2;
     font-size: 15px;
@@ -71,7 +71,7 @@ header{
 .hidden-navbar img{
     width: 40px;
     margin-left: 160px;
-    margin-top: -15px;
+    margin-top: -13px;
     
 }
 
@@ -83,8 +83,7 @@ header{
 }
 
 #branding{
-    width: 17rem;
-    margin-top: -24px;
+    width: 12rem;
 }
 
 
@@ -133,8 +132,7 @@ header{
 .hero-button{
     text-align: center;
     margin-top: 20px;
-    margin-bottom: 40px;
-    
+    margin-bottom: 40px; 
 }
 
 .inline-style{
@@ -143,7 +141,7 @@ header{
     margin-right: auto;
 }
 
-.hero-btn{
+.hero-btn a{ 
     background: #F1F1F2;
 	color: rgb(44, 42, 49);
 	font-family: 'Circular-Bold';
@@ -238,10 +236,8 @@ label{
     font-weight: 700;
     color: #F1F1F2;
 }
-.blue-link{
-    
-}
-#login a{
+
+#login a, .history a{
     color: rgba(23, 37, 85, 0.986);
     font-size: 0.8rem;
 }
@@ -270,7 +266,68 @@ input, textarea{
     margin-top: 5px;
     margin-bottom: 0px;
 }
+#profile-pix{
+    max-width:5rem;
+    max-height: 5rem;
+    border-radius: 50%;
+    margin: auto;
+    margin-bottom: 13px;
+    
+}
+.container-dashboard{
+    width: 60%;
+    margin:auto;
+    padding: 40px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.dashboard{
+    display:grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 1em;
+    grid-auto-rows: 350px;
+}
+.acct-profile{
+    display:grid;
+    grid-template-rows: 2fr 1fr;
+    grid-gap: 1em;
+}
+.user-profile, .acct-summary, .history{
+    padding: 30px;
+    text-align: center;
+}
+.user-profile h2{
+    font-size:1.4rem;
+}
+.user-profile p{
+    padding-top: 10px;
+}
+.top-border{
+    border-top: 1px solid rgba(23, 37, 85, 0.986);
+    border-width: 3px;
+    border-radius:3px;    
+    }
 
+.m1{
+    margin: 10px;
+}
+.m2{
+    margin-bottom:30px;
+    color: rgba(23, 37, 85, 0.986);
+}
+.b1{
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+.history a{
+    color: rgba(23, 37, 85, 0.986);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.history a:hover{
+    text-decoration: underline;
+}
 footer{
     text-align: center;
     padding: 2rem 1rem;
@@ -333,4 +390,19 @@ footer{
     .padding-bot{
         margin-bottom: 335px;
     }
+}
+@media (max-width:700px) {
+    .dashboard{
+        grid-template-columns: 1fr;
+    }
+}
+@media (max-width:950px) {
+    .container-dashboard{
+        width: 75%;
+}
+}
+@media (max-width:750px) {
+    .container-dashboard{
+        width: 80%;
+}
 }
