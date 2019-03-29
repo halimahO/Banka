@@ -11,14 +11,35 @@ const toggleSidebar = () => {
     const modal = document.getElementsByClassName('modal')[0];
       modal.style.display = 'block';
   };
-
-  const openAccountModal = () => {
-    const modal = document.getElementsByClassName('modal')[1];
+  const openModal1 = () => {
+    const modal = document.getElementsByClassName('modal1')[0];
       modal.style.display = 'block';
   };
-  const closeModal = () => {
-    const modal = document.getElementsByClassName('modal')[0];
-      modal.style.display = 'none';
+  const openModal2 = () => {
+    const modal = document.getElementsByClassName('modal2')[0];
+      modal.style.display = 'block';
+  };
+  const openModal3 = () => {
+    const modal = document.getElementsByClassName('modal3')[0];
+      modal.style.display = 'block';
   };
 
+  const closeModal = () => {
+    const modal = document.getElementsByClassName('modal')[0];
+    const modal1 = document.getElementsByClassName('modal1')[0];
+    const modal2 = document.getElementsByClassName('modal2')[0];
+    const modal3 = document.getElementsByClassName('modal3')[0];
+      modal.style.display = 'none';
+      modal1.style.display = 'none';
+      modal2.style.display = 'none';
+      modal3.style.display = 'none';
+  };
+  const closeModalStaff = () => {
+    const modal = document.getElementsByClassName('modal')[0];
+    const modal2 = document.getElementsByClassName('modal2')[0];
+    const modal3 = document.getElementsByClassName('modal3')[0];
+      modal.style.display = 'none';
+      modal2.style.display = 'none';
+      modal3.style.display = 'none';
+  };
    

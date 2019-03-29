@@ -342,7 +342,7 @@ input, select, textarea{
 .history a:hover, #view-more:hover{
     text-decoration: underline;
 }
-.modal{
+.modal, .modal1, .modal2, .modal3{
     display:none;
     position:fixed;
     z-index: 1;
@@ -391,7 +391,21 @@ input, select, textarea{
     padding-top: 8%;
     padding-left: 35%;
 }
-
+.content2{
+    margin: 1% auto;    
+    height: 550px;
+    text-align: left;
+}
+.md-title{
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+}
+input[type="checkbox" i] {
+    width: 50px;
+}
+.cursor{
+    cursor: pointer;
+}
 footer{
     text-align: center;
     padding: 2rem 1rem;
