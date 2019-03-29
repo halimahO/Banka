@@ -53,7 +53,7 @@
                 </div>
                 <div class="acct-profile">
                     <div class="admin-dashboard">
-                        <div class="credit-account dasboard-style shadow">Credit an Account</div>
+                        <div class="credit-account dasboard-style shadow" onclick=openModal8()>Credit an Account</div>
                         <div class="debit-account-staff dasboard-style shadow" onclick=openModal6()>Debit an Account</div>
                         <div class="view-an-acct dasboard-style shadow" onclick=openModal2()>View An Account Record</div>
                         <div class="view-all-acct dasboard-style shadow" onclick=openModal()>View All Bank Accounts</div>
@@ -162,6 +162,35 @@
             </div>
         </div>
         <!-- End of  Debit an account -->
+
+        <!-- Start of  Credit an Account -->
+        <div id="view-transaction-modalStaff" class="modal8">
+            <div class="transaction-content shadow">
+                <span class="close-btn" onclick=closeModalStaff()>&times;</span>
+                <h4 class="m2">INPUT ACCOUNT NAME/NUMBER</h4>
+                <select>
+                    <option Value="acct-number">Account Number</option>
+                    <option Value="acct-name">Account Name</option>
+                </select>
+                <input type="text", placeholder="Input here...">
+                <button class="btn cursor" onclick=openModal9()>VIEW</button>
+            </div>
+        </div>
+
+        <div id="view-transaction-modal" class="modal9">
+            <div class="transaction-content shadow">
+                <span class="close-btn" onclick=closeModalStaff()>&times;</span>
+                <h4 class="m2">CREDIT THE ACCOUNT</h4>
+                    <p> <span class="b1">Account Name:</span> Fasasi Adelaja</p>
+                    <p><span class="b1">Account Number:</span> 0123456789</p>
+                    <p><span class="b1">Account type:</span> Current</p>
+                    <p><span class="b1">Status:</span> Active</p>
+                    <p><span class="b1">Account balance:</span> #12,000.00</p>
+                    <input type="text", placeholder="Amount...">
+                    <button class="btn cursor" onclick=closeModalStaff()>CREDIT</button>
+            </div>
+        </div>
+        <!-- End of  Credit an account -->
 
     </main>
 

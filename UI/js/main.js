@@ -39,6 +39,14 @@ const toggleSidebar = () => {
     const modal = document.getElementsByClassName('modal7')[0];
       modal.style.display = 'block';
   };
+  const openModal8 = () => {
+    const modal = document.getElementsByClassName('modal8')[0];
+      modal.style.display = 'block';
+  };
+  const openModal9 = () => {
+    const modal = document.getElementsByClassName('modal9')[0];
+      modal.style.display = 'block';
+  };
 
   const closeModal = () => {
     const modal = document.getElementsByClassName('modal')[0];
@@ -64,12 +72,16 @@ const toggleSidebar = () => {
     const modal5 = document.getElementsByClassName('modal5')[0];
     const modal6 = document.getElementsByClassName('modal6')[0];
     const modal7 = document.getElementsByClassName('modal7')[0];
-    modal.style.display = 'none';
+    const modal8 = document.getElementsByClassName('modal8')[0];
+    const modal9 = document.getElementsByClassName('modal9')[0];
+      modal.style.display = 'none';
       modal2.style.display = 'none';
       modal3.style.display = 'none';
       modal4.style.display = 'none';
       modal5.style.display = 'none';
       modal6.style.display = 'none';
       modal7.style.display = 'none';
+      modal8.style.display = 'none';
+      modal9.style.display = 'none';
   };
    
