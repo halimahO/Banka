@@ -12,6 +12,10 @@ const toggleSidebar = () => {
       modal.style.display = 'block';
   };
 
+  const openAccountModal = () => {
+    const modal = document.getElementsByClassName('modal')[1];
+      modal.style.display = 'block';
+  };
   const closeModal = () => {
     const modal = document.getElementsByClassName('modal')[0];
       modal.style.display = 'none';
