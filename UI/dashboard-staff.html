@@ -55,7 +55,7 @@
                     <div class="admin-dashboard">
                         <div class="credit-account dasboard-style shadow">Credit an Account</div>
                         <div class="debit-account-staff dasboard-style shadow">Debit an Account</div>
-                        <div class="view-an-acct dasboard-style shadow">View An Account Record</div>
+                        <div class="view-an-acct dasboard-style shadow" onclick=openModal2()>View An Account Record</div>
                         <div class="view-all-acct dasboard-style shadow" onclick=openModal()>View All Bank Accounts</div>
                     </div>
                     <div class="dashboard-delete shadow">Delete an Account</div>
@@ -66,7 +66,7 @@
         <!-- View all bank accounts modal -->
         <div id="view-transaction-modal" class="modal">
             <div class="transaction-content shadow">
-                <span class="close-btn" onclick=closeModal()>&times;</span>
+                <span class="close-btn" onclick=closeModalStaff()>&times;</span>
                 <h4 class="m2">VIEW ALL BANK ACCOUNTS</h4>
                 <p class="sm-text">Chidera Akpan 0123456789</p>
                 <p class="sm-text">Oladele Walter 0123456789</p>
@@ -78,6 +78,34 @@
             </div>
         </div>
         <!-- End of view all account modal -->
+
+        <!-- Start of  View Specific Account record -->
+        <div id="view-transaction-modal" class="modal2">
+            <div class="transaction-content shadow">
+                <span class="close-btn" onclick=closeModalStaff()>&times;</span>
+                <h4 class="m2">INPUT ACCOUNT NAME/NUMBER</h4>
+                <select>
+                    <option Value="acct-number">Account Number</option>
+                    <option Value="acct-name">Account Name</option>
+                </select>
+                <input type="text", placeholder="Input here...">
+                <button class="btn cursor" onclick=openModal3()>VIEW</button>
+            </div>
+        </div>
+
+        <div id="view-transaction-modal" class="modal3">
+            <div class="transaction-content shadow">
+                <span class="close-btn" onclick=closeModalStaff()>&times;</span>
+                <h4 class="m2">ACCOUNT DETAILS</h4>
+                    <p> <span class="b1">Account Name:</span> Lasisi George</p>
+                    <p><span class="b1">Account Number:</span> 0123456789</p>
+                    <p><span class="b1">Account type:</span> Current</p>
+                    <p><span class="b1">Status:</span> Dormant</p>
+                    <p><span class="b1">Account balance:</span> #2,000.00</p>
+            </div>
+        </div>
+        <!-- End of  View Specific Account record -->
+
     </main>
 
     <footer>
