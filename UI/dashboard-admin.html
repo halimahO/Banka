@@ -58,7 +58,7 @@
                         <div class="view-an-acct dasboard-style shadow" onclick=openModal2()>View An Account Record</div>
                         <div class="view-all-acct dasboard-style shadow" onclick=openModal()>View All Bank Accounts</div>
                     </div>
-                    <div class="dashboard-delete shadow">Delete an Account</div>
+                    <div class="dashboard-delete shadow" onclick=openModal4()>Delete an Account</div>
                 </div> 
             </div>
         </div>
@@ -144,6 +144,34 @@
             </div>
         </div>
         <!-- End of  View Specific Account record -->
+
+        <!-- Start of  Delete Specific Account record -->
+        <div id="view-transaction-modal" class="modal4">
+            <div class="transaction-content shadow">
+                <span class="close-btn" onclick=closeModal()>&times;</span>
+                <h4 class="m2">INPUT ACCOUNT NAME/NUMBER</h4>
+                <select>
+                    <option Value="acct-number">Account Number</option>
+                    <option Value="acct-name">Account Name</option>
+                </select>
+                <input type="text", placeholder="Input here...">
+                <button class="btn cursor" onclick=openModal5()>VIEW</button>
+            </div>
+        </div>
+
+        <div id="view-transaction-modal" class="modal5">
+            <div class="transaction-content shadow">
+                <span class="close-btn" onclick=closeModal()>&times;</span>
+                <h4 class="m2">ACCOUNT DETAILS</h4>
+                    <p> <span class="b1">Account Name:</span> Lasisi George</p>
+                    <p><span class="b1">Account Number:</span> 0123456789</p>
+                    <p><span class="b1">Account type:</span> Current</p>
+                    <p><span class="b1">Status:</span> Dormant</p>
+                    <p><span class="b1">Account balance:</span> #2,000.00</p>
+                    <button class="del-btn cursor btn" onclick=closeModal()>DELETE</button>
+            </div>
+        </div>
+        <!-- End of  Delete Specific Account record -->
 
     </main>
 

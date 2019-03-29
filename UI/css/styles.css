@@ -342,7 +342,7 @@ input, select, textarea{
 .history a:hover, #view-more:hover{
     text-decoration: underline;
 }
-.modal, .modal1, .modal2, .modal3{
+.modal, .modal1, .modal2, .modal3, .modal4, .modal5{
     display:none;
     position:fixed;
     z-index: 1;
@@ -405,6 +405,9 @@ input[type="checkbox" i] {
 }
 .cursor{
     cursor: pointer;
+}
+.del-btn{
+    background-color: red;
 }
 footer{
     text-align: center;
