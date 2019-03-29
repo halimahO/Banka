@@ -56,12 +56,28 @@
                         <div class="active-deactive dasboard-style shadow">Activate/Deactivate Account</div>
                         <div class="create-admin-staff dasboard-style shadow">Create Admin/Staff Account</div>
                         <div class="view-an-acct dasboard-style shadow">View An Account Record</div>
-                        <div class="view-all-acct dasboard-style shadow">View All Bank Accounts</div>
+                        <div class="view-all-acct dasboard-style shadow" onclick=openModal()>View All Bank Accounts</div>
                     </div>
                     <div class="dashboard-delete shadow">Delete an Account</div>
                 </div> 
             </div>
         </div>
+        <!-- View all bank accounts modal -->
+        <div id="view-transaction-modal" class="modal">
+            <div class="transaction-content shadow">
+                <span class="close-btn" onclick=closeModal()>&times;</span>
+                <h4 class="m2">VIEW ALL BANK ACCOUNTS</h4>
+                <p class="sm-text">Chidera Akpan 0123456789</p>
+                <p class="sm-text">Oladele Walter 0123456789</p>
+                <p class="sm-text">Efiong Sarah 0123456789</p>
+                <p class="sm-text">Ajao Emeka 0123456789</p>
+                <p class="sm-text">Akinpelu Glory 0123456789</p>
+                <p class="sm-text">Bello Thomas 0123456789</p>
+                <a id= "view-more" href="#">View more</a>
+            </div>
+        </div>
+        <!-- End of view all account modal -->
+
     </main>
 
     <footer>
