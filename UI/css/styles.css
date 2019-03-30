@@ -92,7 +92,7 @@ header{
 #section-hero {
 	padding-top: 130px;
 	padding-bottom: 130px;
-    background-image: url("../img/photo-1521175776577-f8e0c1e5ecb7.jpg");
+    background-image: linear-gradient(to left,rgba(81, 82, 75, 0.3), rgba(28, 35, 61, 0.586)), url("../img/photo-1521175776577-f8e0c1e5ecb7.jpg");
 	background-attachment: fixed;
 	background-size: cover;
     background-repeat: no-repeat;
@@ -102,7 +102,6 @@ header{
 	width: 100%;
 	display: flex;
     align-items: center;
-    opacity: 0.9;
     color: white;
 }
 
@@ -147,7 +146,6 @@ header{
     background: #F1F1F2;
 	color: rgb(44, 42, 49);
 	font-family: 'Circular-Bold';
-	margin: 1rem 0;
 	padding: 0.7rem 1.2rem;
 	font-weight: 600;
 	text-transform: uppercase;
@@ -295,6 +293,12 @@ input, select, textarea{
     grid-gap: 1em;
     grid-auto-rows: 350px;
 }
+.acct-profile-client{
+    display:grid;
+    grid-template-rows: 1fr 5fr 1fr;
+    grid-gap: 1em;
+}
+
 .acct-profile{
     display:grid;
     grid-template-rows: 2fr 1fr;
@@ -303,11 +307,21 @@ input, select, textarea{
 .user-profile, .acct-summary, .history{
     padding: 30px;
     text-align: center;
+
 }
-.user-profile h2{
+.user-profile-client, .acct-summary-client{
+    padding: 15px;
+    text-align: center;
+}
+.history-client{
+    text-align: center;
+}
+
+
+.user-profile h2, .user-profile-client h2{
     font-size:1.4rem;
 }
-.user-profile p{
+.user-profile p, .user-profile-client p{
     padding-top: 10px;
 }
 .top-border{
@@ -327,19 +341,25 @@ input, select, textarea{
     font-weight: 600;
     font-size: 0.9rem;
 }
-.history, #view-more{
+.history{
     color: rgba(23, 37, 85, 0.986);
     font-size: 0.9rem;
     font-weight: 600;
 }
-.history:hover, .history:focus,
-.dasboard-style:hover, .dasboard-style:focus,
-.dashboard-delete:hover,.dashboard-style:focus{
+#view-transact{
+    padding-top: 15px;
+    font-weight: 700;
+    color: rgba(23, 37, 85, 0.986);
+}
+.history:hover, .history:focus, #view-transact:hover,
+.dasboard-style:hover, #view-transact:focus,
+.dasboard-style:focus, .dashboard-delete:hover,
+.dashboard-style:focus{
     cursor: pointer;
     text-decoration: underline;
 }
 
-.history a:hover, #view-more:hover{
+.history a:hover, #view-more:hover, .btn:hover{
     text-decoration: underline;
 }
 .modal, .modal1, .modal2, .modal3,
@@ -353,14 +373,14 @@ input, select, textarea{
     overflow: auto;
     height: 100%;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, .6);
 }
 
 .transaction-content{
-    background-color:  #F1F1F2;;
+    background-color:  #F1F1F2;
     margin: 11% auto;
     padding: 20px;
-    width: 400px;
+    width: 410px;
     height: 350px;
     text-align: center;
 }
@@ -411,6 +431,41 @@ input[type="checkbox" i] {
 .del-btn{
     background-color: red;
 }
+.small-width{
+    width: 40%
+}
+.acct-display{
+    float: left;
+    width: 40%;
+}
+.select-label{
+    margin-top: 18px;
+    margin-left: 55px;
+}
+#select-display{
+    width: 70%;
+    padding: 7px 10px;
+    margin: 10px 0;
+    margin-right: 120px;
+    border: 0.5px solid #ccc;
+    border-radius: 2px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.grid-3{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;;
+    width: 98%;
+    margin: auto;
+    grid-row-gap: 10px;
+    height: 63%;
+    overflow: auto;
+}
+.grid-title{
+    padding-bottom: 10px;
+    font-weight: 600;
+}
+
 footer{
     text-align: center;
     padding: 2rem 1rem;
@@ -425,6 +480,12 @@ footer{
 }
 /* MEDIA QUERIES */
 
+@media all and (min-width: 800px) {
+    .container{
+        width: 80%;
+        margin: auto;
+    }
+}
 @media all and (max-width: 700px) {
 	.nav-full {
 		display: none;
@@ -445,6 +506,12 @@ footer{
         font-weight: 550; 
     }  
 }
+@media (max-width: 375px) {
+    .hero-btn a{
+        padding: 0.5rem 0.5rem;
+    }  
+}
+
 
 @media (min-height: 500px) {
     .border{
@@ -494,5 +561,8 @@ footer{
 @media (max-width:750px) {
     .container-dashboard{
         width: 80%;
+}
+.container-hero {
+	width: 90%;
 }
 }

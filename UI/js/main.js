@@ -94,13 +94,17 @@ const toggleSidebar = () => {
       modal8.style.display = 'none';
       modal9.style.display = 'none';
   };
+  const closeModalClient = () => {
+    const modal = document.getElementsByClassName('modal')[0];
+      modal.style.display = 'none';
+  };
 
-  const toggle = () => {
-    const commentDiv = document.getElementById('btn-act');
-    if (commentDiv.innerHTML === 'ACTIVATE') {
-      commentDiv.innerHTML = 'DEACTIVATE';
+  const toggleActiveDeactive = () => {
+    const btn = document.getElementById('btn-act');
+    if (btn.innerHTML === 'ACTIVATE') {
+      btn.innerHTML = 'DEACTIVATE';
     } else {
-      commentDiv.innerHTML = 'ACTIVATE';
+      btn.innerHTML = 'ACTIVATE';
     }
   };
   

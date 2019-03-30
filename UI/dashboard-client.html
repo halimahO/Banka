@@ -45,34 +45,47 @@
     <main>
         <div class="container-dashboard">
             <div class="dashboard">
-                <div class="user-profile shadow">
+                <div class="user-profile-client shadow">
                     <img id="profile-pix" src="./img/fb.png" alt="">
                     <h2 class="m1 md-text">Halimah Oladosu</h2>
                     <h4 class="sm-text">halimaholadosu@gmail.com</h4>
                     <p class="top-border">Client</p>
                 </div>
-                <div class="acct-profile shadow">
-                    <div class="acct-summary shadow">
+                <div class="acct-profile-client shadow">
+                    <div class="history-client shadow">
+                        <div>
+                            <div class="acct-display select-label"><label>Account to Display:</label><br></div> 
+                            <div class="acct-display">
+                            <select id="select-display">
+                                <option Value="0123456789">0123456789</option>
+                                <option Value="9876543210">9876543210</option>
+                            </select></div>
+                        </div>
+                    </div>
+                    <div class="acct-summary-client shadow">
                         <h3 class="m2">ACCOUNT SUMMARY</h3>
                         <p> <span class="b1">Account Number:</span> 0123456789</p>
                         <p><span class="b1">Account type:</span> Savings</p>
                         <p><span class="b1">Status:</span> Active</p>
                         <p><span class="b1">Account balance:</span> #10,000.00</p>
                     </div>
-                    <div id= "view-transact" class="history shadow" onclick=openModal()>View transaction history</div>
-                    <div id="view-transaction-modal" class="modal">
-                        <div class="transaction-content shadow">
-                            <span class="close-btn" onclick=closeModal()>&times;</span>
-                            <h4 class="m2">TRANSACTION HISTORY</h4>
-                            <p class="sm-text">01/01/2019 #3000 credit </p>
-                            <p class="sm-text">01/01/2019 #9000 debit </p>
-                            <p class="sm-text">01/01/2019 #5000 credit </p>
-                            <p class="sm-text"> 01/01/2019 #3000 debit </p>
-                            <p class="sm-text">01/01/2019 #7000 debit </p>
-                            <a id= "view-more" href="#">View more</a>
-                        </div>
-                    </div>
+                    <div id= "view-transact" class="history-client shadow" onclick=openModal()>View transaction history</div>
                 </div> 
+            </div>
+        </div>
+        <div id="view-transaction-modal" class="modal">
+            <div class="transaction-content shadow">
+                <span class="close-btn" onclick=closeModalClient()>&times;</span>
+                <h4 class="m2">TRANSACTION HISTORY</h4>
+                <div class="grid-3">
+                    <div class="grid-title">Transaction Date</div> <div class="grid-title">Transaction Type</div> <div class="grid-title">Amount</div>
+                    <div>01/01/2019</div> <div>Debit</div> <div>#2,000</div>
+                    <div>01/01/2019</div> <div>Credit</div> <div>#2,000</div>
+                    <div>01/01/2019</div> <div>Credit</div> <div>#2,000</div>
+                    <div>01/01/2019</div> <div>Debit</div> <div>#2,000</div>
+                    <div>01/01/2019</div> <div>Debit</div> <div>#2,000</div>
+                </div>
+                <button class="btn cursor small-width" onclick=closeModalClient()>OKAY</button>
             </div>
         </div>
     </main>

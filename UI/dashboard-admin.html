@@ -68,13 +68,21 @@
             <div class="transaction-content shadow">
                 <span class="close-btn" onclick=closeModal()>&times;</span>
                 <h4 class="m2">VIEW ALL BANK ACCOUNTS</h4>
-                <p class="sm-text">Chidera Akpan 0123456789</p>
-                <p class="sm-text">Oladele Walter 0123456789</p>
-                <p class="sm-text">Efiong Sarah 0123456789</p>
-                <p class="sm-text">Ajao Emeka 0123456789</p>
-                <p class="sm-text">Akinpelu Glory 0123456789</p>
-                <p class="sm-text">Bello Thomas 0123456789</p>
-                <a id= "view-more" href="#">View more</a>
+                <div class="grid-3">
+                    <div class="grid-title">Account Name</div> <div class="grid-title">Account Number</div> <div class="grid-title">Account Type</div>
+                    <div>Chidera Akpan</div> <div>0123456789</div> <div>Savings</div>
+                    <div>Oladele Walter</div> <div>0123456789</div> <div>Current</div>
+                    <div>Efiong Sarah</div> <div>0123456789</div> <div>Savings</div>
+                    <div>Ajao Emeka</div> <div>0123456789</div> <div>Current</div>
+                    <div>Bello Thomas</div> <div>0123456789</div> <div>Savings</div>
+                    <div>Akinpelu Glory</div> <div>0123456789</div> <div>Savings</div>
+                    <div>Akinpelu Glory</div> <div>0123456789</div> <div>Savings</div>
+                    <div>Akinpelu Glory</div> <div>0123456789</div> <div>Savings</div>
+                    <div>Akinpelu Glory</div> <div>0123456789</div> <div>Savings</div>
+                    <div>Akinpelu Glory</div> <div>0123456789</div> <div>Savings</div>
+                    <div>Akinpelu Glory</div> <div>0123456789</div> <div>Savings</div>
+                </div>
+                <button class="btn small-width cursor" onclick=closeModal()>OKAY</button>
             </div>
         </div>
         <!-- End of view all account modal -->
@@ -138,9 +146,12 @@
                 <h4 class="m2">ACCOUNT DETAILS</h4>
                     <p> <span class="b1">Account Name:</span> Lasisi George</p>
                     <p><span class="b1">Account Number:</span> 0123456789</p>
+                    <p><span class="b1">Opening Date:</span> 21/3/2019</p>
                     <p><span class="b1">Account type:</span> Current</p>
                     <p><span class="b1">Status:</span> Dormant</p>
                     <p><span class="b1">Account balance:</span> #2,000.00</p>
+                    <button class="btn small-width cursor" onclick=closeModal()>OKAY</button>
+
             </div>
         </div>
         <!-- End of  View Specific Account record -->
@@ -165,6 +176,7 @@
                 <h4 class="m2">ACCOUNT DETAILS</h4>
                     <p> <span class="b1">Account Name:</span> Lasisi George</p>
                     <p><span class="b1">Account Number:</span> 0123456789</p>
+                    <p><span class="b1">Opening Date:</span> 21/3/2019</p>
                     <p><span class="b1">Account type:</span> Current</p>
                     <p><span class="b1">Status:</span> Dormant</p>
                     <p><span class="b1">Account balance:</span> #2,000.00</p>
@@ -193,10 +205,11 @@
                 <h4 class="m2">ACTIVATE/DEACTIVATE ACCOUNT</h4>
                     <p> <span class="b1">Account Name:</span> Lasisi George</p>
                     <p><span class="b1">Account Number:</span> 0123456789</p>
+                    <p><span class="b1">Opening Date:</span> 21/3/2019</p>
                     <p><span class="b1">Account type:</span> Current</p>
                     <p><span class="b1">Status:</span> Dormant</p>
                     <p><span class="b1">Account balance:</span> #2,000.00</p>
-                    <button id= "btn-act" class="cursor btn" onclick="toggle(), closeModal()">ACTIVATE</button>
+                    <button id= "btn-act" class="cursor btn" onclick="toggleActiveDeactive(), closeModal()">ACTIVATE</button>
             </div>
         </div>
         <!-- End of Activate/Deactivate user account -->
