@@ -94,6 +94,10 @@ const toggleSidebar = () => {
       modal8.style.display = 'none';
       modal9.style.display = 'none';
   };
+  const closeModalClient = () => {
+    const modal = document.getElementsByClassName('modal')[0];
+      modal.style.display = 'none';
+  };
 
   const toggleActiveDeactive = () => {
     const btn = document.getElementById('btn-act');
