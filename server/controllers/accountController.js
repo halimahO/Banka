@@ -11,7 +11,7 @@ class Accounts {
         const { type } = req.body;
         const { userId } = req.params;
         const user = users.filter(user => user.id === Number(userId));
-        const account = new accountModel(id, accountNumber, type);
+        const account = await new accountModel(id, accountNumber, type);
         account.owner = user[0].id;
         user[0].noOfAccounts += 1;
         accounts.push(account);
