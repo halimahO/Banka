@@ -2,17 +2,17 @@ class Data {
     constructor() {
       this.users = [{
         id: 1,
-        firstname: 'Mary',
-        lastname: 'Moore',
+        firstName: 'Mary',
+        lastName: 'Moore',
         email: 'marymore@gmail.com',
-        password: '$2a$10$FagkzXXK9BjSvbc2ks/0buuSco0SCsN53YyJKMbkSvgA5hFOSdWeS',
+        password: '$2a$10$/pfLarDvf/VxKkwpo8Bu7OIpuvfgsnot/2v6hNQqo9HbJ91Y/CEae',
         type: 'client',
         isAdmin: false,
         noOfAccounts: 1,
       }, {
         id: 2,
-        firstname: 'Grey',
-        lastname: 'Williams',
+        firstName: 'Grey',
+        lastName: 'Williams',
         email: 'greywilliams@gmail.com',
         password: '$2a$10$FagkzXXK9BjSvbc2ks/0buuSco0SCsN53YyJKMbkSvgA5hFOSdWeS',
         type: 'staff',
