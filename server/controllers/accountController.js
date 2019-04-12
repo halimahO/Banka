@@ -71,7 +71,7 @@ class Accounts {
     }
   }
 
-  static oneUserAccount(req, res) {
+  static specificAccount(req, res) {
     const { accountNo } = req.params;
     const account = accounts.filter(acct => acct.accountNumber === Number(accountNo));
     if (account.length <= 0) {
