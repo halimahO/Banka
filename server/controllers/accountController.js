@@ -9,7 +9,7 @@ class Accounts {
     const id = accounts.length + 1;
     const accountNumber = generateAcctNo();
     const { type } = req.body;
-    const { userId } = req.params;
+    const userId = req.user.id;
     const user = users.filter(u => u.id === Number(userId));
     const account = await new AccountModel(id, accountNumber, type);
     account.owner = user[0].id;
@@ -28,6 +28,30 @@ class Accounts {
       data: response,
     });
   }
-}
 
+  static activateDeactivate(req, res) {
+    const { accountNo } = req.params;
+    const account = accounts.filter(acct => acct.accountNumber === Number(accountNo));
+    if (account.length <= 0) {
+      res.status(404).json({
+        status: 404,
+        message: `Account ${accountNo} not found`,
+      });
+    } else {
+      if (account[0].status === 'active') {
+        account[0].status = 'dormant';
+      } else {
+        account[0].status = 'active';
+      }
+      const response = {
+        accountNumber: account[0].accountNumber,
+        status: account[0].status,
+      };
+      res.status(200).json({
+        status: 200,
+        data: response,
+      });
+    }
+  }
+}
 export default Accounts;
