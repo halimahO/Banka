@@ -5,11 +5,12 @@ import { requireAuth, staffAuth } from '../middlewares/authentication';
 
 const accountRouter = new Router();
 const {
-  createAccount, activateDeactivate, deleteAccount, oneUserAccount,
+  createAccount, activateDeactivate, deleteAccount, oneUserAccount, allAccounts,
 } = accountController;
 
 accountRouter.post('/', requireAuth, createAccount);
 accountRouter.patch('/:accountNo', requireAuth, staffAuth, activateDeactivate);
 accountRouter.delete('/:accountNo', requireAuth, staffAuth, deleteAccount);
 accountRouter.get('/:accountNo', requireAuth, staffAuth, oneUserAccount);
+accountRouter.get('/', requireAuth, staffAuth, allAccounts);
 export default accountRouter;

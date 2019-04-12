@@ -86,5 +86,19 @@ class Accounts {
       });
     }
   }
+
+  static allAccounts(req, res) {
+    if (accounts.length <= 0) {
+      res.status(204).json({
+        status: 204,
+        message: 'No accounts in the database',
+      });
+    } else {
+      res.status(200).json({
+        status: 200,
+        data: accounts,
+      });
+    }
+  }
 }
 export default Accounts;
