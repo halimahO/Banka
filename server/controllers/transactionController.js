@@ -92,7 +92,7 @@ class Transactions {
     });
   }
 
-  static checkIfAccountExists(accountNo) {
+  static checkIfTransExists(accountNo) {
     return transactions.filter(trans => Number(trans.accountNumber) === Number(accountNo));
   }
 
@@ -105,7 +105,7 @@ class Transactions {
         message: `Account ${accountNo} not found`,
       });
     }
-    const transactionHist = Transactions.checkIfAccountExists(accountNo);
+    const transactionHist = Transactions.checkIfTransExists(accountNo);
     if (transactionHist.length <= 0) {
       res.status(404).json({
         status: 404,
@@ -115,6 +115,29 @@ class Transactions {
       res.status(200).json({
         status: 200,
         data: transactionHist,
+      });
+    }
+  }
+
+  static specificTransaction(req, res) {
+    const { accountNo, transactionId } = req.params;
+    const account = accounts.filter(acct => acct.accountNumber === Number(accountNo));
+    if (account.length <= 0) {
+      res.status(404).json({
+        status: 404,
+        message: `Account ${accountNo} not found`,
+      });
+    }
+    const transaction = transactions.filter(trans => trans.id === Number(transactionId));
+    if (transaction.length <= 0) {
+      res.status(404).json({
+        status: 404,
+        message: `Transaction on account ${accountNo} with id ${transactionId} not found`,
+      });
+    } else {
+      res.status(200).json({
+        status: 200,
+        data: transaction,
       });
     }
   }
