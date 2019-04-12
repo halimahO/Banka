@@ -74,7 +74,7 @@ class Users {
     });
   }
 
-  static async createStaffAdmin(req, res) {
+  static async createStaff(req, res) {
     const id = users.length + 1;
     const {
       firstName, lastName, email, password, isAdmin,

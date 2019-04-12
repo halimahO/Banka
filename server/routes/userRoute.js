@@ -4,10 +4,10 @@ import { requireAuth, adminAuth } from '../middlewares/authentication';
 
 
 const userRouter = new Router();
-const { createUser, signin, createStaffAdmin } = userController;
+const { createUser, signin, createStaff } = userController;
 
 userRouter.post('/auth/signup', createUser);
 userRouter.post('/auth/signin', signin);
-userRouter.post('/staff', requireAuth, adminAuth, createStaffAdmin);
+userRouter.post('/staff', requireAuth, adminAuth, createStaff);
 
 export default userRouter;
