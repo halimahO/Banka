@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import accountController from '../controllers/accountController';
 import { requireAuth, staffAuth } from '../middlewares/authentication';
+import paramsValidate from '../middlewares/validateParams';
 
 
 const accountRouter = new Router();
@@ -9,8 +10,8 @@ const {
 } = accountController;
 
 accountRouter.post('/', requireAuth, createAccount);
-accountRouter.patch('/:accountNo', requireAuth, staffAuth, activateDeactivate);
-accountRouter.delete('/:accountNo', requireAuth, staffAuth, deleteAccount);
-accountRouter.get('/:accountNo', requireAuth, staffAuth, specificAccount);
+accountRouter.patch('/:accountNo', requireAuth, staffAuth, paramsValidate.acctNo, activateDeactivate);
+accountRouter.delete('/:accountNo', requireAuth, staffAuth, paramsValidate.acctNo, deleteAccount);
+accountRouter.get('/:accountNo', requireAuth, staffAuth, paramsValidate.acctNo, specificAccount);
 accountRouter.get('/', requireAuth, staffAuth, allAccounts);
 export default accountRouter;
