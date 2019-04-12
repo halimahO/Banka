@@ -72,9 +72,9 @@ class Data {
       type: 'debit',
       accountNumber: 1234567890,
       cashier: 2,
-      amount: 7000.00,
+      amount: 6000.00,
       oldbalance: 10000.00,
-      newbalance: 3000.00,
+      newbalance: 4000.00,
     }];
   }
 }
