@@ -50,7 +50,7 @@ export const cashierAuth = (req, res, next) => {
   if (type !== 'staff' || isAdmin === true) {
     res.status(403).json({
       status: 403,
-      message: 'Sorry! Resource accessible to cashier only',
+      message: 'Unauthorized! Resource accessible to cashier only',
     });
   }
   next();
