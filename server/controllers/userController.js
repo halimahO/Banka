@@ -20,7 +20,9 @@ class Users {
     const type = 'client';
     const isAdmin = false;
     const passwordHash = hashPassword(password);
-    const token = generateToken({ email, firstName, isAdmin });
+    const token = generateToken({
+      id, email, type, isAdmin,
+    });
     const user = await new UserModel(id, email, firstName, lastName, passwordHash, type, isAdmin);
     users.push(user);
     const response = {
@@ -30,7 +32,6 @@ class Users {
       lastname: lastName,
       email,
     };
-    console.log(user);
     res.status(201).json({
       status: 201,
       data: response,
@@ -55,9 +56,11 @@ class Users {
       });
     }
     const {
-      id, firstName, lastName, isAdmin,
+      id, firstName, lastName, type, isAdmin,
     } = result;
-    const token = generateToken({ id, email, isAdmin });
+    const token = generateToken({
+      id, email, type, isAdmin,
+    });
     const response = {
       token,
       id,
@@ -67,6 +70,40 @@ class Users {
     };
     res.status(200).json({
       status: 200,
+      data: response,
+    });
+  }
+
+  static async createStaffAdmin(req, res) {
+    const id = users.length + 1;
+    const {
+      firstName, lastName, email, password, isAdmin,
+    } = req.body;
+    const userExists = users.filter(user => user.email === email);
+    if (userExists[0]) {
+      res.status(409).json({
+        status: 409,
+        message: `The email address ${email} is already taken.`,
+      });
+    }
+    const type = 'staff';
+    const passwordHash = hashPassword(password);
+    const token = generateToken({
+      id, email, type, isAdmin,
+    });
+
+    const user = await new UserModel(id, email, firstName, lastName, passwordHash, type, isAdmin);
+    users.push(user);
+    const response = {
+      token,
+      id,
+      firstname: firstName,
+      lastname: lastName,
+      email,
+      isAdmin,
+    };
+    res.status(201).json({
+      status: 201,
       data: response,
     });
   }

@@ -25,13 +25,13 @@ export const requireAuth = async (req, res, next) => {
 
 export const adminAuth = (req, res, next) => {
   const { isAdmin, type } = req.user;
-  if (isAdmin !== true && type !== 'staff') {
+  if (type !== 'staff' || isAdmin !== true) {
     res.status(403).json({
       status: 403,
       message: 'Unauthorized! Accessible to admin only',
     });
   }
-  return next();
+  next();
 };
 
 export const staffAuth = (req, res, next) => {
@@ -42,5 +42,16 @@ export const staffAuth = (req, res, next) => {
       message: 'Unauthorized! Accessible to staff only',
     });
   }
-  return next();
+  next();
+};
+
+export const cashierAuth = (req, res, next) => {
+  const { type, isAdmin } = req.user;
+  if (type !== 'staff' || isAdmin === true) {
+    res.status(403).json({
+      status: 403,
+      message: 'Sorry! Resource accessible to cashier only',
+    });
+  }
+  next();
 };
