@@ -1,8 +1,8 @@
 class Transaction {
-  constructor(id, accountNumber, amount, cashier, oldBalance) {
+  constructor(id, type, accountNumber, amount, cashier, oldBalance) {
     this.id = id;
     this.createdOn = new Date(Date.now());
-    this.type = 'debit';
+    this.type = type;
     this.accountNumber = accountNumber;
     this.cashier = cashier;
     this.amount = amount;

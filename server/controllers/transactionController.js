@@ -6,6 +6,7 @@ const { accounts, transactions } = data;
 class Transactions {
   static async debitAccount(req, res) {
     const id = transactions.length + 1;
+    const type = 'debit';
     const { accountNo } = req.params;
     const { amount } = req.body;
     const account = accounts.filter(acct => acct.accountNumber === Number(accountNo));
@@ -27,7 +28,8 @@ class Transactions {
     }
 
 
-    const transaction = await new TransactionModel(id, accountNo, amount, cashier, oldBalance);
+    const transaction = await new TransactionModel(id, type, accountNo,
+      amount, cashier, oldBalance);
 
     if (transaction.oldBalance >= amount) {
       transaction.newBalance = transaction.oldBalance - amount;
@@ -56,6 +58,7 @@ class Transactions {
 
   static async creditAccount(req, res) {
     const id = transactions.length + 1;
+    const type = 'credit';
     const { accountNo } = req.params;
     const { amount } = req.body;
     const account = accounts.filter(acct => acct.accountNumber === Number(accountNo));
@@ -69,7 +72,8 @@ class Transactions {
       });
     }
 
-    const transaction = await new TransactionModel(id, accountNo, amount, cashier, oldBalance);
+    const transaction = await new TransactionModel(id, type, accountNo,
+      amount, cashier, oldBalance);
     transaction.newBalance = Number(transaction.oldBalance) + Number(amount);
     account[0].balance = transaction.newBalance;
     transactions.push(transaction);
@@ -86,6 +90,33 @@ class Transactions {
       status: 200,
       data: response,
     });
+  }
+
+  static checkIfAccountExists(accountNo) {
+    return transactions.filter(trans => Number(trans.accountNumber) === Number(accountNo));
+  }
+
+  static transactionHistory(req, res) {
+    const { accountNo } = req.params;
+    const account = accounts.filter(acct => acct.accountNumber === Number(accountNo));
+    if (account.length <= 0) {
+      res.status(404).json({
+        status: 404,
+        message: `Account ${accountNo} not found`,
+      });
+    }
+    const transactionHist = Transactions.checkIfAccountExists(accountNo);
+    if (transactionHist.length <= 0) {
+      res.status(404).json({
+        status: 404,
+        message: `No transaction found on account ${accountNo}`,
+      });
+    } else {
+      res.status(200).json({
+        status: 200,
+        data: transactionHist,
+      });
+    }
   }
 }
 export default Transactions;
