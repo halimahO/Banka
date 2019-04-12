@@ -70,5 +70,21 @@ class Accounts {
       });
     }
   }
+
+  static oneUserAccount(req, res) {
+    const { accountNo } = req.params;
+    const account = accounts.filter(acct => acct.accountNumber === Number(accountNo));
+    if (account.length <= 0) {
+      res.status(404).json({
+        status: 404,
+        message: `Account ${accountNo} not found`,
+      });
+    } else {
+      res.status(200).json({
+        status: 200,
+        data: account,
+      });
+    }
+  }
 }
 export default Accounts;
