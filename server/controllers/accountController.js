@@ -53,5 +53,22 @@ class Accounts {
       });
     }
   }
+
+  static deleteAccount(req, res) {
+    const { accountNo } = req.params;
+    const acctIndex = accounts.findIndex(acct => acct.accountNumber === Number(accountNo));
+    if (acctIndex < 0) {
+      res.status(404).json({
+        status: 404,
+        message: `Delete error! Account ${accountNo} not found`,
+      });
+    } else {
+      accounts.splice(acctIndex, 1);
+      res.status(200).json({
+        status: 200,
+        message: 'Account successfully deleted',
+      });
+    }
+  }
 }
 export default Accounts;
