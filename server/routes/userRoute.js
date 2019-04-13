@@ -9,6 +9,6 @@ const { createUser, signin, createStaff } = userController;
 
 userRouter.post('/auth/signup', userValidate.client, createUser);
 userRouter.post('/auth/signin', userValidate.login, signin);
-userRouter.post('/users/staff', requireAuth, adminAuth, userValidate.staff, createStaff);
+userRouter.post('/staff', requireAuth, adminAuth, userValidate.staff, createStaff);
 
 export default userRouter;
