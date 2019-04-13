@@ -35,7 +35,7 @@ class Accounts {
     if (account.length <= 0) {
       res.status(404).json({
         status: 404,
-        message: `Account ${accountNo} not found`,
+        error: `Account ${accountNo} not found`,
       });
     } else {
       if (account[0].status === 'active') {
@@ -60,7 +60,7 @@ class Accounts {
     if (acctIndex < 0) {
       res.status(404).json({
         status: 404,
-        message: `Delete error! Account ${accountNo} not found`,
+        error: `Delete error! Account ${accountNo} not found`,
       });
     } else {
       accounts.splice(acctIndex, 1);
