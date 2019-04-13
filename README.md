@@ -23,17 +23,17 @@ Banka is a light-weight core banking application that powers banking operations 
 
 ---
 ## Management
-The project development is managed on [Pivotal tracker](https://halimaho.github.io/Banka/UI/)
+The project development is managed on [Pivotal tracker] https://halimaho.github.io/Banka/UI/
 
 
 ---
 ## Frontend
-The UI is hosted on [Github pages](https://halimaho.github.io/Banka/UI/)
+The UI is hosted on [Github pages] https://halimaho.github.io/Banka/UI/
 
 
 ---
 ## Backend
-The api is hosted on [Heroku](https://my-banka-app.herokuapp.com/api/v1/)
+The api is hosted on [Heroku] https://my-banka-app.herokuapp.com/api/v1/
 
 
 ---
@@ -112,7 +112,7 @@ $ npm run test
 
 Andela
 
---
+---
 ## Author
 
 Halimah Oladosu
