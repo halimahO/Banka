@@ -8,7 +8,7 @@ Banka is a light-weight core banking application that powers banking operations 
 
 
 ---
-## Implemented Features
+## Features
 - User (client) can sign up
 - User (client) can login
 - User (client) can create an account
