@@ -7,8 +7,8 @@ import userValidate from '../middlewares/validateUser';
 const userRouter = new Router();
 const { createUser, signin, createStaff } = userController;
 
-userRouter.post('/auth/signup', createUser);
+userRouter.post('/auth/signup', userValidate.client, createUser);
 userRouter.post('/auth/signin', userValidate.login, signin);
-userRouter.post('/staff', requireAuth, adminAuth, createStaff);
+userRouter.post('/users/staff', requireAuth, adminAuth, userValidate.staff, createStaff);
 
 export default userRouter;
