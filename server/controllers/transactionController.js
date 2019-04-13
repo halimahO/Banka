@@ -132,7 +132,7 @@ class Transactions {
     if (transaction.length <= 0) {
       res.status(404).json({
         status: 404,
-        message: `Transaction on account ${accountNo} with id ${transactionId} not found`,
+        message: `Transaction with id ${transactionId} on account ${accountNo} not found`,
       });
     } else {
       res.status(200).json({
