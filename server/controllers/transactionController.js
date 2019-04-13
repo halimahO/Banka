@@ -9,17 +9,15 @@ class Transactions {
     const type = 'debit';
     const { accountNo } = req.params;
     const { amount } = req.body;
-    const account = accounts.filter(acct => acct.accountNumber === Number(accountNo));
-    const oldBalance = account[0].balance;
     const cashier = req.user.id;
-
+    const account = accounts.filter(acct => acct.accountNumber === Number(accountNo));
     if (account.length <= 0) {
       res.status(404).json({
         status: 404,
         message: `Account ${accountNo} not found`,
       });
     }
-
+    const oldBalance = account[0].balance;
     if (account[0].status === 'dormant') {
       res.status(400).json({
         status: 400,
@@ -62,7 +60,6 @@ class Transactions {
     const { accountNo } = req.params;
     const { amount } = req.body;
     const account = accounts.filter(acct => acct.accountNumber === Number(accountNo));
-    const oldBalance = account[0].balance;
     const cashier = req.user.id;
 
     if (account.length <= 0) {
@@ -71,6 +68,7 @@ class Transactions {
         message: `Account ${accountNo} not found`,
       });
     }
+    const oldBalance = account[0].balance;
 
     const transaction = await new TransactionModel(id, type, accountNo,
       amount, cashier, oldBalance);
