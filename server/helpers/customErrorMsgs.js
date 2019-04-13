@@ -8,6 +8,7 @@ const customErrorMessages = {
   alpha_dash: ':attribute should contain only aplphabets, numbers, underscores and dashes',
   alpha: ':attribute should contain only letters.',
   boolean: ':attribute should be boolean: true or false.',
+  in: ':attribute should be one of the following: :in.',
 };
 
 export default customErrorMessages;
