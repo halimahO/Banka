@@ -14,14 +14,14 @@ class Transactions {
     if (account.length <= 0) {
       res.status(404).json({
         status: 404,
-        message: `Account ${accountNo} not found`,
+        error: `Account ${accountNo} not found`,
       });
     }
     const oldBalance = account[0].balance;
     if (account[0].status === 'dormant') {
       res.status(400).json({
         status: 400,
-        message: `Account ${accountNo} is dormant!`,
+        error: `Account ${accountNo} is dormant!`,
       });
     }
 
@@ -49,7 +49,7 @@ class Transactions {
     } else {
       res.status(401).json({
         status: 401,
-        message: 'Insufficient fund',
+        error: 'Insufficient fund',
       });
     }
   }
@@ -65,7 +65,7 @@ class Transactions {
     if (account.length <= 0) {
       res.status(404).json({
         status: 404,
-        message: `Account ${accountNo} not found`,
+        error: `Account ${accountNo} not found`,
       });
     }
     const oldBalance = account[0].balance;
@@ -100,14 +100,14 @@ class Transactions {
     if (account.length <= 0) {
       res.status(404).json({
         status: 404,
-        message: `Account ${accountNo} not found`,
+        error: `Account ${accountNo} not found`,
       });
     }
     const transactionHist = Transactions.checkIfTransExists(accountNo);
     if (transactionHist.length <= 0) {
       res.status(404).json({
         status: 404,
-        message: `No transaction found on account ${accountNo}`,
+        error: `No transaction found on account ${accountNo}`,
       });
     } else {
       res.status(200).json({
@@ -123,14 +123,14 @@ class Transactions {
     if (account.length <= 0) {
       res.status(404).json({
         status: 404,
-        message: `Account ${accountNo} not found`,
+        error: `Account ${accountNo} not found`,
       });
     }
     const transaction = transactions.filter(trans => trans.id === Number(transactionId));
     if (transaction.length <= 0) {
       res.status(404).json({
         status: 404,
-        message: `Transaction with id ${transactionId} on account ${accountNo} not found`,
+        error: `Transaction with id ${transactionId} on account ${accountNo} not found`,
       });
     } else {
       res.status(200).json({
