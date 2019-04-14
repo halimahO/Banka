@@ -14,7 +14,7 @@ class Users {
     if (userExists[0]) {
       res.status(409).json({
         status: 409,
-        message: `The email address ${email} is already taken.`,
+        error: `The email address ${email} is already taken.`,
       });
     }
     const type = 'client';
@@ -45,14 +45,14 @@ class Users {
     if (!result) {
       res.status(404).json({
         status: 404,
-        message: `We couldn't find an account for email: ${email}.`,
+        error: `We couldn't find an account for email: ${email}.`,
       });
     }
     const passwordHash = hashPassword(password);
     if (!comparePassword(result.password, passwordHash)) {
       res.status(401).json({
         status: 401,
-        message: 'Incorrect password!',
+        error: 'Incorrect password!',
       });
     }
     const {
@@ -83,7 +83,42 @@ class Users {
     if (userExists[0]) {
       res.status(409).json({
         status: 409,
-        message: `The email address ${email} is already taken.`,
+        error: `The email address ${email} is already taken.`,
+      });
+    }
+    const type = 'staff';
+    const passwordHash = hashPassword(password);
+    const token = generateToken({
+      id, email, type, isAdmin,
+    });
+
+    const user = await new UserModel(id, email, firstName, lastName, passwordHash, type, isAdmin);
+    users.push(user);
+    const response = {
+      token,
+      id,
+      firstname: firstName,
+      lastname: lastName,
+      email,
+      isAdmin,
+    };
+    res.status(201).json({
+      status: 201,
+      data: response,
+    });
+  }
+
+  static async testAdmin(req, res) {
+    const id = users.length + 1;
+    const isAdmin = true;
+    const {
+      firstName, lastName, email, password,
+    } = req.body;
+    const userExists = users.filter(user => user.email === email);
+    if (userExists[0]) {
+      res.status(409).json({
+        status: 409,
+        error: `The email address ${email} is already taken.`,
       });
     }
     const type = 'staff';
