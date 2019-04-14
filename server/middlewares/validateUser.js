@@ -7,7 +7,7 @@ export default class userValidate {
 
     const userProperties = {
       email: 'required|email|max:50',
-      // password: 'required|alpha_dash|min:6|max:16',
+      password: 'required|alpha_dash|min:6|max:16',
     };
 
     const validator = new Validator(user, userProperties, customErrorMsgs);

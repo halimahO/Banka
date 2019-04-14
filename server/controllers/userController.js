@@ -48,8 +48,7 @@ class Users {
         error: `We couldn't find an account for email: ${email}.`,
       });
     }
-    const passwordHash = hashPassword(password);
-    if (!comparePassword(result.password, passwordHash)) {
+    if (!comparePassword(password, result.password)) {
       res.status(401).json({
         status: 401,
         error: 'Incorrect password!',
