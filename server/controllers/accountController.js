@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import AccountModel from '../models/accountModel';
 import data from '../mock/mockData';
 import generateAcctNo from '../helpers/generateAcctNo';
