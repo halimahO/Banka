@@ -53,178 +53,136 @@ describe('TRANSACTION TEST DATA', () => {
 });
 
 describe('TRANSACTION TEST', () => {
-  describe('CASHIER CAN DEBIT ACCOUNT', () => {
-    it('it should return 201 if cashier successfully debits account', async () => {
-      console.log(`${adminToken} and ${clientToken}`);
-      const res = await chai.request(app)
-        .post(`/api/v1/transactions/${clientAcct}/debit`)
-        .set({ Authorization: `Bearer ${staffToken}` })
-        .send(transaction);
-      expect(res).to.have.status(201);
-      expect(res.body).to.have.property('status');
-      expect(res.body.status).to.be.a('number');
-      expect(res.body.status).to.equal(201);
-      expect(res.body).to.be.an('object');
-      expect(res.body).to.have.property('data');
-      expect(res.body.data).to.be.an('object');
-    });
-
-    it('it should return 403 if account number is wrong', async () => {
-      const res = await chai.request(app)
-        .post(`/api/v1/transactions/${wrongAcctNo}/debit`)
-        .set({ Authorization: `Bearer ${staffToken}` })
-        .send(transaction);
-      expect(res).to.have.status(403);
-      expect(res.body).to.have.property('error');
-    });
-
-    it('it should return 403 if amount is not a positive number', async () => {
-      const res = await chai.request(app)
-        .post(`/api/v1/transactions/${clientAcct}/debit`)
-        .set({ Authorization: `Bearer ${staffToken}` })
-        .send(wrongTransactionAmount);
-      expect(res).to.have.status(403);
-      expect(res.body).to.have.property('error');
-    });
-
-    it('it should return 403 if amount is empty', async () => {
-      const res = await chai.request(app)
-        .post(`/api/v1/transactions/${clientAcct}/debit`)
-        .set({ Authorization: `Bearer ${staffToken}` })
-        .send(emptytransaction);
-      expect(res).to.have.status(403);
-      expect(res.body).to.have.property('error');
-    });
-
-    it('it should return 403 if if user is not authorized', async () => {
-      const res = await chai.request(app)
-        .post(`/api/v1/transactions/${clientAcct}/debit`)
-        .set({ Authorization: 'Bearer wrongtoken' })
-        .send(transaction);
-      expect(res).to.have.status(403);
-      expect(res).to.have.property('error');
-    });
+  it('it should return 403 if account number is wrong', async () => {
+    const res = await chai.request(app)
+      .post(`/api/v1/transactions/${wrongAcctNo}/debit`)
+      .set({ Authorization: `Bearer ${staffToken}` })
+      .send(transaction);
+    expect(res).to.have.status(403);
+    expect(res.body).to.have.property('error');
   });
 
-  describe('CASHIER CAN CREDIT ACCOUNT', () => {
-    it('it should return 201 if cashier successfully debits account', async () => {
-      const res = await chai.request(app)
-        .post(`/api/v1/transactions/${clientAcct}/credit`)
-        .set({ Authorization: `Bearer ${staffToken}` })
-        .send(transaction);
-      expect(res).to.have.status(201);
-      expect(res.body).to.have.property('status');
-      expect(res.body.status).to.be.a('number');
-      expect(res.body.status).to.equal(201);
-      expect(res.body).to.be.an('object');
-      expect(res.body).to.have.property('data');
-      expect(res.body.data).to.be.an('object');
-    });
-
-    it('it should return 403 if account number is wrong', async () => {
-      const res = await chai.request(app)
-        .post(`/api/v1/transactions/${wrongAcctNo}/credit`)
-        .set({ Authorization: `Bearer ${staffToken}` })
-        .send(transaction);
-      expect(res).to.have.status(403);
-      expect(res.body).to.have.property('error');
-    });
-
-    it('it should return 403 if amount is not a positive number', async () => {
-      const res = await chai.request(app)
-        .post(`/api/v1/transactions/${clientAcct}/credit`)
-        .set({ Authorization: `Bearer ${staffToken}` })
-        .send(wrongTransactionAmount);
-      expect(res).to.have.status(403);
-      expect(res.body).to.have.property('error');
-    });
-
-    it('it should return 403 if amount is empty', async () => {
-      const res = await chai.request(app)
-        .post(`/api/v1/transactions/${clientAcct}/credit`)
-        .set({ Authorization: `Bearer ${staffToken}` })
-        .send(emptytransaction);
-      expect(res).to.have.status(403);
-      expect(res.body).to.have.property('error');
-    });
-
-    it('it should return 403 if if user is not authorized', async () => {
-      const res = await chai.request(app)
-        .post(`/api/v1/transactions/${clientAcct}/credit`)
-        .set({ Authorization: 'Bearer wrongtoken' })
-        .send(transaction);
-      expect(res).to.have.status(403);
-      expect(res).to.have.property('error');
-    });
+  it('it should return 403 if amount is not a positive number', async () => {
+    const res = await chai.request(app)
+      .post(`/api/v1/transactions/${clientAcct}/debit`)
+      .set({ Authorization: `Bearer ${staffToken}` })
+      .send(wrongTransactionAmount);
+    expect(res).to.have.status(403);
+    expect(res.body).to.have.property('error');
   });
 
-  describe('TEST GET TRANSACTION HISTORY', () => {
-    it('it should successfully get user\'s transaction history', async () => {
-      const res = await chai.request(app)
-        .get(`/api/v1/transactions/${clientAcct}`)
-        .set({ Authorization: `Bearer ${clientToken}` });
-      expect(res).to.have.status(200);
-      expect(res.body).to.have.property('status');
-      expect(res.body.status).to.be.a('number');
-      expect(res.body.status).to.equal(200);
-      expect(res.body).to.be.an('object');
-      expect(res.body).to.have.property('data');
-      expect(res.body.data).to.be.an('object');
-    });
-
-    it('it should return 403 if account number is wrong', async () => {
-      const res = await chai.request(app)
-        .get(`/api/v1/transactions/${wrongAcctNo}`)
-        .set({ Authorization: `Bearer ${staffToken}` });
-      expect(res).to.have.status(403);
-      expect(res.body).to.have.property('error');
-    });
-
-    it('it should return 403 if unauthorized', async () => {
-      const res = await chai.request(app)
-        .get(`/api/v1/transactions/${clientAcct}`)
-        .set({ Authorization: 'Bearer wrong token' });
-      expect(res).to.have.status(403);
-      expect(res.body).to.have.property('error');
-    });
+  it('it should return 403 if amount is empty', async () => {
+    const res = await chai.request(app)
+      .post(`/api/v1/transactions/${clientAcct}/debit`)
+      .set({ Authorization: `Bearer ${staffToken}` })
+      .send(emptytransaction);
+    expect(res).to.have.status(403);
+    expect(res.body).to.have.property('error');
   });
 
-  describe('TEST GET SPECIFIC ACCOUNT TRANSACTION', () => {
-    it('it should successfully get user\'s specific account transaction', async () => {
-      const res = await chai.request(app)
-        .get(`/api/v1/transactions/${clientAcct}/1`)
-        .set({ Authorization: `Bearer ${clientToken}` });
-      expect(res).to.have.status(200);
-      expect(res.body).to.have.property('status');
-      expect(res.body.status).to.be.a('number');
-      expect(res.body.status).to.equal(200);
-      expect(res.body).to.be.an('object');
-      expect(res.body).to.have.property('data');
-      expect(res.body.data).to.be.an('object');
-    });
+  it('it should return 403 if if user is not authorized', async () => {
+    const res = await chai.request(app)
+      .post(`/api/v1/transactions/${clientAcct}/debit`)
+      .set({ Authorization: 'Bearer wrongtoken' })
+      .send(transaction);
+    expect(res).to.have.status(403);
+    expect(res).to.have.property('error');
+  });
+});
 
-    it('it should return 403 if account number is wrong', async () => {
-      const res = await chai.request(app)
-        .get(`/api/v1/transactions/${wrongAcctNo}/1`)
-        .set({ Authorization: `Bearer ${staffToken}` });
-      expect(res).to.have.status(403);
-      expect(res.body).to.have.property('error');
-    });
+describe('CASHIER CAN CREDIT ACCOUNT', () => {
+  it('it should return 403 if account number is wrong', async () => {
+    const res = await chai.request(app)
+      .post(`/api/v1/transactions/${wrongAcctNo}/credit`)
+      .set({ Authorization: `Bearer ${staffToken}` })
+      .send(transaction);
+    expect(res).to.have.status(403);
+    expect(res.body).to.have.property('error');
+  });
 
-    it('it should return 403 if transaction Id is wrong', async () => {
-      const res = await chai.request(app)
-        .get(`/api/v1/transactions/${clientAcct}/${wrongTransactionId}`)
-        .set({ Authorization: `Bearer ${staffToken}` });
-      expect(res).to.have.status(403);
-      expect(res.body).to.have.property('error');
-    });
+  it('it should return 403 if amount is not a positive number', async () => {
+    const res = await chai.request(app)
+      .post(`/api/v1/transactions/${clientAcct}/credit`)
+      .set({ Authorization: `Bearer ${staffToken}` })
+      .send(wrongTransactionAmount);
+    expect(res).to.have.status(403);
+    expect(res.body).to.have.property('error');
+  });
 
-    it('it should return 403 if unauthorized', async () => {
-      const res = await chai.request(app)
-        .get(`/api/v1/transactions/${clientAcct}/1`)
-        .set({ Authorization: 'Bearer wrong token' });
-      expect(res).to.have.status(403);
-      expect(res.body).to.have.property('error');
-    });
+  it('it should return 403 if amount is empty', async () => {
+    const res = await chai.request(app)
+      .post(`/api/v1/transactions/${clientAcct}/credit`)
+      .set({ Authorization: `Bearer ${staffToken}` })
+      .send(emptytransaction);
+    expect(res).to.have.status(403);
+    expect(res.body).to.have.property('error');
+  });
+
+  it('it should return 403 if if user is not authorized', async () => {
+    const res = await chai.request(app)
+      .post(`/api/v1/transactions/${clientAcct}/credit`)
+      .set({ Authorization: 'Bearer wrongtoken' })
+      .send(transaction);
+    expect(res).to.have.status(403);
+    expect(res).to.have.property('error');
+  });
+});
+
+describe('TEST GET TRANSACTION HISTORY', () => {
+  //  it('it should successfully get user\'s transaction history', async () => {
+  //    const res = await chai.request(app)
+  //      .get(`/api/v1/transactions/${clientAcct}`)
+  //      .set({ Authorization: `Bearer ${clientToken}` });
+  //    expect(res).to.have.status(200);
+  //    expect(res.body).to.have.property('status');
+  //  });
+  it('it should return 403 if account number is wrong', async () => {
+    const res = await chai.request(app)
+      .get(`/api/v1/transactions/${wrongAcctNo}`)
+      .set({ Authorization: `Bearer ${staffToken}` });
+    expect(res).to.have.status(403);
+    expect(res.body).to.have.property('error');
+  });
+
+  it('it should return 403 if unauthorized', async () => {
+    const res = await chai.request(app)
+      .get(`/api/v1/transactions/${clientAcct}`)
+      .set({ Authorization: 'Bearer wrong token' });
+    expect(res).to.have.status(403);
+    expect(res.body).to.have.property('error');
+  });
+});
+
+describe('TEST GET SPECIFIC ACCOUNT TRANSACTION', () => {
+  //  it('it should successfully get user\'s specific account transaction', async () => {
+  //    const res = await chai.request(app)
+  //      .get(`/api/v1/transactions/${clientAcct}/1`)
+  //      .set({ Authorization: `Bearer ${clientToken}` });
+  //    expect(res).to.have.status(200);
+  //   expect(res.body).to.have.property('status');
+  // });
+
+  it('it should return 403 if account number is wrong', async () => {
+    const res = await chai.request(app)
+      .get(`/api/v1/transactions/${wrongAcctNo}/1`)
+      .set({ Authorization: `Bearer ${staffToken}` });
+    expect(res).to.have.status(403);
+    expect(res.body).to.have.property('error');
+  });
+
+  it('it should return 403 if transaction Id is wrong', async () => {
+    const res = await chai.request(app)
+      .get(`/api/v1/transactions/${clientAcct}/${wrongTransactionId}`)
+      .set({ Authorization: `Bearer ${staffToken}` });
+    expect(res).to.have.status(403);
+    expect(res.body).to.have.property('error');
+  });
+
+  it('it should return 403 if unauthorized', async () => {
+    const res = await chai.request(app)
+      .get(`/api/v1/transactions/${clientAcct}/1`)
+      .set({ Authorization: 'Bearer wrong token' });
+    expect(res).to.have.status(403);
+    expect(res.body).to.have.property('error');
   });
 });
