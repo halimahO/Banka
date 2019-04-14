@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import AccountModel from '../models/accountModel';
 import data from '../mock/mockData';
 import generateAcctNo from '../helpers/generateAcctNo';
@@ -77,7 +78,7 @@ class Accounts {
     if (account.length <= 0) {
       res.status(404).json({
         status: 404,
-        message: `Account ${accountNo} not found`,
+        error: `Account ${accountNo} not found`,
       });
     } else {
       res.status(200).json({

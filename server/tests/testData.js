@@ -3,7 +3,7 @@ const wrongAcctNo = {
   accountNumber: '1234',
 };
 
-const wrongId = {
+const wrongTransactionId = {
   accountNumber: 'as2',
 };
 
@@ -20,6 +20,19 @@ const clientField2 = {
   firstName: 'Halle',
   lastName: 'Berry',
 };
+const clientField3 = {
+  email: 'testClientbbbb2@gmail.com',
+  password: 'asdfghjkl',
+  firstName: 'Halle',
+  lastName: 'Berry',
+};
+
+const clientField4 = {
+  email: 'testClienbbbbbbft2@gmail.com',
+  password: 'asdfghjkl',
+  firstName: 'Halle',
+  lastName: 'Berry',
+};
 
 const staffField = {
   firstName: 'Ade',
@@ -30,7 +43,22 @@ const staffField = {
 };
 
 const staffField2 = {
-  email: 'testStaff@gmail.com',
+  email: 'testStaff2@gmail.com',
+  password: 'asdfghjkl',
+  firstName: 'Halle',
+  lastName: 'Berry',
+  isAdmin: false,
+};
+
+const staffField3 = {
+  email: 'testStaff3@gmail.com',
+  password: 'asdfghjkl',
+  firstName: 'Halle',
+  lastName: 'Berry',
+  isAdmin: false,
+};
+const staffField4 = {
+  email: 'testStaff4@gmail.com',
   password: 'asdfghjkl',
   firstName: 'Halle',
   lastName: 'Berry',
@@ -46,7 +74,29 @@ const adminField = {
 };
 
 const adminField2 = {
-  email: 'testAdmin@gmail.com',
+  email: 'testAdmin2@gmail.com',
+  password: 'asdfghjkl',
+  firstName: 'Halle',
+  lastName: 'Berry',
+  isAdmin: true,
+};
+
+const adminField3 = {
+  email: 'testAdmin3@gmail.com',
+  password: 'asdfghjkl',
+  firstName: 'Halle',
+  lastName: 'Berry',
+  isAdmin: true,
+};
+const adminField4 = {
+  email: 'testAdmin4@gmail.com',
+  password: 'asdfghjkl',
+  firstName: 'Halle',
+  lastName: 'Berry',
+  isAdmin: true,
+};
+const adminField5 = {
+  email: 'testAdmin5@gmail.com',
   password: 'asdfghjkl',
   firstName: 'Halle',
   lastName: 'Berry',
@@ -109,20 +159,20 @@ const wrongLogin = {
 };
 
 const login = {
-  email: 'testClient2@gmail.com',
+  email: 'testClienbbbbbbft2@gmail.com',
   password: 'asdfghjkl',
 };
 
 // Account
-const emptyAccount = {
+const emptyAccountType = {
   type: '',
 };
 
-const account = {
+const accountType = {
   type: 'savings',
 };
 
-const wrongAccount = {
+const wrongAccountType = {
   type: 'everyday account',
 };
 
@@ -135,7 +185,7 @@ const transaction = {
   amount: 10000,
 };
 
-const wrongTransaction = {
+const wrongTransactionAmount = {
   amount: '20K',
 };
 
@@ -162,9 +212,10 @@ const emptyTestAdmin = {
   isAdmin: '',
 };
 export {
-  wrongAcctNo, wrongId, wrongAccount, wrongLogin, wrongTransaction,
+  wrongAcctNo, wrongTransactionId, wrongAccountType, wrongLogin, wrongTransactionAmount,
   clientField, adminField, staffField, missingAdmin, missingClient,
-  missingLogin, missingStaff, missingtestAdmin, emptyAccount, emptyAdmin,
+  missingLogin, missingStaff, missingtestAdmin, emptyAccountType, emptyAdmin,
   emptyClient, emptyLogin, emptyStaff, emptyTestAdmin, emptytransaction,
-  login, account, transaction, testAdmin, clientField2, adminField2, staffField2,
+  login, accountType, transaction, testAdmin, clientField2, adminField2, staffField2,
+  clientField3, clientField4, staffField3, staffField4, adminField3, adminField4, adminField5,
 };

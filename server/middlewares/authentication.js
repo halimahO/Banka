@@ -5,7 +5,7 @@ export const requireAuth = async (req, res, next) => {
   if (typeof authHeader === 'undefined') {
     res.status(403).json({
       status: 403,
-      message: 'Authorization token required',
+      error: 'Authorization token required',
     });
     return;
   }
@@ -18,7 +18,7 @@ export const requireAuth = async (req, res, next) => {
   } catch (error) {
     res.status(403).json({
       status: 403,
-      message: 'Authorization fail! Invalid token',
+      error: 'Authorization fail! Invalid token',
     });
   }
 };
@@ -28,7 +28,7 @@ export const adminAuth = (req, res, next) => {
   if (type !== 'staff' || isAdmin !== true) {
     res.status(403).json({
       status: 403,
-      message: 'Unauthorized! Accessible to admin only',
+      error: 'Unauthorized! Accessible to admin only',
     });
   }
   next();
@@ -39,7 +39,7 @@ export const staffAuth = (req, res, next) => {
   if (type !== 'staff') {
     res.status(403).json({
       status: 403,
-      message: 'Unauthorized! Accessible to staff only',
+      error: 'Unauthorized! Accessible to staff only',
     });
   }
   next();
@@ -50,7 +50,7 @@ export const cashierAuth = (req, res, next) => {
   if (type !== 'staff' || isAdmin === true) {
     res.status(403).json({
       status: 403,
-      message: 'Unauthorized! Resource accessible to cashier only',
+      error: 'Unauthorized! Resource accessible to cashier only',
     });
   }
   next();

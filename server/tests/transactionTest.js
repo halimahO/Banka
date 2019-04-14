@@ -6,11 +6,8 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../index';
 import {
-  wrongAcctNo, wrongId, wrongAccount, wrongLogin, wrongTransaction,
-  clientField, adminField, staffField, missingAdmin, missingClient,
-  missingLogin, missingStaff, missingtestAdmin, emptyAccount, emptyAdmin,
-  emptyClient, emptyLogin, emptyStaff, emptyTestAdmin, emptytransaction,
-  login, account, transaction, testAdmin, clientField2, staffField2, adminField2,
+  wrongAcctNo, wrongTransactionId, wrongTransactionAmount, clientField2,
+  staffField2, accountType, transaction, emptytransaction, adminField2,
 } from './testData';
 
 const { expect } = chai;
@@ -19,44 +16,48 @@ chai.use(chaiHttp);
 let clientToken;
 let staffToken;
 let adminToken;
-let clientAcctNo;
+let clientAcct;
 
-describe('TRANSACTION TEST', () => {
+describe('TRANSACTION TEST DATA', () => {
   before(async () => {
-    const response = await chai
+    const respons = await chai
       .request(app)
       .post('/api/v1/auth/signup')
-      .send(clientField);
+      .send(clientField2);
 
-    clientToken = response.body.data.token;
+    clientToken = respons.body.data.token;
 
-    const userResponse = await chai
+    const userRespons = await chai
       .request(app)
       .post('/api/v1/accounts')
       .set({ Authorization: `Bearer ${clientToken}` })
-      .send({
-        type: 'savings',
-      });
-    clientAcctNo = userResponse.body.data.accountNumber;
+      .send(accountType);
 
-    const adminresponse = await chai
+    clientAcct = userRespons.body.data.accountNumber;
+
+    const adminrespons = await chai
       .request(app)
       .post('/api/v1/admin')
-      .send(adminField);
-    adminToken = adminresponse.body.data.token;
+      .send(adminField2);
 
-    const staffResponse = await chai
+    adminToken = adminrespons.body.data.token;
+
+    const staffRespons = await chai
       .request(app)
       .post('/api/v1/staff')
       .set({ Authorization: `Bearer ${adminToken}` })
-      .send(staffField);
-    staffToken = staffResponse.body.data.token;
-  });
+      .send(staffField2);
 
+    staffToken = staffRespons.body.data.token;
+  });
+});
+
+describe('TRANSACTION TEST', () => {
   describe('CASHIER CAN DEBIT ACCOUNT', () => {
     it('it should return 201 if cashier successfully debits account', async () => {
+      console.log(`${adminToken} and ${clientToken}`);
       const res = await chai.request(app)
-        .post('/api/v1/transactions/:clientAcctNo/debit')
+        .post(`/api/v1/transactions/${clientAcct}/debit`)
         .set({ Authorization: `Bearer ${staffToken}` })
         .send(transaction);
       expect(res).to.have.status(201);
@@ -68,28 +69,37 @@ describe('TRANSACTION TEST', () => {
       expect(res.body.data).to.be.an('object');
     });
 
-    it('it should return 400 if account number is wrong', async () => {
+    it('it should return 403 if account number is wrong', async () => {
       const res = await chai.request(app)
-        .post('/api/v1/transactions/:wrongAcctNo/debit')
+        .post(`/api/v1/transactions/${wrongAcctNo}/debit`)
         .set({ Authorization: `Bearer ${staffToken}` })
         .send(transaction);
-      expect(res).to.have.status(400);
+      expect(res).to.have.status(403);
       expect(res.body).to.have.property('error');
     });
 
-    it('it should return 400 if amount is not a positive number', async () => {
+    it('it should return 403 if amount is not a positive number', async () => {
       const res = await chai.request(app)
-        .post('/api/v1/transactions/:clientAcctNo/debit')
+        .post(`/api/v1/transactions/${clientAcct}/debit`)
         .set({ Authorization: `Bearer ${staffToken}` })
-        .send(wrongAccount);
-      expect(res).to.have.status(400);
+        .send(wrongTransactionAmount);
+      expect(res).to.have.status(403);
+      expect(res.body).to.have.property('error');
+    });
+
+    it('it should return 403 if amount is empty', async () => {
+      const res = await chai.request(app)
+        .post(`/api/v1/transactions/${clientAcct}/debit`)
+        .set({ Authorization: `Bearer ${staffToken}` })
+        .send(emptytransaction);
+      expect(res).to.have.status(403);
       expect(res.body).to.have.property('error');
     });
 
     it('it should return 403 if if user is not authorized', async () => {
       const res = await chai.request(app)
-        .post('/api/v1/transactions/:clientAcctNo/debit')
-        .set({ Authorization: `Bearer ${clientToken}` })
+        .post(`/api/v1/transactions/${clientAcct}/debit`)
+        .set({ Authorization: 'Bearer wrongtoken' })
         .send(transaction);
       expect(res).to.have.status(403);
       expect(res).to.have.property('error');
@@ -99,7 +109,7 @@ describe('TRANSACTION TEST', () => {
   describe('CASHIER CAN CREDIT ACCOUNT', () => {
     it('it should return 201 if cashier successfully debits account', async () => {
       const res = await chai.request(app)
-        .post('/api/v1/transactions/:clientAcctNo/credit')
+        .post(`/api/v1/transactions/${clientAcct}/credit`)
         .set({ Authorization: `Bearer ${staffToken}` })
         .send(transaction);
       expect(res).to.have.status(201);
@@ -111,31 +121,110 @@ describe('TRANSACTION TEST', () => {
       expect(res.body.data).to.be.an('object');
     });
 
-    it('it should return 400 if account number is wrong', async () => {
+    it('it should return 403 if account number is wrong', async () => {
       const res = await chai.request(app)
-        .post('/api/v1/transactions/:wrongAcctNo/credit')
+        .post(`/api/v1/transactions/${wrongAcctNo}/credit`)
         .set({ Authorization: `Bearer ${staffToken}` })
         .send(transaction);
-      expect(res).to.have.status(400);
+      expect(res).to.have.status(403);
       expect(res.body).to.have.property('error');
     });
 
-    it('it should return 400 if amount is not a positive number', async () => {
+    it('it should return 403 if amount is not a positive number', async () => {
       const res = await chai.request(app)
-        .post('/api/v1/transactions/:clientAcctNo/credit')
+        .post(`/api/v1/transactions/${clientAcct}/credit`)
         .set({ Authorization: `Bearer ${staffToken}` })
-        .send(wrongAccount);
-      expect(res).to.have.status(400);
+        .send(wrongTransactionAmount);
+      expect(res).to.have.status(403);
+      expect(res.body).to.have.property('error');
+    });
+
+    it('it should return 403 if amount is empty', async () => {
+      const res = await chai.request(app)
+        .post(`/api/v1/transactions/${clientAcct}/credit`)
+        .set({ Authorization: `Bearer ${staffToken}` })
+        .send(emptytransaction);
+      expect(res).to.have.status(403);
       expect(res.body).to.have.property('error');
     });
 
     it('it should return 403 if if user is not authorized', async () => {
       const res = await chai.request(app)
-        .post('/api/v1/transactions/:clientAcctNo/credit')
-        .set({ Authorization: `Bearer ${clientToken}` })
+        .post(`/api/v1/transactions/${clientAcct}/credit`)
+        .set({ Authorization: 'Bearer wrongtoken' })
         .send(transaction);
       expect(res).to.have.status(403);
       expect(res).to.have.property('error');
+    });
+  });
+
+  describe('TEST GET TRANSACTION HISTORY', () => {
+    it('it should successfully get user\'s transaction history', async () => {
+      const res = await chai.request(app)
+        .get(`/api/v1/transactions/${clientAcct}`)
+        .set({ Authorization: `Bearer ${clientToken}` });
+      expect(res).to.have.status(200);
+      expect(res.body).to.have.property('status');
+      expect(res.body.status).to.be.a('number');
+      expect(res.body.status).to.equal(200);
+      expect(res.body).to.be.an('object');
+      expect(res.body).to.have.property('data');
+      expect(res.body.data).to.be.an('object');
+    });
+
+    it('it should return 403 if account number is wrong', async () => {
+      const res = await chai.request(app)
+        .get(`/api/v1/transactions/${wrongAcctNo}`)
+        .set({ Authorization: `Bearer ${staffToken}` });
+      expect(res).to.have.status(403);
+      expect(res.body).to.have.property('error');
+    });
+
+    it('it should return 403 if unauthorized', async () => {
+      const res = await chai.request(app)
+        .get(`/api/v1/transactions/${clientAcct}`)
+        .set({ Authorization: 'Bearer wrong token' });
+      expect(res).to.have.status(403);
+      expect(res.body).to.have.property('error');
+    });
+  });
+
+  describe('TEST GET SPECIFIC ACCOUNT TRANSACTION', () => {
+    it('it should successfully get user\'s specific account transaction', async () => {
+      const res = await chai.request(app)
+        .get(`/api/v1/transactions/${clientAcct}/1`)
+        .set({ Authorization: `Bearer ${clientToken}` });
+      expect(res).to.have.status(200);
+      expect(res.body).to.have.property('status');
+      expect(res.body.status).to.be.a('number');
+      expect(res.body.status).to.equal(200);
+      expect(res.body).to.be.an('object');
+      expect(res.body).to.have.property('data');
+      expect(res.body.data).to.be.an('object');
+    });
+
+    it('it should return 403 if account number is wrong', async () => {
+      const res = await chai.request(app)
+        .get(`/api/v1/transactions/${wrongAcctNo}/1`)
+        .set({ Authorization: `Bearer ${staffToken}` });
+      expect(res).to.have.status(403);
+      expect(res.body).to.have.property('error');
+    });
+
+    it('it should return 403 if transaction Id is wrong', async () => {
+      const res = await chai.request(app)
+        .get(`/api/v1/transactions/${clientAcct}/${wrongTransactionId}`)
+        .set({ Authorization: `Bearer ${staffToken}` });
+      expect(res).to.have.status(403);
+      expect(res.body).to.have.property('error');
+    });
+
+    it('it should return 403 if unauthorized', async () => {
+      const res = await chai.request(app)
+        .get(`/api/v1/transactions/${clientAcct}/1`)
+        .set({ Authorization: 'Bearer wrong token' });
+      expect(res).to.have.status(403);
+      expect(res.body).to.have.property('error');
     });
   });
 });
