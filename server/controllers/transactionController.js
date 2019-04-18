@@ -26,7 +26,7 @@ class Transactions {
     }
 
 
-    const transaction = await new TransactionModel(id, type, accountNo,
+    const transaction = new TransactionModel(id, type, accountNo,
       amount, cashier, oldBalance);
 
     if (transaction.oldBalance >= amount) {
@@ -70,7 +70,7 @@ class Transactions {
     }
     const oldBalance = account[0].balance;
 
-    const transaction = await new TransactionModel(id, type, accountNo,
+    const transaction = new TransactionModel(id, type, accountNo,
       amount, cashier, oldBalance);
     transaction.newBalance = Number(transaction.oldBalance) + Number(amount);
     account[0].balance = transaction.newBalance;

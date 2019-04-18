@@ -9,7 +9,9 @@ export default class transactionValidate {
       amount: 'required|numeric|min:500|max:10000000',
     };
 
-    const validator = new Validator(transaction, transactionProperties, customErrorMsgs);
+    const validator = new Validator(transaction,
+      transactionProperties,
+      customErrorMsgs);
     validator.passes(() => next());
     validator.fails(() => {
       const errors = validator.errors.all();
