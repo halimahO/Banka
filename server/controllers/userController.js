@@ -1,11 +1,15 @@
 import UserModel from '../models/userModel';
 import data from '../mock/mockData';
-import { hashPassword, comparePassword, generateToken } from '../helpers/auth';
+import {
+  hashPassword,
+  comparePassword,
+  generateToken,
+} from '../helpers/auth';
 
 const { users } = data;
 
 class Users {
-  static async createUser(req, res) {
+  static createUser(req, res) {
     const id = users.length + 1;
     const {
       firstName, lastName, email, password,
@@ -23,7 +27,15 @@ class Users {
     const token = generateToken({
       id, email, type, isAdmin,
     });
-    const user = await new UserModel(id, email, firstName, lastName, passwordHash, type, isAdmin);
+
+    const user = new UserModel(id,
+      email,
+      firstName,
+      lastName,
+      passwordHash,
+      type,
+      isAdmin);
+
     users.push(user);
     const response = {
       token,
@@ -38,7 +50,7 @@ class Users {
     });
   }
 
-  static async signin(req, res) {
+  static signin(req, res) {
     const { email, password } = req.body;
     const user = users.filter(u => u.email === email);
     const result = user[0];
@@ -73,11 +85,16 @@ class Users {
     });
   }
 
-  static async createStaff(req, res) {
+  static createStaff(req, res) {
     const id = users.length + 1;
     const {
-      firstName, lastName, email, password, isAdmin,
+      firstName,
+      lastName,
+      email,
+      password,
+      isAdmin,
     } = req.body;
+
     const userExists = users.filter(user => user.email === email);
     if (userExists[0]) {
       res.status(409).json({
@@ -85,13 +102,21 @@ class Users {
         error: `The email address ${email} is already taken.`,
       });
     }
+
     const type = 'staff';
     const passwordHash = hashPassword(password);
     const token = generateToken({
       id, email, type, isAdmin,
     });
 
-    const user = await new UserModel(id, email, firstName, lastName, passwordHash, type, isAdmin);
+    const user = new UserModel(id,
+      email,
+      firstName,
+      lastName,
+      passwordHash,
+      type,
+      isAdmin);
+
     users.push(user);
     const response = {
       token,
@@ -107,7 +132,7 @@ class Users {
     });
   }
 
-  static async testAdmin(req, res) {
+  static testAdmin(req, res) {
     const id = users.length + 1;
     const isAdmin = true;
     const {
@@ -126,7 +151,14 @@ class Users {
       id, email, type, isAdmin,
     });
 
-    const user = await new UserModel(id, email, firstName, lastName, passwordHash, type, isAdmin);
+    const user = new UserModel(id,
+      email,
+      firstName,
+      lastName,
+      passwordHash,
+      type,
+      isAdmin);
+
     users.push(user);
     const response = {
       token,

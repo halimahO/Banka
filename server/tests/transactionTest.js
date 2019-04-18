@@ -6,8 +6,14 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../index';
 import {
-  wrongAcctNo, wrongTransactionId, wrongTransactionAmount, clientField2,
-  staffField2, accountType, transaction, emptytransaction, adminField2,
+  wrongAcctNo,
+  wrongTransactionId,
+  wrongTransactionAmount,
+  clientField2,
+  staffField2, accountType,
+  transaction,
+  emptytransaction,
+  adminField2,
 } from './testData';
 
 const { expect } = chai;

@@ -6,9 +6,23 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../index';
 import {
-  wrongLogin, clientField3, clientField4, adminField3, staffField3, missingAdmin, missingClient,
-  missingLogin, missingStaff, emptyAdmin, emptyClient, emptyLogin, emptyStaff,
-  login, staffField4, adminField4, adminField5,
+  wrongLogin,
+  clientField3,
+  clientField4,
+  adminField3,
+  staffField3,
+  missingAdmin,
+  missingClient,
+  missingLogin,
+  missingStaff,
+  emptyAdmin,
+  emptyClient,
+  emptyLogin,
+  emptyStaff,
+  login,
+  staffField4,
+  adminField4,
+  adminField5,
 } from './testData';
 
 const { expect } = chai;

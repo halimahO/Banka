@@ -11,8 +11,26 @@ const {
   specificTransaction,
 } = transactionController;
 
-transactionRouter.post('/:accountNo/debit', requireAuth, cashierAuth, paramsValidate.acctNo, transactionValidate.amount, debitAccount);
-transactionRouter.post('/:accountNo/credit', requireAuth, cashierAuth, paramsValidate.acctNo, creditAccount);
-transactionRouter.get('/:accountNo/', requireAuth, paramsValidate.acctNo, transactionHistory);
-transactionRouter.get('/:accountNo/:transactionId', requireAuth, paramsValidate.acctNo, paramsValidate.transId, specificTransaction);
+transactionRouter.post('/:accountNo/debit',
+  requireAuth, cashierAuth,
+  paramsValidate.acctNo,
+  transactionValidate.amount,
+  debitAccount);
+
+transactionRouter.post('/:accountNo/credit',
+  requireAuth, cashierAuth,
+  paramsValidate.acctNo,
+  creditAccount);
+
+transactionRouter.get('/:accountNo/',
+  requireAuth,
+  paramsValidate.acctNo,
+  transactionHistory);
+
+transactionRouter.get('/:accountNo/:transactionId',
+  requireAuth,
+  paramsValidate.acctNo,
+  paramsValidate.transId,
+  specificTransaction);
+
 export default transactionRouter;

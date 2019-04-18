@@ -9,8 +9,12 @@ export default class accountValidate {
       type: 'required|in:savings,current',
     };
 
-    const validator = new Validator(createAccount, createAccountProperties, customErrorMsgs);
+    const validator = new Validator(createAccount,
+      createAccountProperties,
+      customErrorMsgs);
+
     validator.passes(() => next());
+
     validator.fails(() => {
       const errors = validator.errors.all();
       return res.status(400).json({
