@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Banka | Client dashboard</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="shadow">    
+        <div class="container">
+            <div id="branding">
+                <a href="index.html"><img id="branding" src="./img/logo-blue.png" alt="logo-white"></a>
+            </div>
+            <nav>
+                <div class="nav-full">
+                    <div class="nav-style navbar">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li class="current"><a href="dashboard-client.html">Profile</a></li>
+                        <li><a href="create-account.html">Open an Account</a></li>
+                        <li><a href="index.html">Sign Out</a></li>
+                    </ul>
+                    </div>
+                </div>
+                <div class="nav-not-full">
+                    <div class="hidden-navbar">
+                        <img id="menu" class="nav-style" src="./img/menu.png" alt="" onclick=toggleSidebar()>
+                        <div id="sidebar">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li class="current"><a href="dashboard-client.html">Profile</a></li>
+                            <li><a href="create-account.html">Open an Account</a></li>
+                            <li><a href="index.html">Sign Out</a></li>
+                        </ul> 
+                    </div> 
+                    </div>  
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container-dashboard shadow">
+            <div class="dashboard">
+                <div class="sidebar">
+                    <div class="head shadow">
+                        <img id="dashboard-menu-img" src="./img/dashboard-img.png" alt="">
+                    </div>
+                    <div class="menu-items menu-body sidebar-li"> 
+                        <ul>
+                            <li data-menu="profile">
+                                <span class="fontAwesame"><i data-menu="profile" class="fas fa-user menu-image" ></i></span>
+                                <span data-menu="profile" class= "menu-name">PROFILE</span>
+                            </li>
+                            <li data-menu="account-history">
+                                    <span class="fontAwesame"><i data-menu="account-history" class="fas fa-file menu-image" ></i></span>
+                                    <span data-menu="account-history" class= "menu-name">ACCOUNT HISTORY</span>
+                            </li>
+                            <li data-menu="transaction-history">
+                                    <span class="fontAwesame"><i data-menu="transaction-history" class="fas fa-file-invoice menu-image" ></i></span>
+                                    <span data-menu="transaction-history" class= "menu-name">TRANSACTION</span>
+                            <li data-menu="debit-credit">
+                                <span class="fontAwesame"><i data-menu="debit-credit" class="fas fa-credit-card menu-image" ></i></span>
+                                <span data-menu="debit-credit" class= "menu-name">CREDIT/DEBIT</span>
+                            </li>
+                            <li data-menu="view-an-account">
+                                <span class="fontAwesame"><i data-menu="view-an-account" class="far fa-eye menu-image" ></i></span>
+                                    <span data-menu="view-an-account" class= "menu-name">VIEW ACCOUNT</span>
+                            </li>
+                            <li data-menu="view-all-accounts">
+                                <span class="fontAwesame"><i data-menu="view-all-accounts" class="fas fa-list menu-image" ></i></span>
+                                <span data-menu="view-all-accounts" class= "menu-name">ALL ACCOUNTS</span>
+                            <li data-menu="activate-deactivate">
+                                    <span class="fontAwesame"><i data-menu="activate-deactivate" class="fas fa-power-off menu-image" ></i></span>
+                                    <span data-menu="activate-deactivate" class= "menu-name">ACTIVATE ACCOUNT</span>
+                            </li>
+                            <li data-menu="delete">
+                                    <span class="fontAwesame"><i data-menu="delete" class="fas fa-trash-alt menu-image" ></i></span>
+                                    <span data-menu="delete" class= "menu-name">DELETE ACCOUNT</span>
+                            </li>
+                            <li data-menu="create-staff-admin">
+                                <span class="fontAwesame"><i data-menu="create-staff-admin" class="fas fa-plus-square menu-image" ></i></span>
+                                <span data-menu="create-staff-admin" class= "menu-name">CREATE STAFF</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="display-area">
+                    <div class="head">
+                        <p id="menuTopic" class="margin-left" >PROFILE</p>
+                    </div> 
+                <div class="dashboard-area">
+                <div id="profile" class="items active">
+                    <div class="user-profile">
+                        <div class="pix shadow">
+                            <span id="profile-pix"><i class="fas fa-user" ></i></span>
+                            <h2 class="m1 md-text">Mercy Ekene</h2>
+                            <h4 class="sm-text">mercyekene@gmail.com</h4>
+                            <p class="top-border">Client</p>
+                        </div>
+                        <div class="profile-details shadow">
+                            <div>Firstname: </div>
+                            <div>Mercy</div>
+                            <div>Lastname:</div>
+                            <div>Ekene</div>
+                            <div>Email:</div>
+                            <div>mercyekene@gmail.com</div>
+                            <div>Password:</div>
+                            <div>**********</div>
+
+                        </div>
+                    </div>
+                </div>
+                    <div id="account-history" class="items dashboard-area-background shadow" >
+                        <div>
+                           <div class="small-acct"><div class="acct-display select-label"><label>Account to display:</label><br></div> 
+                            <div class="acct-display">
+                                <input class="dashboard-input" type="text">
+                            </div>
+                        </div> 
+                        </div>
+                        <div class="grid-3">
+                            <div class="grid-title">Transaction Date</div> <div class="grid-title">Transaction Type</div> <div class="grid-title">Amount</div>
+                            <div>01/01/2019</div> <div>Debit</div> <div>#2,000</div>
+                            <div>01/01/2019</div> <div>Credit</div> <div>#2,000</div>
+                            <div>01/01/2019</div> <div>Credit</div> <div>#2,000</div>
+                            <div>01/01/2019</div> <div>Debit</div> <div>#2,000</div>
+                            <div>01/01/2019</div> <div>Debit</div> <div>#2,000</div>
+                        </div>                       
+                    </div>
+                    <div id="transaction-history" class="items dashboard-area-background shadow">
+                            <div><div class="acct-display"><label class="acct-display">Transaction to display:</label></div> 
+                                <div><input class="dashboard-input" type="number", placeholder=1></div></div>
+                                <div class="acct-summary-client shadow">
+                                    <h3 class="m2">Transaction Summary</h3>
+                                    <p> <span class="b1">Account id:</span> 1</p>
+                                    <p><span class="b1">Created on:</span> 2019-03-03</p>
+                                    <p><span class="b1">Type:</span> Credit</p>
+                                    <p> <span class="b1">Account Number:</span> 0123456789</p>
+                                    <p><span class="b1">Amount:</span> 10,000</p>
+                                    <p><span class="b1">Old balance:</span> #9,000.00</p>
+                                    <p><span class="b1">New balance:</span> #10,000.00</p>    </div>
+                    </div>
+                    <div id="debit-credit" class="items dashboard-area-background shadow">
+                        <h4 class="m2">DEBIT/CREDIT THE ACCOUNT</h4>
+                            <p> <span class="b1">Account Name:</span> Williams Ebuka</p>
+                            <p><span class="b1">Account Number:</span> 0123456789</p>
+                            <p><span class="b1">Account type:</span> Current</p>
+                            <p><span class="b1">Status:</span> Active</p>
+                            <p><span class="b1">Account balance:</span> #2,000.00</p>
+                            <input type="text", placeholder="Amount...">
+                            <button class="btn cursor" onclick=closeModalStaff()>DEBIT</button>
+                    </div>
+                    <div id= "view-an-account" class="items dashboard-area-background shadow">
+                            <h4 class="m2">ACCOUNT DETAILS</h4>
+                                <p> <span class="b1">Account Name:</span> Lasisi George</p>
+                                <p><span class="b1">Account Number:</span> 0123456789</p>
+                                <p><span class="b1">Opening Date:</span> 21/3/2019</p>
+                                <p><span class="b1">Account type:</span> Current</p>
+                                <p><span class="b1">Status:</span> Dormant</p>
+                                <p><span class="b1">Account balance:</span> #2,000.00</p>
+                                <button class="btn small-width cursor" onclick=closeModalStaff()>OKAY</button>
+                    </div>
+                    <div id="view-all-accounts" class="items dashboard-area-background shadow">
+                        <h4 class="m2">VIEW ALL BANK ACCOUNTS</h4>
+                        <div class="grid-3">
+                            <div class="grid-title">Account Name</div> <div class="grid-title">Account Number</div> <div class="grid-title">Account Type</div>
+                            <div>Chidera Akpan</div> <div>0123456789</div> <div>Savings</div>
+                            <div>Oladele Walter</div> <div>0123456789</div> <div>Current</div>
+                            <div>Efiong Sarah</div> <div>0123456789</div> <div>Savings</div>
+                            <div>Ajao Emeka</div> <div>0123456789</div> <div>Current</div>
+                            <div>Bello Thomas</div> <div>0123456789</div> <div>Savings</div>
+                            <div>Akinpelu Glory</div> <div>0123456789</div> <div>Savings</div>
+                            <div>Akinpelu Glory</div> <div>0123456789</div> <div>Savings</div>
+                            <div>Akinpelu Glory</div> <div>0123456789</div> <div>Savings</div>
+                            <div>Akinpelu Glory</div> <div>0123456789</div> <div>Savings</div>
+                            <div>Akinpelu Glory</div> <div>0123456789</div> <div>Savings</div>
+                            <div>Akinpelu Glory</div> <div>0123456789</div> <div>Savings</div>
+                        </div>
+                    </div>
+                    <div id="activate-deactivate" class=" items dashboard-area-background shadow">
+                        <h4 class="m2">ACTIVATE/DEACTIVATE ACCOUNT</h4>
+                            <p> <span class="b1">Account Name:</span> Lasisi George</p>
+                            <p><span class="b1">Account Number:</span> 0123456789</p>
+                            <p><span class="b1">Opening Date:</span> 21/3/2019</p>
+                            <p><span class="b1">Account type:</span> Current</p>
+                            <p><span class="b1">Status:</span> Dormant</p>
+                            <p><span class="b1">Account balance:</span> #2,000.00</p>
+                            <button id= "btn-act" class="cursor btn" onclick="toggleActiveDeactive(), closeModal()">ACTIVATE</button>
+                    </div>
+                    <div id= "delete", class=" items dashboard-area-background shadow">
+                        <h4 class="m2">ACCOUNT DETAILS</h4>
+                            <p> <span class="b1">Account Name:</span> Lasisi George</p>
+                            <p><span class="b1">Account Number:</span> 0123456789</p>
+                            <p><span class="b1">Opening Date:</span> 21/3/2019</p>
+                            <p><span class="b1">Account type:</span> Current</p>
+                            <p><span class="b1">Status:</span> Dormant</p>
+                            <p><span class="b1">Account balance:</span> #2,000.00</p>
+                            <button class="del-btn cursor btn" onclick=closeModalStaff()>DELETE</button>
+                    </div>     
+                    <div id="create-staff-admin" class="items dashboard-area-background content2 shadow">
+                        <div>
+                            <h1 class= "heading-title-login md-title">CREATE A STAFF/ADMIN</h1>
+                        </div>
+                        <div class="form-div"> 
+                            <form>
+                                <div>
+                                    <label>FIRSTNAME</label><br>
+                                    <input type="text", placeholder="Firstname">
+                                </div>
+                                <div>
+                                    <label>LASTNAME</label><br>
+                                    <input type="text", placeholder="Lastname">
+                                </div>
+                                <div>
+                                    <label>EMAIL ADDRESS</label><br>
+                                    <input type="email", placeholder="Email Address">
+                                </div>
+                                <div>
+                                    <label> <p id="password-label">PASSWORD </p></label>
+                                    <input type="password", placeholder="*******">
+                                    <a href=""><p id="forgot-password-ptag">Forgot your password?</p></a>
+                                </div>
+                                <div>
+                                    <label class="container">Is ADMIN?
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                        </label>
+                                </div>
+                                <button class="btn"><a class="btn1" href="dashboard-staff.html">CREATE</a></button> 
+                            </form>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <h3>Follow Us</h3>
+        <div class="social">
+            <div class="socialmedia-img inline-style">
+                <a href="https://facebook.com/"><img src="img/fb.png" alt="facebook"></a>
+            </div>
+            <div class="socialmedia-img inline-style">
+                <a href="https://twitter.com/"><img src="img/twitter.png" alt="twitter"></a>
+            </div>
+            <div class="socialmedia-img inline-style">
+                <a href="https://instagram.com/"><img src="img/instagram.png" alt="Instagram"></a>
+            </div>
+        </div>
+        <p>Banka, copyright &copy; 2019</p>
+    </footer>
+    <script src="./js/main.js"></script>
+</body>
+</html>
