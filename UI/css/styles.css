@@ -49,6 +49,9 @@ header{
 .current a{
     text-decoration: underline;
 }
+#menu{
+    width: 40px;
+}
 #menu:hover, #menu:focus{
     cursor: pointer;
 }
@@ -71,7 +74,6 @@ header{
 }
 
 .hidden-navbar img{
-    width: 40px;
     margin-left: 160px;
     margin-top: -77px;
     
@@ -92,7 +94,7 @@ header{
 #section-hero {
 	padding-top: 130px;
 	padding-bottom: 130px;
-    background-image: linear-gradient(to left,rgba(81, 82, 75, 0.3), rgba(28, 35, 61, 0.586)), url("../img/photo-1521175776577-f8e0c1e5ecb7.jpg");
+    background-image: linear-gradient(to left,rgba(18, 45, 124, 0.3), rgba(20, 41, 107, 0.586)), url("../img/Picture2.png");
 	background-attachment: fixed;
 	background-size: cover;
     background-repeat: no-repeat;
@@ -166,12 +168,14 @@ header{
 
 .values .container{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1em;
 }
-.values-desc {
-    justify-content: center;    
-}
-.values-desc h3{
+.services-img{
+    height:200px;
+}  
+
+.values h3{
     text-align: center;
 }
 .values-img img{
@@ -242,16 +246,15 @@ label{
     font-size: 0.8rem;
 }
 
-#login-section a:hover{
+#login-section a:hover, .btn1:hover{
     text-decoration: underline;
 }
 .btn1{
     color: #F1F1F2 !important;
 }
-.btn1:hover{
-    text-decoration: underline;
+#dashboard-menu-img:hover{
+    cursor: pointer;
 }
-
 
 input, select, textarea{
     width: 100%;
@@ -273,25 +276,121 @@ input, select, textarea{
     margin-bottom: 0px;
 }
 #profile-pix{
-    max-width:5rem;
-    max-height: 5rem;
-    border-radius: 50%;
-    margin: auto;
-    margin-bottom: 13px;
-    
+    font-size: 80px; 
 }
 .container-dashboard{
-    width: 60%;
+    width: 80%;
     margin:auto;
-    padding: 40px;
+    padding: 10px;
     margin-top: 40px;
     margin-bottom: 40px;
+    background: #ededed;
 }
 .dashboard{
     display:grid;
-    grid-template-columns: 1fr 2fr;
-    grid-gap: 1em;
-    grid-auto-rows: 350px;
+    grid-template-columns: 1fr 5fr;
+    grid-auto-rows: 450px;
+}
+.dashboard2{
+    display:grid;
+    grid-template-columns: 1fr 7fr;
+    grid-auto-rows: 450px;
+}
+
+.sidebar-li li{
+    color: #F1F1F2;
+    font-size: 12px;
+    width: 99%;
+    padding: 7px;
+    margin-left: -6px;
+
+}
+
+.menu-body{
+    background:  rgba(23, 37, 85, 0.986);
+    padding: 10px;
+    border: 2px solid white;
+    min-height: 372px;
+    }
+
+.menu-name{
+    margin-top: 5px;
+    
+}
+.sidebar-icon{
+    
+}
+
+.menu-body li {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    grid-row-gap: 0;
+}
+.dashboard-area{
+    background:  white;
+    overflow: auto;
+    padding: 10px;
+    border: 2px solid white;
+    margin-top: -10px;
+}
+.sidebar-li li:hover{
+    background: rgba(64, 73, 104, 0.986);
+    color: #F1F1F2;
+    cursor: pointer;
+}
+
+#dashboard-menu-img{
+    width: 30px;
+    margin-top: 5px;
+}
+.user-profile {
+    display: none;
+}
+.items {
+    display: none;
+  }
+  
+  .active {
+    display: block;
+  }
+  .adminClass{
+      display: none;
+  }
+
+  .staffClass{
+    display: none;
+}
+#menuTopic{
+    color:  rgba(23, 37, 85, 0.986);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.fontAwesame{
+    font-size: 15px;
+}
+.dashboard-area-background{
+    background-color:  #F1F1F2;
+    margin: 1% auto;
+    padding-top: 20px;
+    width: 96%;;
+    min-height: 300px;
+    text-align: center;
+}
+.display-area{
+    display:grid;
+    grid-template-rows: 1fr 6fr;
+}
+.head{
+    height: 50px;
+    padding-left: 10px;
+    border: 2px solid white;
+}
+.body{
+    background: green;
+    overflow: auto;
+    padding: 10px;
+    border: 2px solid white;
+
 }
 .acct-profile-client{
     display:grid;
@@ -309,7 +408,27 @@ input, select, textarea{
     text-align: center;
 
 }
-.user-profile-client, .acct-summary-client{
+.user-profile{
+    padding: 15px;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0.2em;
+}
+.pix{
+    padding: 15px;
+    background: #F1F1F2;
+}
+.profile-details{
+    padding: 15px;
+    display:grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 1em;
+    text-align: left;
+    background: #F1F1F2;
+
+}
+.acct-summary-client{
     padding: 15px;
     text-align: center;
 }
@@ -376,14 +495,6 @@ input, select, textarea{
     background-color: rgba(0, 0, 0, .6);
 }
 
-.transaction-content{
-    background-color:  #F1F1F2;
-    margin: 11% auto;
-    padding: 20px;
-    width: 410px;
-    height: 350px;
-    text-align: center;
-}
 .close-btn{
     color: rgba(23, 37, 85, 0.986);
     float: right;
@@ -432,15 +543,18 @@ input[type="checkbox" i] {
     background-color: red;
 }
 .small-width{
-    width: 40%
+    width: 100%
+}
+.small-acct{
+    margin-top: -20px; 
 }
 .acct-display{
     float: left;
-    width: 40%;
+    width: 180px;
+    margin-bottom: 10px;
 }
 .select-label{
-    margin-top: 18px;
-    margin-left: 55px;
+    margin-top: 15px;
 }
 #select-display{
     width: 70%;
