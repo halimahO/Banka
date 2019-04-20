@@ -9,8 +9,12 @@ export default class paramsValidate {
       accountNo: 'numeric|digits:10',
     };
 
-    const validator = new Validator(acct, acctProperties, customErrorMsgs);
+    const validator = new Validator(acct,
+      acctProperties,
+      customErrorMsgs);
+
     validator.passes(() => next());
+
     validator.fails(() => {
       const errors = validator.errors.all();
       return res.status(400).json({
@@ -27,7 +31,10 @@ export default class paramsValidate {
       transactionId: 'numeric|min:1|max:10000',
     };
 
-    const validator = new Validator(transId, transIdProperties, customErrorMsgs);
+    const validator = new Validator(transId,
+      transIdProperties,
+      customErrorMsgs);
+
     validator.passes(() => next());
     validator.fails(() => {
       const errors = validator.errors.all();

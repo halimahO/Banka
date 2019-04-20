@@ -1,19 +1,19 @@
 import { verifyToken } from '../helpers/auth';
 
-export const requireAuth = async (req, res, next) => {
+export const requireAuth = (req, res, next) => {
   const authHeader = req.headers.authorization;
-  if (typeof authHeader === 'undefined') {
+  if (authHeader === undefined) {
     res.status(403).json({
       status: 403,
       error: 'Authorization token required',
     });
     return;
   }
+
   const token = authHeader.split(' ')[1];
   try {
-    const decoded = await verifyToken(token);
+    const decoded = verifyToken(token);
     req.user = decoded;
-    console.log(req.user);
     next();
   } catch (error) {
     res.status(403).json({

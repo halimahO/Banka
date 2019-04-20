@@ -10,7 +10,10 @@ export default class userValidate {
       password: 'required|alpha_dash|min:6|max:16',
     };
 
-    const validator = new Validator(user, userProperties, customErrorMsgs);
+    const validator = new Validator(user,
+      userProperties,
+      customErrorMsgs);
+
     validator.passes(() => next());
     validator.fails(() => {
       const errors = validator.errors.all();
