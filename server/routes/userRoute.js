@@ -5,11 +5,11 @@ import userValidate from '../middlewares/validateUser';
 
 
 const userRouter = new Router();
-const { createUser, signin, createStaff } = userController;
+const { signUp, signin, createStaff } = userController;
 
 userRouter.post('/auth/signup',
   userValidate.client,
-  createUser);
+  signUp);
 
 userRouter.post('/auth/signin',
   userValidate.login,
