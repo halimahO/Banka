@@ -11,28 +11,33 @@ export default class User {
     this.isadmin = user.isadmin;
   }
 
-  static async signUp() {
+  async signUp() {
+    const type = 'client';
+    const isadmin = false;
     const queryString = `INSERT INTO users (email, firstname, lastname, password, type, isadmin)
-      VALUES ($1, $2, $3, $4, $5, $6) RETURNING firstname, lastname,
-        email`;
-    const values = [this.email, this.firstName, this.lastName, this.password,
-      this.type, this.isadmin];
+    VALUES ($1, $2, $3, $4, $5, $6) RETURNING id, firstname, lastname, email, type, isadmin`;
+    const values = [this.email, this.firstname, this.lastname,
+      this.password, type, isadmin];
     try {
       const { rows } = await pool.query(queryString, values);
       return rows[0];
-    } catch (err) {
-      return err.message;
+    } catch (error) {
+      return error.message;
     }
   }
 
-  static async getEmail(email) {
-    const queryString = 'SELECT * FROM users WHERE email = $1';
-    const values = [email];
+  static async createStaff() {
+    const type = 'staff';
+    const isadmin = false;
+    const queryString = `INSERT INTO users (email, firstname, lastname, password, type, isadmin)
+    VALUES ($1, $2, $3, $4, $5, $6) RETURNING id, firstname, lastname, email, type, isadmin`;
+    const values = [this.email, this.firstname, this.lastname,
+      this.password, type, isadmin];
     try {
       const { rows } = await pool.query(queryString, values);
       return rows[0];
-    } catch (err) {
-      return err.message;
+    } catch (error) {
+      return error.message;
     }
   }
 }

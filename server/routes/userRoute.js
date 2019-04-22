@@ -1,11 +1,15 @@
 import { Router } from 'express';
 import userController from '../controllers/userController';
-import { requireAuth, adminAuth } from '../middlewares/authentication';
+import { requireAuth, staffAuth, adminAuth } from '../middlewares/authentication';
 import userValidate from '../middlewares/validateUser';
+import paramsValidate from '../middlewares/validateParams';
 
 
 const userRouter = new Router();
-const { signUp, signin, createStaff } = userController;
+const {
+  signUp, signin, allUserAccounts,
+  createStaff, createAdmin,
+} = userController;
 
 userRouter.post('/auth/signup',
   userValidate.client,
@@ -17,11 +21,8 @@ userRouter.post('/auth/signin',
 
 userRouter.post('/staff',
   requireAuth, adminAuth,
-  userValidate.staff,
+  userValidate.login,
   createStaff);
 
-userRouter.post('/admin',
-  userValidate.staff,
-  createStaff);
 
 export default userRouter;

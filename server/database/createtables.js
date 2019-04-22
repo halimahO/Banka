@@ -15,7 +15,7 @@ console.log('Creating tables...');
 
     await pool.query(`CREATE TABLE IF NOT EXISTS accounts(
         id SERIAL PRIMARY KEY,
-        accountnumber INT NOT NULL,
+        accountnumber BIGINT NOT NULL,
         createdon TIMESTAMPTZ DEFAULT NOW(),
         owner INT NOT NULL,
         type VARCHAR(10) NOT NULL,
@@ -29,7 +29,7 @@ console.log('Creating tables...');
         id SERIAL PRIMARY KEY,
         createdon TIMESTAMPTZ DEFAULT NOW(),
         type VARCHAR(20) NOT NULL,
-        accountnumber INT NOT NULL,
+        accountnumber BIGINT NOT NULL,
         cashier INT NOT NULL,
         amount FLOAT NOT NULL,
         oldbalance FLOAT NOT NULL,
