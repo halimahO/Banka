@@ -143,4 +143,28 @@ export default class UsersController {
       data: response,
     });
   }
+
+  static async allUserAccounts(req, res) {
+    const { email } = req.params;
+
+    const userExists = await User.getUserByEmail(email);
+    if (!userExists) {
+      return res.status(404).json({
+        status: 404,
+        error: 'User not found.',
+      });
+    }
+    const result = await User.allUserAccounts(email);
+
+    if (!result.length) {
+      return res.status(404).json({
+        status: 404,
+        error: 'User has no account.',
+      });
+    }
+    return res.status(200).json({
+      status: 200,
+      data: result,
+    });
+  }
 }
