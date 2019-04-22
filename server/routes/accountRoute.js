@@ -17,4 +17,11 @@ accountRouter.post(
   createAccount,
 );
 
+accountRouter.patch('/:accountnumber',
+  requireAuth,
+  staffAuth,
+  paramsValidate.acctNo,
+  accountValidate.changeStatus,
+  changeStatus);
+
 export default accountRouter;

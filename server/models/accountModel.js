@@ -25,4 +25,27 @@ export default class Account {
     const { rows } = await pool.query(queryString, values);
     return rows[0];
   }
+
+  static async getAccount(accountnumber) {
+    const queryString = 'SELECT * FROM accounts WHERE accountnumber = $1';
+    const values = [accountnumber];
+    try {
+      const { rows } = await pool.query(queryString, values);
+      return rows[0];
+    } catch (error) {
+      return error.message;
+    }
+  }
+
+  static async changeStatus(account) {
+    const { status } = account;
+    const queryString = 'UPDATE accounts SET status = $1 RETURNING *';
+    const values = [status];
+    try {
+      const { rows } = await pool.query(queryString, values);
+      return rows[0];
+    } catch (error) {
+      return error.message;
+    }
+  }
 }

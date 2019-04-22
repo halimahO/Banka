@@ -13,4 +13,32 @@ export default class AccountController {
       data: newAccount,
     });
   }
+
+  static async changeStatus(req, res) {
+    const { accountnumber } = req.params;
+    const accountExists = await Account.getAccount(accountnumber);
+    if (!accountExists) {
+      return res.status(404).json({
+        status: 404,
+        error: 'Account number not found.',
+      });
+    }
+    const status = req.body;
+
+    const { status: currentStatus } = accountExists;
+    if (status === currentStatus) {
+      return res.status(400).json({
+        status: 400,
+        error: `Account ${accountnumber} is currently ${status}`,
+      });
+    }
+    accountExists.status = status || accountExists.status;
+
+    const result = await Account.changeStatus(accountExists);
+    return res.status(200).json({
+      status: 200,
+      message: 'status changed successfully',
+      data: result,
+    });
+  }
 }
