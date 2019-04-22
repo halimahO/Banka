@@ -55,4 +55,15 @@ export default class User {
       return error.message;
     }
   }
+
+  static async signin(email) {
+    const queryString = 'SELECT * FROM users WHERE email = $1';
+    const values = [email];
+    try {
+      const { rows } = await pool.query(queryString, values);
+      return rows[0];
+    } catch (error) {
+      return error.message;
+    }
+  }
 }
