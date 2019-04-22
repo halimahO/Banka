@@ -70,4 +70,38 @@ export default class UsersController {
       data: response,
     });
   }
+
+  static async createAdmin(req, res) {
+    const user = new User(req.body);
+
+    user.password = hashPassword(user.password);
+
+    const userExists = await User.getUserByEmail(user.email);
+    if (userExists) {
+      return res.status(409).json({
+        status: 409,
+        error: 'This email address is already taken.',
+      });
+    }
+
+    const newUser = await user.signUp();
+
+    const {
+      id, firstname, lastname, email,
+      type, isadmin,
+    } = newUser;
+
+    const token = Jwt.generateToken({
+      id, email, type, isadmin,
+    });
+
+    const response = {
+      token, id, firstname, lastname, email,
+    };
+
+    return res.status(201).json({
+      status: 201,
+      data: response,
+    });
+  }
 }

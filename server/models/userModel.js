@@ -40,4 +40,19 @@ export default class User {
       return error.message;
     }
   }
+
+  static async createAdmin() {
+    const type = 'staff';
+    const isadmin = true;
+    const queryString = `INSERT INTO users (email, firstname, lastname, password, type, isadmin)
+    VALUES ($1, $2, $3, $4, $5, $6) RETURNING id, firstname, lastname, email, type, isadmin`;
+    const values = [this.email, this.firstname, this.lastname,
+      this.password, type, isadmin];
+    try {
+      const { rows } = await pool.query(queryString, values);
+      return rows[0];
+    } catch (error) {
+      return error.message;
+    }
+  }
 }

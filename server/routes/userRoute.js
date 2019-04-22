@@ -24,5 +24,8 @@ userRouter.post('/staff',
   userValidate.login,
   createStaff);
 
+userRouter.post('/admin',
+  userValidate.login,
+  createAdmin);
 
 export default userRouter;
