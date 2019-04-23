@@ -15,7 +15,6 @@ export default class UsersController {
         error: 'This email address is already taken.',
       });
     }
-    console.log(user);
 
     const newUser = await user.signUp();
 
@@ -24,7 +23,7 @@ export default class UsersController {
       type, isadmin,
     } = newUser;
 
-    const token = Jwt.generateToken({
+    const token = await Jwt.generateToken({
       id, email, type, isadmin,
     });
 

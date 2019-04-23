@@ -48,4 +48,15 @@ export default class Account {
       return error.message;
     }
   }
+
+  static async deleteAccount(accountnumber) {
+    const queryString = 'DELETE FROM meetups WHERE id = $1';
+    const values = [accountnumber];
+    try {
+      const result = await pool.query(queryString, values);
+      return result;
+    } catch (error) {
+      return error.message;
+    }
+  }
 }
