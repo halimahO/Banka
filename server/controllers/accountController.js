@@ -41,4 +41,21 @@ export default class AccountController {
       data: result,
     });
   }
+
+  static async deleteAccount(req, res) {
+    const { accountnumber } = req.params;
+
+    const accountExists = await Account.getAccount(accountnumber);
+    if (!accountExists) {
+      return res.status(404).json({
+        status: 404,
+        error: 'Account number not found.',
+      });
+    }
+    await Account.deleteAccount(accountnumber);
+    return res.status(200).json({
+      status: 200,
+      message: 'Account deleted sucessfuly',
+    });
+  }
 }
