@@ -13,7 +13,7 @@ export default class Account {
     this.owneremail = account.owneremail;
   }
 
-  async createAccount() {
+  static async createAccount() {
     const queryString = `INSERT INTO accounts (accountnumber, createdon,
       owner, type, status, balance, owneremail)
       VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING accountnumber, createdon,

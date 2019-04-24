@@ -9,6 +9,7 @@ export default class UsersController {
     user.password = hashPassword(user.password);
 
     const userExists = await User.getUserByEmail(user.email);
+    console.log(userExists);
     if (userExists) {
       return res.status(409).json({
         status: 409,
@@ -17,6 +18,7 @@ export default class UsersController {
     }
 
     const newUser = await user.signUp();
+    console.log(newUser);
 
     const {
       id, firstname, lastname, email,
