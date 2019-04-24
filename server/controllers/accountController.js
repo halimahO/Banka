@@ -2,7 +2,7 @@ import Account from '../models/accountModel';
 
 export default class AccountController {
   static async createAccount(req, res) {
-    const account = new Account(req.body);
+    const account = Account(req.body);
 
     account.owner = req.user.id;
     account.owneremail = req.user.email;

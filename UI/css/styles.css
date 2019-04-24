@@ -240,6 +240,16 @@ label{
     font-weight: 700;
     color: #F1F1F2;
 }
+.btn-small{
+    margin-top:3px;
+    background:  rgba(23, 37, 85, 0.986);
+    width: 50%;
+    padding: 8px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: 100;
+    color: #F1F1F2;
+}
 
 #login-section a, .history a{
     color: rgba(23, 37, 85, 0.986);
@@ -264,6 +274,13 @@ input, select, textarea{
     border-radius: 10px;
     box-sizing: border-box;
 }
+.dashboard-input{
+    padding: 5px 10px;
+    margin: 9px 0;
+    border: 1px solid #ccc;
+    border-radius: 1px;
+    box-sizing: border-box;
+}
 #password-label{
     margin-top: 5px;
     padding-bottom: 0;
@@ -279,10 +296,9 @@ input, select, textarea{
     font-size: 80px; 
 }
 .container-dashboard{
-    width: 80%;
+
     margin:auto;
     padding: 10px;
-    margin-top: 40px;
     margin-bottom: 40px;
     background: #ededed;
 }
@@ -313,12 +329,8 @@ input, select, textarea{
     min-height: 372px;
     }
 
-.menu-name{
-    margin-top: 5px;
-    
-}
-.sidebar-icon{
-    
+.sidebar{
+    display: non;
 }
 
 .menu-body li {
@@ -329,7 +341,6 @@ input, select, textarea{
 .dashboard-area{
     background:  white;
     overflow: auto;
-    padding: 10px;
     border: 2px solid white;
     margin-top: -10px;
 }
@@ -356,7 +367,13 @@ input, select, textarea{
   .adminClass{
       display: none;
   }
-
+#debit-credit{
+    clear: both;
+}
+.clear{
+    clear: both;
+    padding-top: 20px;
+}
   .staffClass{
     display: none;
 }
@@ -370,9 +387,7 @@ input, select, textarea{
 }
 .dashboard-area-background{
     background-color:  #F1F1F2;
-    margin: 1% auto;
     padding-top: 20px;
-    width: 96%;;
     min-height: 300px;
     text-align: center;
 }
@@ -431,6 +446,7 @@ input, select, textarea{
 .acct-summary-client{
     padding: 15px;
     text-align: center;
+    clear: both;
 }
 .history-client{
     text-align: center;
@@ -551,7 +567,7 @@ input[type="checkbox" i] {
 .acct-display{
     float: left;
     width: 180px;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
 }
 .select-label{
     margin-top: 15px;
@@ -565,19 +581,39 @@ input[type="checkbox" i] {
     border-radius: 2px;
     box-sizing: border-box;
     cursor: pointer;
+    border: 1px solid red;
 }
 .grid-3{
     display:grid;
-    grid-template-columns: 1fr 1fr 1fr;;
+    grid-template-columns: 1fr 1fr 1fr;
     width: 98%;
     margin: auto;
-    grid-row-gap: 10px;
     height: 63%;
     overflow: auto;
+    clear: both;
 }
 .grid-title{
     padding-bottom: 10px;
     font-weight: 600;
+}
+.table-div{
+    overflow-x: auto
+}
+table{
+    border-collapse: collapse;
+    width: 100%;
+    border:1px solid #ddd;
+}
+td, th{
+    border: none;
+    text-align: center;
+    padding: 12px;
+}
+tr:nth-child(even){
+    background-color: #d0dde2;
+}
+tr:nth-child(odd){
+    background-color: #e4ebee;
 }
 
 footer{
@@ -598,6 +634,12 @@ footer{
     .container{
         width: 80%;
         margin: auto;
+    }
+}
+
+@media all and (max-width: 500px) {
+    .menu-name{
+        display: none;
     }
 }
 @media all and (max-width: 700px) {
@@ -663,19 +705,19 @@ footer{
     }
 }
 @media (max-width:700px) {
-    .dashboard{
+    .container{
+        width: 100%;
+    }
+    .user-profile{
+        padding: 15px;
+        text-align: center;
+        display: grid;
         grid-template-columns: 1fr;
+        grid-gap: 0.2em;
     }
 }
-@media (max-width:950px) {
-    .container-dashboard{
-        width: 75%;
-}
-}
+
 @media (max-width:750px) {
-    .container-dashboard{
-        width: 80%;
-}
 .container-hero {
 	width: 90%;
 }
