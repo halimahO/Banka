@@ -109,7 +109,7 @@ export default class AccountController {
   }
 
   static async dormantAccounts(req, res) {
-    const result = await Account.getAllAccounts();
+    const result = await Account.dormantAccounts();
     if (!result.length) {
       return res.status(404).json({
         status: 404,
