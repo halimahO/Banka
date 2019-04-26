@@ -1,4 +1,3 @@
-import babel-polyfill;
 import Account from '../models/accountModel';
 
 export default class AccountController {

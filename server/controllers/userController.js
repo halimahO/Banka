@@ -1,4 +1,3 @@
-import 'babel-polyfill';
 import User from '../models/userModel';
 import { hashPassword, comparePassword } from '../helpers/bcrypt';
 import Jwt from '../helpers/auth';
