@@ -34,10 +34,9 @@ export default class Account {
   }
 
   static async changeStatus(account) {
-    const { status } = account;
-    const queryString = 'UPDATE accounts SET status = $1 RETURNING *';
-    const values = [status];
-    const { rows } = await pool.query(queryString, values);
+    const { status, accountnumber } = account;
+    const queryString = `UPDATE accounts SET status = '${status}' where accountnumber = ${accountnumber} RETURNING *`;
+    const { rows } = await pool.query(queryString);
     return rows[0];
   }
 
@@ -46,5 +45,37 @@ export default class Account {
     const values = [accountnumber];
     const result = await pool.query(queryString, values);
     return result;
+  }
+
+  static async accountTransactionHistory(accountnumber) {
+    const queryString = 'SELECT * FROM transactions WHERE accountnumber = $1';
+    const values = [accountnumber];
+    try {
+      const { rows } = await pool.query(queryString, values);
+      return rows;
+    } catch (error) {
+      return error.message;
+    }
+  }
+
+  static async getAllAccounts() {
+    const queryString = 'SELECT * FROM accounts';
+    try {
+      const { rows } = await pool.query(queryString);
+      return rows;
+    } catch (error) {
+      return error.message;
+    }
+  }
+
+  static async dormantAccounts() {
+    const queryString = `SELECT users.email, accounts.* FROM users 
+                JOIN accounts ON users.id = accounts.OWNER WHERE accounts.status = 'dormant'`;
+    try {
+      const { rows } = await pool.query(queryString);
+      return rows;
+    } catch (error) {
+      return error.message;
+    }
   }
 }
