@@ -26,7 +26,7 @@ export default class User {
     }
   }
 
-  static async createStaff() {
+  async createStaff() {
     const type = 'staff';
     const isadmin = false;
     const queryString = `INSERT INTO users (email, firstname, lastname, password, type, isadmin)
@@ -41,7 +41,7 @@ export default class User {
     }
   }
 
-  static async createAdmin() {
+  async createAdmin() {
     const type = 'staff';
     const isadmin = true;
     const queryString = `INSERT INTO users (email, firstname, lastname, password, type, isadmin)
@@ -79,11 +79,11 @@ export default class User {
   }
 
   static async allUserAccounts(email) {
-    const queryString = 'SELECT * FROM accounts WHERE email = $1';
+    const queryString = 'SELECT * FROM accounts WHERE owneremail = $1';
     const values = [email];
     try {
       const { rows } = await pool.query(queryString, values);
-      return rows[0];
+      return rows;
     } catch (error) {
       return error.message;
     }

@@ -13,11 +13,7 @@ export default class Jwt {
   }
 
   static async verifyToken(token) {
-    try {
-      const decoded = await jwt.verify(token, secretKey);
-      return decoded;
-    } catch (err) {
-      return err.message;
-    }
+    const decoded = await jwt.verify(token, secretKey);
+    return decoded;
   }
 }

@@ -13,7 +13,7 @@ export default class Account {
     this.owneremail = account.owneremail;
   }
 
-  static async createAccount() {
+  async createAccount() {
     const queryString = `INSERT INTO accounts (accountnumber, createdon,
       owner, type, status, balance, owneremail)
       VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING accountnumber, createdon,
@@ -29,34 +29,22 @@ export default class Account {
   static async getAccount(accountnumber) {
     const queryString = 'SELECT * FROM accounts WHERE accountnumber = $1';
     const values = [accountnumber];
-    try {
-      const { rows } = await pool.query(queryString, values);
-      return rows[0];
-    } catch (error) {
-      return error.message;
-    }
+    const { rows } = await pool.query(queryString, values);
+    return rows[0];
   }
 
   static async changeStatus(account) {
     const { status } = account;
     const queryString = 'UPDATE accounts SET status = $1 RETURNING *';
     const values = [status];
-    try {
-      const { rows } = await pool.query(queryString, values);
-      return rows[0];
-    } catch (error) {
-      return error.message;
-    }
+    const { rows } = await pool.query(queryString, values);
+    return rows[0];
   }
 
   static async deleteAccount(accountnumber) {
-    const queryString = 'DELETE FROM meetups WHERE id = $1';
+    const queryString = 'DELETE FROM accounts WHERE accountnumber = $1';
     const values = [accountnumber];
-    try {
-      const result = await pool.query(queryString, values);
-      return result;
-    } catch (error) {
-      return error.message;
-    }
+    const result = await pool.query(queryString, values);
+    return result;
   }
 }

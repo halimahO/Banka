@@ -15,9 +15,12 @@ export default class UsersController {
         error: 'This email address is already taken.',
       });
     }
-
-    const newUser = await user.signUp();
-    console.log(newUser);
+    let newUser;
+    try {
+      newUser = await user.signUp();
+    } catch (error) {
+      return error.message;
+    }
 
     const {
       id, firstname, lastname, email,
@@ -50,14 +53,19 @@ export default class UsersController {
       });
     }
 
-    const newUser = await user.signUp();
+    let newUser;
+    try {
+      newUser = await user.createStaff();
+    } catch (error) {
+      return error.message;
+    }
 
     const {
       id, firstname, lastname, email,
       type, isadmin,
     } = newUser;
 
-    const token = Jwt.generateToken({
+    const token = await Jwt.generateToken({
       id, email, type, isadmin,
     });
 
@@ -84,14 +92,19 @@ export default class UsersController {
       });
     }
 
-    const newUser = await user.signUp();
-
+    let newUser;
+    try {
+      newUser = await user.createAdmin();
+    } catch (error) {
+      return error.message;
+    }
+    console.log(newUser);
     const {
       id, firstname, lastname, email,
       type, isadmin,
     } = newUser;
 
-    const token = Jwt.generateToken({
+    const token = await Jwt.generateToken({
       id, email, type, isadmin,
     });
 
@@ -108,7 +121,12 @@ export default class UsersController {
   static async signin(req, res) {
     const { email, password } = req.body;
 
-    const result = await User.signin(email);
+    let result;
+    try {
+      result = await User.signin(email);
+    } catch (error) {
+      return error.message;
+    }
 
     if (!result) {
       return res.status(404).json({
@@ -154,17 +172,33 @@ export default class UsersController {
         error: 'User not found.',
       });
     }
-    const result = await User.allUserAccounts(email);
-
+    let result;
+    try {
+      result = await User.allUserAccounts(email);
+    } catch (error) {
+      return error.message;
+    }
+    console.log(result);
     if (!result.length) {
       return res.status(404).json({
         status: 404,
         error: 'User has no account.',
       });
-    }
+    }console.log(result);
+    const [{
+      createdon, accountnumber, type,
+      status, balance,
+    }] = result;
+    const response = {
+      createdon,
+      accountnumber,
+      type,
+      status,
+      balance,
+    };
     return res.status(200).json({
       status: 200,
-      data: result,
+      accounts: response,
     });
   }
 }
