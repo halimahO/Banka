@@ -39,7 +39,6 @@ describe('ACCOUNT TEST DATA', () => {
       .send(accountType);
 
     clientAcct = userResponse.body.data.accountNumber;
-    console.log(clientAcct);
 
     const adminresponse = await chai
       .request(app)

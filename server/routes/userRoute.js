@@ -28,7 +28,7 @@ userRouter.post('/admin',
   userValidate.login,
   createAdmin);
 
-userRouter.get('/users/:email/accounts',
+userRouter.get('/user/:email/accounts',
   requireAuth, staffAuth,
   paramsValidate.email,
   allUserAccounts);

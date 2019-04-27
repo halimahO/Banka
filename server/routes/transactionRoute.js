@@ -14,5 +14,10 @@ transactionRouter.post('/:accountnumber/debit',
   transactionValidate.amount,
   transactionController.debit);
 
+transactionRouter.post('/:accountnumber/credit',
+  requireAuth, staffAuth,
+  paramsValidate.acctNo,
+  transactionValidate.amount,
+  transactionController.credit);
 
 export default transactionRouter;

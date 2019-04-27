@@ -34,10 +34,9 @@ export default class Account {
   }
 
   static async changeStatus(account) {
-    const { status } = account;
-    const queryString = 'UPDATE accounts SET status = $1 RETURNING *';
-    const values = [status];
-    const { rows } = await pool.query(queryString, values);
+    const { status, accountnumber } = account;
+    const queryString = `UPDATE accounts SET status = '${status}' where accountnumber = ${accountnumber} RETURNING *`;
+    const { rows } = await pool.query(queryString);
     return rows[0];
   }
 
