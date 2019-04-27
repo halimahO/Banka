@@ -46,36 +46,4 @@ export default class Account {
     const result = await pool.query(queryString, values);
     return result;
   }
-
-  static async accountTransactionHistory(accountnumber) {
-    const queryString = 'SELECT * FROM transactions WHERE accountnumber = $1';
-    const values = [accountnumber];
-    try {
-      const { rows } = await pool.query(queryString, values);
-      return rows;
-    } catch (error) {
-      return error.message;
-    }
-  }
-
-  static async getAllAccounts() {
-    const queryString = 'SELECT * FROM accounts';
-    try {
-      const { rows } = await pool.query(queryString);
-      return rows;
-    } catch (error) {
-      return error.message;
-    }
-  }
-
-  static async dormantAccounts() {
-    const queryString = `SELECT users.email, accounts.* FROM users 
-                JOIN accounts ON users.id = accounts.OWNER WHERE accounts.status = 'dormant'`;
-    try {
-      const { rows } = await pool.query(queryString);
-      return rows;
-    } catch (error) {
-      return error.message;
-    }
-  }
 }

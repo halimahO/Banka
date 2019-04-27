@@ -35,7 +35,6 @@ export default class Transaction {
     ];
     const { rows } = await pool.query(queryString, values);
     pool.query(`UPDATE accounts SET balance = ${this.newbalance} WHERE accountnumber = ${this.accountnumber}`);
-    console.log(balance, this.accountnumber);
     return rows[0];
   }
 

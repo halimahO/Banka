@@ -33,7 +33,6 @@ export default class TransactionController {
 
     const newTransaction = await transaction.debit();
 
-    console.log(newTransaction, 'here');
     return res.status(201).json({
       status: 201,
       data: newTransaction,
@@ -61,29 +60,11 @@ export default class TransactionController {
     transaction.cashier = req.user.id;
     transaction.oldbalance = balance;
     transaction.newbalance = balance + transaction.amount;
-    console.log(balance);
     const newTransaction = await transaction.credit(balance);
 
-    console.log(newTransaction, 'here');
     return res.status(201).json({
       status: 201,
       data: newTransaction,
-    });
-  }
-
-  static async getTransaction(req, res) {
-    const { id } = req.params;
-
-    const result = await Transaction.getTransaction(id);
-    if (!result) {
-      return res.status(404).json({
-        status: 404,
-        error: 'Transaction not found.',
-      });
-    }
-    return res.status(200).json({
-      status: 200,
-      data: result,
     });
   }
 }
