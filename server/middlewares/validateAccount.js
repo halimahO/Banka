@@ -28,7 +28,7 @@ export default class accountValidate {
     const createAccount = req.body;
 
     const createAccountProperties = {
-      type: 'required|in:active,dormant',
+      status: 'required|in:active,dormant',
     };
 
     const validator = new Validator(createAccount,

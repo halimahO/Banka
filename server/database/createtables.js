@@ -21,7 +21,7 @@ console.log('Creating tables...');
         type text NOT NULL,
         status text NOT NULL,
         balance FLOAT,
-        owneremail VARCHAR(50) UNIQUE NOT NULL,
+        owneremail text NOT NULL,
         FOREIGN KEY (owner) REFERENCES users (id) ON DELETE CASCADE,
         FOREIGN KEY (owneremail) REFERENCES users (email) ON DELETE CASCADE)`);
 

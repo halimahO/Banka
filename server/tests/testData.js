@@ -11,8 +11,8 @@ const wrongTransactionId = {
 const clientField = {
   email: 'testClient@gmail.com',
   password: 'asdfghjkl',
-  firstName: 'Halle',
-  lastName: 'Berry',
+  firstname: 'Halle',
+  lastname: 'Berry',
 };
 const clientField2 = {
   email: 'testClient2@gmail.com',

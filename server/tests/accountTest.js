@@ -39,6 +39,7 @@ describe('ACCOUNT TEST DATA', () => {
       .send(accountType);
 
     clientAcct = userResponse.body.data.accountNumber;
+    console.log(clientAcct);
 
     const adminresponse = await chai
       .request(app)
@@ -58,40 +59,8 @@ describe('ACCOUNT TEST DATA', () => {
 });
 
 describe('ACCOUNT TEST', () => {
-  before(async () => {
-    const response = await chai
-      .request(app)
-      .post('/api/v1/auth/signup')
-      .send(clientField);
-
-    clientToken = response.body.data.token;
-
-    const userResponse = await chai
-      .request(app)
-      .post('/api/v1/accounts')
-      .set({ Authorization: `Bearer ${clientToken}` })
-      .send(accountType);
-
-    clientAcct = userResponse.body.data.accountNumber;
-
-    const adminresponse = await chai
-      .request(app)
-      .post('/api/v1/admin')
-      .send(adminField);
-
-    adminToken = adminresponse.body.data.token;
-
-    const staffResponse = await chai
-      .request(app)
-      .post('/api/v1/staff')
-      .set({ Authorization: `Bearer ${adminToken}` })
-      .send(staffField);
-
-    staffToken = staffResponse.body.data.token;
-  });
-
   describe('CREATE A BANK ACCOUNT', () => {
-    it('it should successfully create a bank account', async () => {
+    it('it should successfully create a bank account', async (done) => {
       const res = await chai.request(app)
         .post('/api/v1/accounts')
         .set({ Authorization: `Bearer ${clientToken}` })
@@ -103,7 +72,8 @@ describe('ACCOUNT TEST', () => {
       expect(res.body).to.be.an('object');
       expect(res.body).to.have.property('data');
       expect(res.body.data).to.be.an('object');
-    });
+      done();
+    }).timeout(5000);
 
     it('it should return 400 if account type is empty', async () => {
       const res = await chai.request(app)
