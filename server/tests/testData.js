@@ -117,7 +117,7 @@ const missingStaff = {
 };
 
 const missingAdmin = {
-  lastname: 'Bade',
+  firstname: 'Bade',
   email: 'adebade31@gmail.com',
   password: 'adebade1234',
   isadmin: true,
