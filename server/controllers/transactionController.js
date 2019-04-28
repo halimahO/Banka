@@ -8,7 +8,7 @@ export default class TransactionController {
     if (!accountExists) {
       return res.status(404).json({
         status: 404,
-        error: 'Account number not found.',
+        error: 'Account does not exist.',
       });
     }
     const { balance } = accountExists;
@@ -20,8 +20,8 @@ export default class TransactionController {
     }
 
     if (balance < transaction.amount) {
-      return res.status(401).json({
-        status: 401,
+      return res.status(400).json({
+        status: 400,
         error: 'Insufficient fund',
       });
     }
@@ -45,7 +45,7 @@ export default class TransactionController {
     if (!accountExists) {
       return res.status(404).json({
         status: 404,
-        error: 'Account number not found.',
+        error: 'Account does not exist.',
       });
     }
     const { balance } = accountExists;
@@ -65,6 +65,22 @@ export default class TransactionController {
     return res.status(201).json({
       status: 201,
       data: newTransaction,
+    });
+  }
+
+  static async getTransaction(req, res) {
+    const { id } = req.params;
+
+    const result = await Transaction.getTransaction(id);
+    if (!result) {
+      return res.status(404).json({
+        status: 404,
+        error: 'Transaction does not exist.',
+      });
+    }
+    return res.status(200).json({
+      status: 200,
+      data: result,
     });
   }
 }

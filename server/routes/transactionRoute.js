@@ -20,4 +20,8 @@ transactionRouter.post('/:accountnumber/credit',
   transactionValidate.amount,
   transactionController.credit);
 
+transactionRouter.get('/:id',
+  requireAuth,
+  paramsValidate.transId,
+  transactionController.getTransaction);
 export default transactionRouter;
