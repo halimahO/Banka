@@ -93,4 +93,18 @@ export default class AccountController {
       data: result,
     });
   }
+
+  static async getAllAccounts(req, res) {
+    const result = await Account.getAllAccounts();
+    if (!result.length) {
+      return res.status(404).json({
+        status: 404,
+        error: 'No account found.',
+      });
+    }
+    return res.status(200).json({
+      status: 200,
+      data: result,
+    });
+  }
 }
