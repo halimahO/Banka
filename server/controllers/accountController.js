@@ -99,6 +99,8 @@ export default class AccountController {
     const { status } = req.query;
     if (status === 'dormant') {
       result = await Account.dormant();
+    } else if (status === 'active') {
+      result = await Account.active();
     } else result = await Account.getAllAccounts();
     if (!result.length) {
       return res.status(404).json({

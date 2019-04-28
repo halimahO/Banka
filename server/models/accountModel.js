@@ -77,4 +77,14 @@ export default class Account {
       return error.message;
     }
   }
+
+  static async active() {
+    const queryString = 'SELECT * FROM accounts WHERE status = \'active\'';
+    try {
+      const { rows } = await pool.query(queryString);
+      return rows;
+    } catch (error) {
+      return error.message;
+    }
+  }
 }
