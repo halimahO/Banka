@@ -46,4 +46,15 @@ export default class Account {
     const result = await pool.query(queryString, values);
     return result;
   }
+
+  static async accountTransactionHistory(accountnumber) {
+    const queryString = 'SELECT * FROM transactions WHERE accountnumber = $1';
+    const values = [accountnumber];
+    try {
+      const { rows } = await pool.query(queryString, values);
+      return rows;
+    } catch (error) {
+      return error.message;
+    }
+  }
 }

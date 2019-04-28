@@ -36,13 +36,5 @@ accountRouter.get('/:accountnumber/transactions',
   paramsValidate.acctNo,
   accountTransactionHistory);
 
-accountRouter.get('/:accountnumber',
-  requireAuth, staffAuth,
-  paramsValidate.acctNo,
-  getAccount);
-
-accountRouter.get('/', requireAuth, staffAuth, getAllAccounts);
-accountRouter.get('/', requireAuth, staffAuth, dormantAccounts);
-
 
 export default accountRouter;
