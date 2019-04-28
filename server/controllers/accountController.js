@@ -95,7 +95,11 @@ export default class AccountController {
   }
 
   static async getAllAccounts(req, res) {
-    const result = await Account.getAllAccounts();
+    let result;
+    const { status } = req.query;
+    if (status === 'dormant') {
+      result = await Account.dormant();
+    } else result = await Account.getAllAccounts();
     if (!result.length) {
       return res.status(404).json({
         status: 404,
