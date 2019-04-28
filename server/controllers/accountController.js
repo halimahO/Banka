@@ -19,8 +19,8 @@ export default class AccountController {
     const { accountnumber } = req.params;
     const accountExists = await Account.getAccount(accountnumber);
     if (!accountExists) {
-      return res.status(400).json({
-        status: 400,
+      return res.status(404).json({
+        status: 404,
         error: 'Account does not exist.',
       });
     }
@@ -28,8 +28,8 @@ export default class AccountController {
 
     const { status: currentStatus } = accountExists;
     if (status === currentStatus) {
-      return res.status(400).json({
-        status: 400,
+      return res.status(200).json({
+        status: 200,
         error: `Account status is currently ${currentStatus}`,
       });
     }
@@ -50,8 +50,8 @@ export default class AccountController {
 
     const accountExists = await Account.getAccount(accountnumber);
     if (!accountExists) {
-      return res.status(400).json({
-        status: 400,
+      return res.status(404).json({
+        status: 404,
         error: 'Account does not exist.',
       });
     }
@@ -70,50 +70,6 @@ export default class AccountController {
       return res.status(404).json({
         status: 404,
         error: 'No transaction found for this account.',
-      });
-    }
-    return res.status(200).json({
-      status: 200,
-      data: result,
-    });
-  }
-
-  static async getAccount(req, res) {
-    const { accountnumber } = req.params;
-
-    const result = await Account.getAccount(Number(accountnumber));
-    if (!result) {
-      return res.status(404).json({
-        status: 404,
-        error: 'Account not found.',
-      });
-    }
-    return res.status(200).json({
-      status: 200,
-      data: result,
-    });
-  }
-
-  static async getAllAccounts(req, res) {
-    const result = await Account.getAllAccounts();
-    if (!result.length) {
-      return res.status(404).json({
-        status: 404,
-        error: 'No account found.',
-      });
-    }
-    return res.status(200).json({
-      status: 200,
-      data: result,
-    });
-  }
-
-  static async dormantAccounts(req, res) {
-    const result = await Account.dormantAccounts();
-    if (!result.length) {
-      return res.status(404).json({
-        status: 404,
-        error: 'No account found.',
       });
     }
     return res.status(200).json({

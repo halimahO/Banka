@@ -20,8 +20,8 @@ export default class TransactionController {
     }
 
     if (balance < transaction.amount) {
-      return res.status(400).json({
-        status: 400,
+      return res.status(422).json({
+        status: 422,
         error: 'Insufficient fund',
       });
     }
