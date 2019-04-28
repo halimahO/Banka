@@ -74,21 +74,21 @@ describe('ACCOUNT TEST', () => {
       done();
     }).timeout(5000);
 
-    it('it should return 400 if account type is empty', async () => {
+    it('it should return 403 if account type is empty', async () => {
       const res = await chai.request(app)
         .post('/api/v1/accounts')
         .set({ Authorization: `Bearer ${clientToken}` })
         .send(emptyAccountType);
-      expect(res).to.have.status(400);
+      expect(res).to.have.status(403);
       expect(res.body).to.have.property('error');
     });
 
-    it('it should return 400 if account type is wrong', async () => {
+    it('it should return 403 if account type is wrong', async () => {
       const res = await chai.request(app)
         .post('/api/v1/accounts')
         .set({ Authorization: `Bearer ${clientToken}` })
         .send(wrongAccountType);
-      expect(res).to.have.status(400);
+      expect(res).to.have.status(403);
       expect(res.body).to.have.property('error');
     });
 
@@ -116,11 +116,11 @@ describe('ACCOUNT TEST', () => {
       expect(res.body.data).to.be.an('object');
     });
 
-    it('it should return 400 if account number is wrong', async () => {
+    it('it should return 403 if account number is wrong', async () => {
       const res = await chai.request(app)
         .patch(`/api/v1/accounts/${wrongAcctNo}`)
         .set({ Authorization: `Bearer ${staffToken}` });
-      expect(res).to.have.status(400);
+      expect(res).to.have.status(403);
       expect(res.body).to.have.property('error');
     });
 
@@ -136,23 +136,23 @@ describe('ACCOUNT TEST', () => {
   describe('TEST GET SPECIFIC ACCOUNT', () => {
     it('it should successfully get a specific account', async () => {
       const res = await chai.request(app)
-        .get(`/api/v1/accounts/${clientAcct}`)
+        .get(`/api/v1/accounts/${clientAcct}/transactions`)
         .set({ Authorization: `Bearer ${staffToken}` });
       expect(res).to.have.status(200);
       expect(res.body).to.have.property('status');
     });
 
-    it('it should return 400 if account number is wrong', async () => {
+    it('it should return 403 if account number is wrong', async () => {
       const res = await chai.request(app)
-        .get(`/api/v1/accounts/${wrongAcctNo}`)
+        .get(`/api/v1/accounts/${wrongAcctNo}/transactions`)
         .set({ Authorization: `Bearer ${staffToken}` });
-      expect(res).to.have.status(400);
+      expect(res).to.have.status(403);
       expect(res.body).to.have.property('error');
     });
 
     it('it should return 403 if unauthorized', async () => {
       const res = await chai.request(app)
-        .get(`/api/v1/accounts/${clientAcct}`)
+        .get(`/api/v1/accounts/${clientAcct}/transactions`)
         .set({ Authorization: 'Bearer wrong token' });
       expect(res).to.have.status(403);
       expect(res.body).to.have.property('error');
@@ -168,11 +168,11 @@ describe('ACCOUNT TEST', () => {
       expect(res.body).to.have.property('message');
     });
 
-    it('it should return 400 if account number is wrong', async () => {
+    it('it should return 403 if account number is wrong', async () => {
       const res = await chai.request(app)
         .delete(`/api/v1/accounts/${wrongAcctNo}`)
         .set({ Authorization: `Bearer ${staffToken}` });
-      expect(res).to.have.status(400);
+      expect(res).to.have.status(403);
       expect(res.body).to.have.property('error');
     });
 

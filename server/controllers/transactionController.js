@@ -32,10 +32,20 @@ export default class TransactionController {
     transaction.newbalance = balance - transaction.amount;
 
     const newTransaction = await transaction.debit();
+    const {
+      id, amount, cashier, type, newbalance,
+    } = newTransaction;
 
     return res.status(201).json({
       status: 201,
-      data: newTransaction,
+      data: {
+        transactionId: id,
+        accountnumber,
+        amount: parseFloat(amount),
+        cashier,
+        transactionType: type,
+        accountBalance: String(newbalance),
+      },
     });
   }
 
@@ -61,10 +71,20 @@ export default class TransactionController {
     transaction.oldbalance = balance;
     transaction.newbalance = balance + transaction.amount;
     const newTransaction = await transaction.credit(balance);
+    const {
+      id, amount, cashier, type, newbalance,
+    } = newTransaction;
 
     return res.status(201).json({
       status: 201,
-      data: newTransaction,
+      data: {
+        transactionId: id,
+        accountnumber,
+        amount,
+        cashier,
+        transactionType: type,
+        accountBalance: newbalance,
+      },
     });
   }
 
@@ -78,9 +98,20 @@ export default class TransactionController {
         error: 'Transaction does not exist.',
       });
     }
+    const {
+      createdon, type, accountnumber, amount, oldbalance, newbalance,
+    } = result;
     return res.status(200).json({
       status: 200,
-      data: result,
+      data: {
+        transactionId: id,
+        createdon,
+        type,
+        accountNumber: Number(accountnumber),
+        amount,
+        oldbalance,
+        newbalance,
+      },
     });
   }
 }

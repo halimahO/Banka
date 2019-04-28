@@ -29,7 +29,7 @@ export default class UsersController {
     } = newUser;
 
     const token = await Jwt.generateToken({
-      id, email, type, isadmin,
+      id, email, type, isadmin, firstname, lastname,
     });
 
     const response = {
@@ -67,7 +67,7 @@ export default class UsersController {
     } = newUser;
 
     const token = await Jwt.generateToken({
-      id, email, type, isadmin,
+      id, email, type, isadmin, firstname, lastname,
     });
 
     const response = {
@@ -105,7 +105,7 @@ export default class UsersController {
     } = newUser;
 
     const token = await Jwt.generateToken({
-      id, email, type, isadmin,
+      id, email, type, isadmin, firstname, lastname,
     });
 
     const response = {
@@ -129,9 +129,9 @@ export default class UsersController {
     }
 
     if (!result) {
-      return res.status(404).json({
-        status: 404,
-        error: `We couldn't find an account for ${email}.`,
+      return res.status(401).json({
+        status: 401,
+        error: 'Invalid username/password',
       });
     }
 
@@ -139,7 +139,7 @@ export default class UsersController {
     if (!comparePassword(password, userPassword)) {
       return res.status(401).json({
         status: 401,
-        error: 'Incorrect password',
+        error: 'Invalid username/password',
       });
     }
 
@@ -149,7 +149,7 @@ export default class UsersController {
     } = result;
 
     const token = await Jwt.generateToken({
-      id, email, type, isadmin,
+      id, email, type, isadmin, firstname, lastname,
     });
 
     const response = {
@@ -157,7 +157,7 @@ export default class UsersController {
     };
 
     return res.status(200).json({
-      status: 201,
+      status: 200,
       data: response,
     });
   }

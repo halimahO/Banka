@@ -33,6 +33,10 @@
                             <li><a href="index.html">Home</a></li>
                             <li class="current"><a href="dashboard.html">Profile</a></li>
                             <li><a href="create-account.html">Open an Account</a></li>
+                            <div class="menu-items dashboard-menu">
+                            <li data-menu="account-history" onclick=toggleSidebar()>Account History</li>
+                            <li data-menu="transaction-history" onclick=toggleSidebar()>Transactions</li>
+                            </div>
                             <li><a href="index.html">Sign Out</a></li>
                         </ul> 
                     </div> 
@@ -87,7 +91,8 @@
                             <div>mercyekene@gmail.com</div>
                             <div>Password:</div>
                             <div>**********</div>
-
+                            <div>.</div>
+                            <div><button class="btn btn-reset">Reset password</button></div>
                         </div>
                     </div>
                 </div>
@@ -95,9 +100,9 @@
                         <div>
                            <div class="small-acct"><div class="acct-display select-label"><label>Account to display:</label><br></div> 
                             <div class="acct-display">
-                                <input class="dashboard-input" type="text" placeholder="Account number here">
+                                <input class="dashboard-input acct-number-width" type="number" placeholder="Account number here">
                             </div>
-                            <div class="acct-display"> <button class="btn-small cursor">Submit</button></div>
+                            <div class="acct-display"> <button class="btn btn-filter cursor">Submit</button></div>
                         </div>
 
                         </div>
@@ -139,9 +144,9 @@
                 <div id="transaction-history" class="items dashboard-area-background shadow">
                         <div class="small-acct"><div class="acct-display select-label"><label>Transaction to display:</label><br></div> 
                              <div class="acct-display">
-                                 <input class="dashboard-input" type="text" placeholder="Transaction id here">
+                                 <input class="dashboard-input acct-number-width" type="number" placeholder="Transaction id here">
                              </div>
-                             <div class="acct-display"> <button class="btn-small cursor">Submit</button></div>
+                             <div class="acct-display"> <button class="btn btn-filter cursor">Submit</button></div>
                          </div>
                          <div>
                             <div class="acct-summary-client shadow">
