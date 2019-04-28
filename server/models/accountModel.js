@@ -67,4 +67,14 @@ export default class Account {
       return error.message;
     }
   }
+
+  static async dormant() {
+    const queryString = 'SELECT * FROM accounts WHERE status = \'dormant\'';
+    try {
+      const { rows } = await pool.query(queryString);
+      return rows;
+    } catch (error) {
+      return error.message;
+    }
+  }
 }

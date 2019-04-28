@@ -8,7 +8,6 @@ const accountRouter = new Router();
 const {
   createAccount, changeStatus, deleteAccount,
   accountTransactionHistory, getAccount, getAllAccounts,
-  dormantAccounts,
 } = accountController;
 
 accountRouter.post(
