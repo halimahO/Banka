@@ -77,4 +77,20 @@ export default class AccountController {
       data: result,
     });
   }
+
+  static async getAccount(req, res) {
+    const { accountnumber } = req.params;
+
+    const result = await Account.getAccount(Number(accountnumber));
+    if (!result) {
+      return res.status(404).json({
+        status: 404,
+        error: 'Account does not exist.',
+      });
+    }
+    return res.status(200).json({
+      status: 200,
+      data: result,
+    });
+  }
 }
