@@ -41,4 +41,6 @@ accountRouter.get('/:accountnumber',
   paramsValidate.acctNo,
   getAccount);
 
+accountRouter.get('/', requireAuth, staffAuth, getAllAccounts);
+
 export default accountRouter;

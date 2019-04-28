@@ -57,4 +57,14 @@ export default class Account {
       return error.message;
     }
   }
+
+  static async getAllAccounts() {
+    const queryString = 'SELECT * FROM accounts';
+    try {
+      const { rows } = await pool.query(queryString);
+      return rows;
+    } catch (error) {
+      return error.message;
+    }
+  }
 }
