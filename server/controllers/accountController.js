@@ -6,12 +6,23 @@ export default class AccountController {
 
     account.owner = req.user.id;
     account.owneremail = req.user.email;
-
     const newAccount = await account.createAccount();
-
+    const firstName = req.user.firstname;
+    const lastName = req.user.lastname;
+    const {
+      accountnumber, owneremail, type, balance,
+    } = newAccount;
     return res.status(201).json({
       status: 201,
-      data: newAccount,
+      data: {
+        accountNumber: Number(accountnumber),
+        firstName,
+        lastName,
+        email: owneremail,
+        type,
+        openingBalance: parseFloat(balance.toFixed(1)),
+
+      },
     });
   }
 
@@ -39,7 +50,7 @@ export default class AccountController {
     return res.status(200).json({
       status: 200,
       data: {
-        accountnumber,
+        accountNumber: Number(accountnumber),
         status,
       },
     });
@@ -72,9 +83,19 @@ export default class AccountController {
         error: 'No transaction found for this account.',
       });
     }
+    const results = result.map((rest) => {
+      const {
+        id, createdon, type, amount, oldbalance, newbalance,
+      } = rest;
+      return {
+        id, createdon, type, accountnumber, amount, oldbalance, newbalance,
+      };
+    });
     return res.status(200).json({
       status: 200,
-      data: result,
+      data: {
+        results,
+      },
     });
   }
 
@@ -88,9 +109,19 @@ export default class AccountController {
         error: 'Account does not exist.',
       });
     }
+    const {
+      createdon, owneremail, type, status, balance,
+    } = result;
     return res.status(200).json({
       status: 200,
-      data: result,
+      data: {
+        createdon,
+        accountNumber: Number(accountnumber),
+        owneremail,
+        type,
+        status,
+        balance,
+      },
     });
   }
 
@@ -108,9 +139,17 @@ export default class AccountController {
         error: 'No account found.',
       });
     }
+    const results = result.map((rest) => {
+      const {
+        createdon, accountnumber, owneremail, type, status, balance,
+      } = rest;
+      return {
+        createdon, accountnumber, owneremail, type, status, balance,
+      };
+    });
     return res.status(200).json({
       status: 200,
-      data: result,
+      data: results,
     });
   }
 }

@@ -31,6 +31,14 @@
                         <ul>
                             <li><a href="index.html">Home</a></li>
                             <li class="current"><a href="dashboard.html">Profile</a></li>
+                            <div class="menu-items dashboard-menu">
+                                <li data-menu="debit-account" onclick=toggleSidebar()>Debit Account</li>
+                                <li data-menu="credit-account" onclick=toggleSidebar()>Credit Account</li>
+                                <li data-menu="view-an-account" onclick=toggleSidebar()>View Account</li>
+                                <li data-menu="view-all-accounts" onclick=toggleSidebar()>All Accounts</li>
+                                <li data-menu="change-account-status" onclick=toggleSidebar()>Change Status</li>
+                                <li data-menu="delete-account" onclick=toggleSidebar()>Delete Account</li>
+                                </div>
                             <li><a href="index.html">Sign Out</a></li>
                         </ul> 
                     </div> 
@@ -53,13 +61,13 @@
                                 <span class="fontAwesame"><i data-menu="profile" class="fas fa-user menu-image" ></i></span>
                                 <span data-menu="profile" class= "menu-name">PROFILE</span>
                             </li>
-                            <li data-menu="debit">
-                                <span class="fontAwesame"><i data-menu="debit" class="fas fa-credit-card menu-image" ></i></span>
-                                <span data-menu="debit" class= "menu-name">DEBIT</span>
+                            <li data-menu="debit-account">
+                                <span class="fontAwesame"><i data-menu="debit-account" class="fas fa-credit-card menu-image" ></i></span>
+                                <span data-menu="debit-account" class= "menu-name">DEBIT ACCOUNT</span>
                             </li>
-                            <li data-menu="credit">
-                                    <span class="fontAwesame"><i data-menu="credit" class="fas fa-credit-card menu-image" ></i></span>
-                                    <span data-menu="credit" class= "menu-name">CREDIT</span>
+                            <li data-menu="credit-account">
+                                    <span class="fontAwesame"><i data-menu="credit-account" class="fas fa-credit-card menu-image" ></i></span>
+                                    <span data-menu="credit-account" class= "menu-name">CREDIT ACCOUNT</span>
                                 </li>
                             <li data-menu="view-an-account">
                                 <span class="fontAwesame"><i data-menu="view-an-account" class="far fa-eye menu-image" ></i></span>
@@ -68,13 +76,13 @@
                             <li data-menu="view-all-accounts">
                                 <span class="fontAwesame"><i data-menu="view-all-accounts" class="fas fa-list menu-image" ></i></span>
                                 <span data-menu="view-all-accounts" class= "menu-name">ALL ACCOUNTS</span>
-                            <li data-menu="activate-deactivate">
-                                    <span class="fontAwesame"><i data-menu="activate-deactivate" class="fas fa-power-off menu-image" ></i></span>
-                                    <span data-menu="activate-deactivate" class= "menu-name">ACTIVATE ACCOUNT</span>
+                            <li data-menu="change-account-status">
+                                    <span class="fontAwesame"><i data-menu="change-account-status" class="fas fa-power-off menu-image" ></i></span>
+                                    <span data-menu="change-account-status" class= "menu-name">ACTIVATE ACCOUNT</span>
                             </li>
-                            <li data-menu="delete">
-                                    <span class="fontAwesame"><i data-menu="delete" class="fas fa-trash-alt menu-image" ></i></span>
-                                    <span data-menu="delete" class= "menu-name">DELETE ACCOUNT</span>
+                            <li data-menu="delete-account">
+                                    <span class="fontAwesame"><i data-menu="delete-account" class="fas fa-trash-alt menu-image" ></i></span>
+                                    <span data-menu="delete-account" class= "menu-name">DELETE ACCOUNT</span>
                             </li>
                             
                         </ul>
@@ -102,16 +110,17 @@
                             <div>mercyekene@gmail.com</div>
                             <div>Password:</div>
                             <div>**********</div>
-
+                            <div>.</div>
+                            <div><button class="btn btn-reset">Reset password</button></div>
                         </div>
                     </div>
                 </div>
-                    <div id="debit" class="items dashboard-area-background shadow">
-                            <div class="small-acct"><div class="acct-display select-label"><label>Account to debit:</label><br></div> 
+                    <div id="debit-account" class="items dashboard-area-background shadow">
+                            <div class="small-acct"><div class="acct-display select-label"><label>Debit Account:</label><br></div> 
                             <div class="acct-display">
-                                <input class="dashboard-input" type="text" placeholder="Account number here">
+                                <input class="dashboard-input acct-number-width" type="text" placeholder="Account number">
                             </div>
-                            <div class="acct-display"> <button class="btn-small cursor">Submit</button></div>
+                            <div class="acct-display"> <button class="btn btn-filter cursor">Submit</button></div>
                         </div>
                         <div class="acct-summary-client shadow">
                         <h4 class="m2">DEBIT THE ACCOUNT</h4>
@@ -120,15 +129,15 @@
                             <p><span class="b1">Account type:</span> Current</p>
                             <p><span class="b1">Status:</span> Active</p>
                             <p><span class="b1">Account balance:</span> #2,000.00</p>
-                            <input type="text", placeholder="Amount...">
-                            <button class="btn cursor" onclick=closeModalStaff()>DEBIT</button>
+                            <input class="amountInput" type="number", placeholder="Amount...">
+                            <button class="btn-small cursor">DEBIT</button>
                     </div></div>
-                    <div id="credit" class="items dashboard-area-background shadow">
-                            <div class="small-acct"><div class="acct-display select-label"><label>Account to credit:</label><br></div> 
+                    <div id="credit-account" class="items dashboard-area-background shadow">
+                            <div class="small-acct"><div class="acct-display select-label"><label>Credit Account:</label><br></div> 
                             <div class="acct-display">
-                                <input class="dashboard-input" type="text" placeholder="Account number here">
+                                <input class="dashboard-input acct-number-width" type="text" placeholder="Account number">
                             </div>
-                            <div class="acct-display"> <button class="btn-small cursor">Submit</button></div>
+                            <div class="acct-display"> <button class="btn btn-filter cursor">Submit</button></div>
                         </div>
                         <div class="acct-summary-client shadow">
                         <h4 class="m2">CREDIT THE ACCOUNT</h4>
@@ -137,15 +146,15 @@
                             <p><span class="b1">Account type:</span> Current</p>
                             <p><span class="b1">Status:</span> Active</p>
                             <p><span class="b1">Account balance:</span> #2,000.00</p>
-                            <input type="text", placeholder="Amount...">
-                            <button class="btn cursor" onclick=closeModalStaff()>DEBIT</button>
+                            <input class="amountInput" type="number", placeholder="Amount...">
+                            <button class="btn-small cursor">CREDIT</button>
                     </div></div>
                     <div id= "view-an-account" class="items dashboard-area-background shadow">
                             <div class="small-acct"><div class="acct-display select-label"><label>Account to view:</label><br></div> 
                             <div class="acct-display">
-                                <input class="dashboard-input" type="text" placeholder="Account number here">
+                                <input class="dashboard-input acct-number-width" type="text" placeholder="Account number">
                             </div>
-                            <div class="acct-display"> <button class="btn-small cursor">Submit</button></div>
+                            <div class="acct-display"> <button class="btn btn-filter cursor">Submit</button></div>
                         </div>
                         <div class="acct-summary-client shadow">
                             <h4 class="m2">ACCOUNT DETAILS</h4>
@@ -161,7 +170,14 @@
                             <div class="acct-display">
                                 <input class="dashboard-input" type="text" placeholder="Email address here...">
                             </div>
-                            <div class="acct-display"> <button class="btn-small cursor">Submit</button></div>
+                            <div class="acct-display select-label"><label>Filter by status:</label><br></div>
+                            <div class="acct-display">
+                            <select class="statusSelect">
+                                    <option Value="Savings">None</option>
+                                    <option Value="Savings">Savings</option>
+                                    <option Value="Current">Current</option>
+                                </select></div>
+                                <div class="acct-display"> <button class="btn btn-filter cursor">Submit</button></div>
                         </div>
                         <div class="acct-summary-client shadow">
                         <h4 class="m2">ALL BANK ACCOUNTS</h4>
@@ -218,12 +234,12 @@
                                 </tr>
                         </table></div>
                     </div></div>
-                    <div id="activate-deactivate" class=" items dashboard-area-background shadow">
-                            <div class="small-acct"><div class="acct-display select-label"><label>Account Number:</label><br></div> 
+                    <div id="change-account-status" class=" items dashboard-area-background shadow">
+                            <div class="small-acct"><div class="acct-display select-label"><label>Change Status:</label><br></div> 
                             <div class="acct-display">
-                                <input class="dashboard-input" type="text" placeholder="Account number here...">
+                                <input class="dashboard-input acct-number-width" type="text" placeholder="Account number">
                             </div>
-                            <div class="acct-display"> <button class="btn-small cursor">Submit</button></div>
+                            <div class="acct-display"> <button class="btn btn-filter cursor">Submit</button></div>
                         </div>
                         <div class="acct-summary-client shadow">
                         <h4 class="m2">ACTIVATE/DEACTIVATE ACCOUNT</h4>
@@ -235,12 +251,12 @@
                             <p><span class="b1">Account balance:</span> #2,000.00</p>
                             <button id= "btn-act" class="btn-small cursor" onclick="toggleActiveDeactive()">ACTIVATE</button>
                     </div></div>
-                    <div id= "delete", class=" items dashboard-area-background shadow">
-                            <div class="small-acct"><div class="acct-display select-label"><label>Account to delete:</label><br></div> 
+                    <div id= "delete-account", class=" items dashboard-area-background shadow">
+                            <div class="small-acct"><div class="acct-display select-label"><label>Delete Account:</label><br></div> 
                             <div class="acct-display">
-                                <input class="dashboard-input" type="text" placeholder="Account to delete...">
+                                <input class="dashboard-input acct-number-width" type="text" placeholder="Account number">
                             </div>
-                            <div class="acct-display"> <button class="btn-small cursor">Submit</button></div>
+                            <div class="acct-display"> <button class="btn btn-filter cursor">Submit</button></div>
                         </div>
                         <div class="acct-summary-client shadow">
                         <h4 class="m2">ACCOUNT DETAILS</h4>
@@ -253,7 +269,7 @@
                             <button class="del-btn btn-small btn cursor">Delete</button>                    </div> </div>    
                     <div id="create-staff-admin" class="items dashboard-area-background content2 shadow">
                         <div>
-                            <h1 class= "heading-title-login md-title">CREATE A STAFF/ADMIN</h1>
+                            <h1 class= "heading-title-login m-title">CREATE A STAFF/ADMIN</h1>
                         </div>
                         <div class="form-div"> 
                             <form>

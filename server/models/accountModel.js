@@ -9,15 +9,14 @@ export default class Account {
     this.type = account.type;
     this.status = 'active';
     this.createdon = new Date(Date.now());
-    this.balance = parseFloat(0.0);
+    this.balance = 0;
     this.owneremail = account.owneremail;
   }
 
   async createAccount() {
     const queryString = `INSERT INTO accounts (accountnumber, createdon,
       owner, type, status, balance, owneremail)
-      VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING accountnumber, createdon,
-      owner, type, status`;
+      VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`;
     const values = [
       generateAcctNo(), this.createdon, this.owner,
       this.type, this.status, this.balance, this.owneremail,

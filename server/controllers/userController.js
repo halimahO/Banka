@@ -28,7 +28,7 @@ export default class UsersController {
     } = newUser;
 
     const token = await Jwt.generateToken({
-      id, email, type, isadmin,
+      id, email, type, isadmin, firstname, lastname,
     });
 
     const response = {
@@ -66,7 +66,7 @@ export default class UsersController {
     } = newUser;
 
     const token = await Jwt.generateToken({
-      id, email, type, isadmin,
+      id, email, type, isadmin, firstname, lastname,
     });
 
     const response = {
@@ -104,7 +104,7 @@ export default class UsersController {
     } = newUser;
 
     const token = await Jwt.generateToken({
-      id, email, type, isadmin,
+      id, email, type, isadmin, firstname, lastname,
     });
 
     const response = {
@@ -148,7 +148,7 @@ export default class UsersController {
     } = result;
 
     const token = await Jwt.generateToken({
-      id, email, type, isadmin,
+      id, email, type, isadmin, firstname, lastname,
     });
 
     const response = {
