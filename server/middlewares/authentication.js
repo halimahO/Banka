@@ -51,3 +51,13 @@ export const staffAuth = (req, res, next) => {
   }
   next();
 };
+export const cashierAuth = (req, res, next) => {
+  const { type, isadmin } = req.user;
+  if (type !== 'staff' || isadmin === true) {
+    res.status(403).json({
+      status: 403,
+      error: 'Unauthorized! Accessible to cashier only',
+    });
+  }
+  next();
+};
