@@ -48,10 +48,10 @@
                 <p class="center"> Not registered with us yet? <a href="register.html">Sign up</a></p>
             </div>
             <div class="form-div"> 
-                <form>
+                <form onSubmit="return goToDashboard()";>
                     <div>
                         <label>EMAIL ADDRESS</label><br>
-                        <input type="email" , placeholder="Email Address" required>
+                        <input id="emailInput" type="email" , placeholder="Email Address" required>
                     </div>
                     <div>
                         <label> <p id="password-label">PASSWORD </p></label>

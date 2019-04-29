@@ -52,11 +52,10 @@ header{
 #menu{
     width: 40px;
 }
-#menu:hover, #menu:focus{
+#menu:hover, #menu:focus, .dashboard-menu{
     cursor: pointer;
 }
 .hidden-navbar ul {
-    height: 40%;
     width: 100%;
     margin-top: -31px;
 	background: rgba(28, 35, 61, 0.986);
@@ -77,6 +76,9 @@ header{
     margin-left: 160px;
     margin-top: -77px;
     
+}
+.dashboard-menu li{
+    font-size: 13px;
 }
 
 .nav-not-full{
@@ -154,12 +156,7 @@ header{
 	font-size: 1rem;
 	border-radius: 10px;  
 }
-.register{
-    text-align: center;
-    width: 5rem;
-    text-transform: capitalize;
-    opacity: 0;
-}
+
 .values{
     background: #ededed;
     padding: 3rem;
@@ -173,6 +170,7 @@ header{
 }
 .services-img{
     height:200px;
+    opacity: 0.8;
 }  
 
 .values h3{
@@ -250,7 +248,21 @@ label{
     font-weight: 100;
     color: #F1F1F2;
 }
-
+.btn-filter {
+    margin-top: 3px;
+    font-size: 0.8rem;
+    margin-left: 5px;
+}
+.btn-reset{
+    width: 70%;
+    font-size: 0.8rem;
+}
+.btn-reset:hover{
+   cursor: pointer;
+}
+.acct-number-width{
+    width:120px;
+}
 #login-section a, .history a{
     color: rgba(23, 37, 85, 0.986);
     font-size: 0.8rem;
@@ -274,9 +286,30 @@ input, select, textarea{
     border-radius: 10px;
     box-sizing: border-box;
 }
+.statusSelect{
+    padding: 5px;
+    border-radius: 0px;
+}
+.box{
+    position: relative;
+}
+.topic-block {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    background-color: white;
+    color: rgba(15, 24, 54, 1);;
+    padding: 10px;
+    border-radius: 10%;
+  }
+
+.services-img:hover{
+    opacity: 1;
+}
+
 .dashboard-input{
     padding: 5px 10px;
-    margin: 9px 0;
+    margin: 9px 0px;
     border: 1px solid #ccc;
     border-radius: 1px;
     box-sizing: border-box;
@@ -332,7 +365,12 @@ input, select, textarea{
 .sidebar{
     display: non;
 }
-
+.form-div2{
+    width: 70%;
+    margin: auto;
+    background: white;
+    padding: 30px;
+}
 .menu-body li {
     display: grid;
     grid-template-columns: 1fr 5fr;
@@ -444,7 +482,8 @@ input, select, textarea{
 
 }
 .acct-summary-client{
-    padding: 15px;
+    padding-top: 1px;
+    padding-bottom: 15px;
     text-align: center;
     clear: both;
 }
@@ -496,32 +535,8 @@ input, select, textarea{
 
 .history a:hover, #view-more:hover, .btn:hover{
     text-decoration: underline;
-}
-.modal, .modal1, .modal2, .modal3,
-.modal4, .modal5, .modal6, .modal7,
-.modal8, .modal9, .modal0, .modall{
-    display:none;
-    position:fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    overflow: auto;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, .6);
-}
-
-.close-btn{
-    color: rgba(23, 37, 85, 0.986);
-    float: right;
-    font-size: 30px;
-}
-.close-btn:hover, .close-btn:focus{
-    color:rgba(23, 37, 85, 0.986);
     cursor: pointer;
-    font-weight: bold;
 }
-
 .admin-dashboard{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -549,6 +564,10 @@ input, select, textarea{
     font-size: 1.2rem;
     margin-bottom: 40px;
 }
+.m-title{
+    font-size: 1rem;
+    margin-bottom: 40px;
+}
 input[type="checkbox" i] {
     width: 50px;
 }
@@ -566,11 +585,11 @@ input[type="checkbox" i] {
 }
 .acct-display{
     float: left;
-    width: 180px;
     margin-bottom: 0px;
 }
 .select-label{
     margin-top: 15px;
+    margin-right:10px; 
 }
 #select-display{
     width: 70%;
@@ -628,6 +647,9 @@ footer{
     margin-top: 20px;
     width: 30px;    
 }
+.amountInput{
+    width: 50%;
+}
 /* MEDIA QUERIES */
 
 @media all and (min-width: 800px) {
@@ -636,13 +658,14 @@ footer{
         margin: auto;
     }
 }
-
-@media all and (max-width: 500px) {
-    .menu-name{
+   
+@media all and (max-width: 700px) {
+    .dashboard{
+        grid-template-columns: 1fr;
+    }
+    .sidebar{
         display: none;
     }
-}
-@media all and (max-width: 700px) {
 	.nav-full {
 		display: none;
 	}
@@ -721,4 +744,38 @@ footer{
 .container-hero {
 	width: 90%;
 }
+}
+@media all and (min-width: 1500px) {
+    footer{
+        margin-top: 80px;
+        height: 10rem;
+    }
+    a{
+        font-size: 16px;
+    }
+    #section-hero {
+        min-height: 58vh;
+    }
+    .bg-text {
+        font-size: 3.6rem;
+    }
+    
+    .md-text {
+        font-size: 2rem;
+    }
+    
+    .sm-text {
+        font-size: 1.5rem;
+    }
+    .sidebar-li li {
+        font-size: 15px;
+    }
+    .heading-title-login{
+        font-size: 1.3rem;}
+    label{
+        font-size: 1rem;
+}
+    .btn-reset {
+        font-size: 0.9rem;
+    }
 }
