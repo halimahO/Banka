@@ -1,8 +1,9 @@
-import 'babel-polyfill';
+import '@babel/polyfill';
 import express from 'express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import router from './routes';
+import './database/index';
 
 dotenv.config();
 const app = express();
