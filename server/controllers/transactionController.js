@@ -1,7 +1,10 @@
 import Transaction from '../models/transactionModel';
 import Account from '../models/accountModel';
+import sendMail from '../helpers/sendMail';
+
 
 export default class TransactionController {
+
   static async debit(req, res) {
     const { accountnumber } = req.params;
     const accountExists = await Account.getAccount(accountnumber);
@@ -30,12 +33,20 @@ export default class TransactionController {
     transaction.cashier = req.user.id;
     transaction.oldbalance = balance;
     transaction.newbalance = balance - transaction.amount;
-
     const newTransaction = await transaction.debit();
     const {
       id, amount, cashier, type, newbalance,
     } = newTransaction;
 
+   const emaildata = {
+     account: accountExists.accountnumber,
+     amount: transaction.amount,
+     oldbalance: transaction.oldbalance,
+     newbalance: transaction.newbalance,
+     email: accountExists.owneremail,
+     Transactiontype: type,
+   };
+    sendMail(emaildata);
     return res.status(201).json({
       status: 201,
       data: {
@@ -75,6 +86,15 @@ export default class TransactionController {
       id, amount, cashier, type, newbalance,
     } = newTransaction;
 
+   const emaildata = {
+     account: accountExists.accountnumber,
+     amount: transaction.amount,
+     oldbalance: transaction.oldbalance,
+     newbalance: transaction.newbalance,
+     email: accountExists.owneremail,
+     Transactiontype: type,
+   };
+sendMail(emaildata);
     return res.status(201).json({
       status: 201,
       data: {
