@@ -126,7 +126,6 @@ export default class UsersController {
 
   static async signin(req, res) {
     const { email, password } = req.body;
-    console.log(req.body)
 
     let result;
     try {
