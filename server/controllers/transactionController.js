@@ -1,5 +1,6 @@
 import Transaction from '../models/transactionModel';
 import Account from '../models/accountModel';
+import UsersController from './userController';
 
 export default class TransactionController {
   static async debit(req, res) {
@@ -35,7 +36,25 @@ export default class TransactionController {
     const {
       id, amount, cashier, type, newbalance,
     } = newTransaction;
+    const { owneremail } = accountExists;
 
+    const emailObj = {
+      email: owneremail,
+      subject: 'Debit Transaction',
+      body:  `
+        <h1> A Transaction has occurred on your account with account number: ${accountnumber} </h1>
+        <br />
+        <h3>Transaction details</h3>
+        <p>
+         Transaction ID: ${id} <br />
+         Amount: ${parseFloat(amount)} <br />
+         Cashier: ${cashier} <br />
+         Account Balance: ${String(newbalance)}
+        
+        </p>
+      `,
+    };
+  await UsersController.notify(emailObj);
     return res.status(201).json({
       status: 201,
       data: {
@@ -74,6 +93,26 @@ export default class TransactionController {
     const {
       id, amount, cashier, type, newbalance,
     } = newTransaction;
+
+    const { owneremail } = accountExists;
+
+    const emailObj = {
+      email: owneremail,
+      subject: 'Credit Transaction',
+      body:  `
+        <h1> A Transaction has occurred on your account with account number: ${accountnumber} </h1>
+        <br />
+        <h3>Transaction details</h3>
+        <p>
+         Transaction ID: ${id} <br />
+         Amount: ${parseFloat(amount)} <br />
+         Cashier: ${cashier} <br />
+         Account Balance: ${String(newbalance)}
+        
+        </p>
+      `,
+    };
+    await UsersController.notify(emailObj);
 
     return res.status(201).json({
       status: 201,
