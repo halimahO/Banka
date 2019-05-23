@@ -28,7 +28,7 @@ transactionRouter.get('/:id',
 transactionRouter.post('/:accountnumber/recharge',
   requireAuth,
   paramsValidate.acctNo,
-  transactionValidate.amount,
+  transactionValidate.recharge,
   transactionController.debit);
 
 export default transactionRouter;
