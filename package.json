@@ -9,7 +9,7 @@
   "scripts": {
     "test": "nyc mocha --exit --require @babel/register --require babel-polyfill ./server/tests/**/*.js || true",
     "start": "npm run build && node build/index.js",
-    "startDev": "export DEBUG=dev && nodemon --exec babel-node server/index.js",
+    "startDev": "set DEBUG=dev && nodemon --exec babel-node server/index.js",
     "build": "npm run clean && babel server --out-dir build",
     "clean": "rm -rf build",
     "migrations": "babel-node server/database/droptables && babel-node server/database/createtables",
