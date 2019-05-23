@@ -23,12 +23,17 @@ import {
   staffField4,
   adminField4,
   adminField5,
+  resetPasswordDetails,
+  wrongOldPassword,
+  similarNewPassword,
+  unmatchingNewAndConfirm,
 } from './testData';
 
 const { expect } = chai;
 chai.use(chaiHttp);
 
 let adminToken;
+let edeToken;
 
 describe('USER TEST DATA', () => {
   before(async () => {
@@ -53,6 +58,7 @@ describe('USER TEST DATA', () => {
       .send(adminField3);
 
     adminToken = adminresponse.body.data.token;
+    console.log(adminToken);
 
     const staffResponse = await chai
       .request(app)
@@ -153,6 +159,69 @@ describe('USER TEST', () => {
         .send(emptyStaff);
       expect(res).to.have.status(403);
       expect(res).to.have.property('error');
+    });
+  });
+
+  describe('USER RESET PASSWORD', () => {
+    before(async () => {
+      const edeResponse = await chai
+        .request(app)
+        .post('/api/v1/auth/signin')
+        .send({
+          email: 'edefade@gmail.com',
+          password: 'edepassword',
+        });
+
+      edeToken = edeResponse.body.data.token;
+    });
+
+    it('it should return 200 if passsord reset was successful', async () => {
+      const res = await chai.request(app)
+        .post('/api/v1/user/edefade@gmail.com/resetpassword')
+        .set({ Authorization: `Bearer ${edeToken}` })
+        .send(resetPasswordDetails);
+      expect(res).to.have.status(200);
+      expect(res.body).to.have.property('message');
+    });
+
+    it('it should return 400 if the email is wrong', async () => {
+      const res = await chai.request(app)
+        .post('/api/v1/user/wrongemail@gmail.com/resetpassword')
+        .set({ Authorization: `Bearer ${edeToken}` })
+        .send(resetPasswordDetails);
+      expect(res).to.have.status(400);
+      expect(res.body).to.have.property('error');
+      expect(res.body.error).to.equal('No user with the given email');
+    });
+
+    it('it should return 400 if the old password is wrong', async () => {
+      const res = await chai.request(app)
+        .post('/api/v1/user/edefade@gmail.com/resetpassword')
+        .set({ Authorization: `Bearer ${edeToken}` })
+        .send(wrongOldPassword);
+      expect(res).to.have.status(400);
+      expect(res.body).to.have.property('error');
+      expect(res.body.error).to.equal('Old password is not correct');
+    });
+
+    it('it should return 400 if the new password is similar to old one', async () => {
+      const res = await chai.request(app)
+        .post('/api/v1/user/edefade@gmail.com/resetpassword')
+        .set({ Authorization: `Bearer ${edeToken}` })
+        .send(similarNewPassword);
+      expect(res).to.have.status(400);
+      expect(res.body).to.have.property('error');
+      expect(res.body.error).to.equal('New password cannot be the same as old password');
+    });
+
+    it('it should return 400 if the confirm password doesn\'t match the new one', async () => {
+      const res = await chai.request(app)
+        .post('/api/v1/user/edefade@gmail.com/resetpassword')
+        .set({ Authorization: `Bearer ${edeToken}` })
+        .send(unmatchingNewAndConfirm);
+      expect(res).to.have.status(400);
+      expect(res.body).to.have.property('error');
+      expect(res.body.error).to.equal('Passwords don\'t match');
     });
   });
 });

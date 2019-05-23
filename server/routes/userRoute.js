@@ -8,7 +8,7 @@ import paramsValidate from '../middlewares/validateParams';
 const userRouter = new Router();
 const {
   signUp, signin, allUserAccounts,
-  createStaff, createAdmin,
+  createStaff, createAdmin, resetPassword,
 } = userController;
 
 userRouter.post('/auth/signup',
@@ -32,5 +32,11 @@ userRouter.get('/user/:email/accounts',
   requireAuth, staffAuth,
   paramsValidate.email,
   allUserAccounts);
+
+userRouter.post('/user/:email/resetpassword',
+  requireAuth,
+  paramsValidate.email,
+  userValidate.resetPassword,
+  resetPassword);
 
 export default userRouter;

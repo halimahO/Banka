@@ -26,6 +26,21 @@ export default class User {
     }
   }
 
+  static async resetPassword(password, email) {
+    const queryString = `UPDATE users
+    SET password=$1
+    WHERE email=$2
+    RETURNING *;`;
+    const values = [password, email];
+
+    try {
+      const { rows } = await pool.query(queryString, values);
+      return rows[0];
+    } catch (error) {
+      return error.message;
+    }
+  }
+
   async createStaff() {
     const type = 'staff';
     const isadmin = false;

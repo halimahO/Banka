@@ -162,6 +162,74 @@ export default class UsersController {
     });
   }
 
+  static async resetPassword(req, res) {
+    const { oldPassword, newPassword, confirmPassword } = req.body;
+    const { email } = req.params;
+
+    let result;
+    try {
+      result = await User.getUserByEmail(email);
+    } catch (error) {
+      return error.message;
+    }
+
+    if (!result) {
+      return res.status(400).json({
+        status: 400,
+        error: 'No user with the given email',
+      });
+    }
+
+    const { password: userPassword } = result;
+
+    if (oldPassword) {
+      if (!comparePassword(oldPassword, userPassword)) {
+        return res.status(400).json({
+          status: 400,
+          error: 'Old password is not correct',
+        });
+      }
+    }
+
+    if (comparePassword(newPassword, userPassword)) {
+      return res.status(400).json({
+        status: 400,
+        error: 'New password cannot be the same as old password',
+      });
+    }
+
+    if (newPassword !== confirmPassword) {
+      return res.status(400).json({
+        status: 400,
+        error: 'Passwords don\'t match',
+      });
+    }
+
+    const hashedPassword = hashPassword(newPassword);
+
+    let resetResult;
+    try {
+      resetResult = await User.resetPassword(hashedPassword, email);
+    } catch (error) {
+      return error.message;
+    }
+
+    const {
+      firstname, lastname, type, isadmin,
+    } = resetResult;
+
+    return res.status(200).json({
+      status: 200,
+      message: 'Password reset succesful',
+      data: {
+        firstname,
+        lastname,
+        type,
+        isadmin,
+      },
+    });
+  }
+
   static async allUserAccounts(req, res) {
     const { email } = req.params;
 

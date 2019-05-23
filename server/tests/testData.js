@@ -163,6 +163,30 @@ const login = {
   password: 'asdfghjkl',
 };
 
+const resetPasswordDetails = {
+  oldPassword: 'edepassword',
+  newPassword: 'edepassword1',
+  confirmPassword: 'edepassword1',
+};
+
+const wrongOldPassword = {
+  oldPassword: 'wrongoldpassword',
+  newPassword: 'edepassword1',
+  confirmPassword: 'edepassword1',
+};
+
+const similarNewPassword = {
+  oldPassword: 'edepassword1',
+  newPassword: 'edepassword1',
+  confirmPassword: 'edepassword',
+};
+
+const unmatchingNewAndConfirm = {
+  oldPassword: 'edepassword1',
+  newPassword: 'edepassword10',
+  confirmPassword: 'edepassword11',
+};
+
 // Account
 const emptyAccountType = {
   type: '',
@@ -218,4 +242,5 @@ export {
   emptyClient, emptyLogin, emptyStaff, emptyTestAdmin, emptytransaction,
   login, accountType, transaction, testAdmin, clientField2, adminField2, staffField2,
   clientField3, clientField4, staffField3, staffField4, adminField3, adminField4, adminField5,
+  resetPasswordDetails, wrongOldPassword, similarNewPassword, unmatchingNewAndConfirm,
 };
