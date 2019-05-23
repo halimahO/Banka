@@ -15,7 +15,7 @@
     "migrations": "babel-node server/database/droptables && babel-node server/database/createtables",
     "seed": "babel-node server/database/seed",
     "dbtest": "npm run migrations && npm run seed",
-    "coverage": "nyc npm run test"
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "author": "Halimah Oladosu",
   "license": "ISC",
