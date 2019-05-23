@@ -46,7 +46,10 @@ export default class TransactionController {
      email: accountExists.owneremail,
      Transactiontype: type,
    };
-    sendMail(emaildata);
+    sendMail(emaildata, res);
+    if (typeof accountNumber === 'string') {
+      return newTransaction;
+    }
     return res.status(201).json({
       status: 201,
       data: {
@@ -94,7 +97,8 @@ export default class TransactionController {
      email: accountExists.owneremail,
      Transactiontype: type,
    };
-sendMail(emaildata);
+
+ sendMail(emaildata, res);
     return res.status(201).json({
       status: 201,
       data: {
