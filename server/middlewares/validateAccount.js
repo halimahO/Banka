@@ -6,6 +6,8 @@ export default class accountValidate {
     const createAccount = req.body;
 
     const createAccountProperties = {
+      firstname: 'required|alpha|min:2|max:50',
+      lastname: 'required|alpha|min:2|max:50',
       type: 'required|in:savings,current',
     };
 
