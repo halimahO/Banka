@@ -18,7 +18,7 @@ export default (data, res) => {
 
   // start sending mails
   const mailOptions = {
-      from: 'Banka  <foobar@gmail.com>',
+      from: 'Banka  <banka@gmail.com>',
         to: `${email}`,
         subject: `${Transactiontype} alert`,
         text: `${Transactiontype}`,
@@ -39,7 +39,7 @@ export default (data, res) => {
             console.log(error);
         }else {
             console.log(`Message sent:  ${info.response}`);
-             res.status(500).json({
+          return res.status(500).json({
               status: 500,
               msg: 'failed to send confirmation mail ',
             });
