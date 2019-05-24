@@ -18,7 +18,7 @@ export default class Transaction {
       VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`;
     const values = [
       this.accountnumber, this.createdon, this.cashier,
-      this.type, this.amount, this.oldbalance, this.newbalance,
+      'debit', this.amount, this.oldbalance, this.newbalance,
     ];
     const { rows } = await pool.query(queryString, values);
     pool.query(`UPDATE accounts SET balance = ${this.newbalance} WHERE accountnumber = ${this.accountnumber}`);
@@ -31,7 +31,7 @@ export default class Transaction {
       VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`;
     const values = [
       this.accountnumber, this.createdon, this.cashier,
-      this.type, this.amount, this.oldbalance, this.newbalance,
+      'credit', this.amount, this.oldbalance, this.newbalance,
     ];
     const { rows } = await pool.query(queryString, values);
     pool.query(`UPDATE accounts SET balance = ${this.newbalance} WHERE accountnumber = ${this.accountnumber}`);

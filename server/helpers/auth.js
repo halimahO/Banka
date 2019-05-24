@@ -7,13 +7,13 @@ const secretKey = process.env.secretKey;
 
 
 export default class Jwt {
-  static async generateToken(payload) {
-    const token = await jwt.sign(payload, secretKey, { expiresIn: '14d' });
+  static generateToken(payload) {
+    const token = jwt.sign(payload, secretKey, { expiresIn: '14d' });
     return token;
   }
 
-  static async verifyToken(token) {
-    const decoded = await jwt.verify(token, secretKey);
+  static verifyToken(token) {
+    const decoded = jwt.verify(token, secretKey);
     return decoded;
   }
 }

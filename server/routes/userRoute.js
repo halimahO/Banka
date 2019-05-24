@@ -3,12 +3,13 @@ import userController from '../controllers/userController';
 import { requireAuth, staffAuth, adminAuth } from '../middlewares/authentication';
 import userValidate from '../middlewares/validateUser';
 import paramsValidate from '../middlewares/validateParams';
+import upload from '../helpers/uploadFile';
 
 
 const userRouter = new Router();
 const {
   signUp, signin, allUserAccounts,
-  createStaff, createAdmin,
+  createStaff, createAdmin, uploadPicture,
 } = userController;
 
 userRouter.post('/auth/signup',
@@ -32,5 +33,10 @@ userRouter.get('/user/:email/accounts',
   requireAuth, staffAuth,
   paramsValidate.email,
   allUserAccounts);
+
+userRouter.post('/uploadpicture',
+  requireAuth,
+  upload.single('avatar'),
+  uploadPicture);
 
 export default userRouter;

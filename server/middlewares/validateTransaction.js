@@ -21,25 +21,4 @@ export default class transactionValidate {
       });
     });
   }
-
-  static acctNo(req, res, next) {
-
-    const acctProperties = {
-      acctNo: 'required|numeric|digits:10',
-    };
-
-    const validator = new Validator(req.body,
-      acctProperties,
-      customErrorMsgs);
-
-    validator.passes(() => next());
-
-    validator.fails(() => {
-      const errors = validator.errors.all();
-      return res.status(400).json({
-        status: 400,
-        error: errors,
-      });
-    });
-  }
 }
