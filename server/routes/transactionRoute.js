@@ -20,6 +20,13 @@ transactionRouter.post('/:accountnumber/credit',
   transactionValidate.amount,
   transactionController.credit);
 
+transactionRouter.post('/:accountnumber/transfer',
+  requireAuth,
+  paramsValidate.acctNo,
+  transactionValidate.amount,
+  transactionValidate.acctNo,
+  transactionController.transfer);
+
 transactionRouter.get('/:id',
   requireAuth,
   paramsValidate.transId,
