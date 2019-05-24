@@ -1,4 +1,5 @@
 import pool from '../database/index';
+import databaseController from "../database/dbQueryOperator";
 import generateAcctNo from '../helpers/generateAcctNo';
 
 export default class Account {
@@ -57,33 +58,51 @@ export default class Account {
     }
   }
 
-  static async getAllAccounts() {
-    const queryString = 'SELECT * FROM accounts';
+  static async getAllAccounts(data, callbk) {
+    const { startDate, endDate, status} = data;
     try {
-      const { rows } = await pool.query(queryString);
-      return rows;
-    } catch (error) {
-      return error.message;
+      const account = await databaseController.getAllAccount([startDate, endDate, status]);
+      callbk(null, account);
+    } catch (err) {
+      callbk({ message: err.message }, null);
     }
+    
+    // const queryString = 'SELECT * FROM accounts';
+    // try {
+    //   const { rows } = await pool.query(queryString);
+    //   return rows;
+    // } catch (error) {
+    //   return error.message;
+    // }
   }
 
-  static async dormant() {
-    const queryString = 'SELECT * FROM accounts WHERE status = \'dormant\'';
-    try {
-      const { rows } = await pool.query(queryString);
-      return rows;
-    } catch (error) {
-      return error.message;
-    }
-  }
+  // static async getByDate() {
+  //   const queryString = 'SELECT * FROM accounts WHERE (createdon >= $1::date or $1 is null) AND (createdon <= $2::date  + "1 day"::interval or $2 is null)';
+  //   try {
+  //     const { rows } = await pool.query(queryString);
+  //     return rows;
+  //   } catch (error) {
+  //     return error.message;
+  //   }
+  // }
 
-  static async active() {
-    const queryString = 'SELECT * FROM accounts WHERE status = \'active\'';
-    try {
-      const { rows } = await pool.query(queryString);
-      return rows;
-    } catch (error) {
-      return error.message;
-    }
-  }
+//   static async dormant() {
+//     const queryString = 'SELECT * FROM accounts WHERE status = \'dormant\'';
+//     try {
+//       const { rows } = await pool.query(queryString);
+//       return rows;
+//     } catch (error) {
+//       return error.message;
+//     }
+//   }
+
+//   static async active() {
+//     const queryString = 'SELECT * FROM accounts WHERE status = \'active\'';
+//     try {
+//       const { rows } = await pool.query(queryString);
+//       return rows;
+//     } catch (error) {
+//       return error.message;
+//     }
+//   }
 }

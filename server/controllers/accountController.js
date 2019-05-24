@@ -126,30 +126,64 @@ export default class AccountController {
   }
 
   static async getAllAccounts(req, res) {
-    let result;
-    const { status } = req.query;
-    if (status === 'dormant') {
-      result = await Account.dormant();
-    } else if (status === 'active') {
-      result = await Account.active();
-    } else result = await Account.getAllAccounts();
-    if (!result.length) {
-      return res.status(404).json({
-        status: 404,
-        error: 'No account found.',
+    const { status, startDate, endDate } = req.query;
+
+    Account.getAllAccounts({ status, startDate, endDate }, (err, data) => {
+      if (err) {
+        res.status(404).json({
+          status: 404,
+          message: err.message,
+        });
+        return;
+      }
+      res.status(200).json({
+        status: 200,
+        message: "Request was successfully",
+        data,
       });
-    }
-    const results = result.map((rest) => {
-      const {
-        createdon, accountnumber, owneremail, type, status, balance,
-      } = rest;
-      return {
-        createdon, accountnumber, owneremail, type, status, balance,
-      };
     });
-    return res.status(200).json({
-      status: 200,
-      data: results,
-    });
+
+    // Account.getAllAccounts({ status, startDate, endDate }, (err, data) => {
+    //   if (err) {
+    //     res.status(404).json({
+    //       status: 404,
+    //       message: err.message,
+    //     });
+    //     return;
+    //   }
+    //   res.status(200).json({
+    //     status: 200,
+    //     message: "Request was successfully",
+    //     data,
+    //   });
+    // });
+    // let result;
+    // if (status === 'dormant') {
+    //   result = await Account.dormant();
+    // } else if (status === 'active') {
+    //   result = await Account.active();
+    // }
+    // if (startDate && endDate ){
+    //   result = await Account.getByDate()
+    //  }
+    //  else result = await Account.getAllAccounts();
+    // if (!result.length) {
+    //   return res.status(404).json({
+    //     status: 404,
+    //     error: 'No account found.',
+    //   });
+    // }
+    // const results = result.map((rest) => {
+    //   const {
+    //     createdon, accountnumber, owneremail, type, status, balance,
+    //   } = rest;
+    //   return {
+    //     createdon, accountnumber, owneremail, type, status, balance,
+    //   };
+    // });
+    // return res.status(200).json({
+    //   status: 200,
+    //   data: results,
+    // });
   }
 }
