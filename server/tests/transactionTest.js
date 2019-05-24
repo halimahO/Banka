@@ -77,6 +77,14 @@ describe('TRANSACTION TEST', () => {
     expect(res.body).to.have.property('error');
   });
 
+  it('it should return 201 if transaction is successful', async () => {
+    const res = await chai.request(app)
+      .post(`/api/v1/transactions/${clientAcct}/debit`)
+      .set({ Authorization: `Bearer ${staffToken}` })
+      .send(transaction);
+    expect(res).to.have.status(201);
+  });
+
   it('it should return 403 if amount is empty', async () => {
     const res = await chai.request(app)
       .post(`/api/v1/transactions/${clientAcct}/debit`)
