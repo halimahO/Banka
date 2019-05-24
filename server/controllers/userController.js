@@ -1,6 +1,10 @@
+import dotenv from 'dotenv';
 import User from '../models/userModel';
 import { hashPassword, comparePassword } from '../helpers/bcrypt';
 import Jwt from '../helpers/auth';
+
+dotenv.config();
+const port = process.env.PORT || 8080;
 
 export default class UsersController {
   static async signUp(req, res) {
@@ -39,6 +43,31 @@ export default class UsersController {
       status: 201,
       data: response,
     });
+  }
+
+  static async uploadPicture(req, res) {
+    try {
+      const avatar = req.file;
+      const { email } = req.user;
+      const mAvatar = avatar.path;
+
+      const updatedPicture = await User.updateProfilePicture(mAvatar, email);
+      if (!updatedPicture) {
+        return res.status(404).json({
+          status: 400,
+          error: 'Error updating profile picture.',
+        });
+      }
+      return res.status(200).json({
+        status: 200,
+        fileUrl: `http://localhost:${port}/avatars/${req.file.filename}`,
+      });
+    } catch (e) {
+      return res.status(500).json({
+        status: 500,
+        error: 'File could not be uploaded, kindly try another file',
+      });
+    }
   }
 
   static async createStaff(req, res) {

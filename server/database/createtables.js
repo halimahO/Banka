@@ -11,7 +11,8 @@ console.log('Creating tables...');
         lastname text NOT NULL,
         password text NOT NULL,
         type text NOT NULL,
-        isadmin BOOLEAN DEFAULT FALSE)`);
+        isadmin BOOLEAN DEFAULT FALSE,
+        avatar VARCHAR(200))`);
 
     await pool.query(`CREATE TABLE IF NOT EXISTS accounts(
         id SERIAL PRIMARY KEY,
