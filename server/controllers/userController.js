@@ -24,16 +24,25 @@ export default class UsersController {
     }
 
     const {
-      id, firstname, lastname, email,
-      type, isadmin,
+      id, firstname, lastname, email, type, isadmin,
     } = newUser;
 
     const token = await Jwt.generateToken({
-      id, email, type, isadmin, firstname, lastname,
+      id,
+      email,
+      type,
+      isadmin,
+      firstname,
+      lastname,
     });
 
     const response = {
-      token, id, firstname, lastname, email,
+      token,
+      id,
+      firstname,
+      lastname,
+      email,
+      type,
     };
     return res.status(201).json({
       status: 201,
@@ -62,16 +71,25 @@ export default class UsersController {
     }
 
     const {
-      id, firstname, lastname, email,
-      type, isadmin,
+      id, firstname, lastname, email, type, isadmin,
     } = newUser;
 
     const token = await Jwt.generateToken({
-      id, email, type, isadmin, firstname, lastname,
+      id,
+      email,
+      type,
+      isadmin,
+      firstname,
+      lastname,
     });
 
     const response = {
-      token, id, firstname, lastname, email,
+      token,
+      id,
+      firstname,
+      lastname,
+      email,
+      type,
     };
 
     return res.status(201).json({
@@ -100,16 +118,24 @@ export default class UsersController {
       return error.message;
     }
     const {
-      id, firstname, lastname, email,
-      type, isadmin,
+      id, firstname, lastname, email, type, isadmin,
     } = newUser;
 
     const token = await Jwt.generateToken({
-      id, email, type, isadmin, firstname, lastname,
+      id,
+      email,
+      type,
+      isadmin,
+      firstname,
+      lastname,
     });
 
     const response = {
-      token, id, firstname, lastname, email,
+      token,
+      id,
+      firstname,
+      lastname,
+      email,
     };
 
     return res.status(201).json({
@@ -144,16 +170,25 @@ export default class UsersController {
     }
 
     const {
-      id, firstname, lastname,
-      type, isadmin,
+      id, firstname, lastname, type, isadmin,
     } = result;
 
     const token = await Jwt.generateToken({
-      id, email, type, isadmin, firstname, lastname,
+      id,
+      email,
+      type,
+      isadmin,
+      firstname,
+      lastname,
     });
 
     const response = {
-      token, id, firstname, lastname, email,
+      token,
+      id,
+      firstname,
+      lastname,
+      email,
+      type,
     };
 
     return res.status(200).json({
@@ -189,7 +224,11 @@ export default class UsersController {
         createdon, accountnumber, type, status, balance,
       } = rest;
       return {
-        createdon, accountnumber, type, status, balance,
+        createdon,
+        accountnumber,
+        type,
+        status,
+        balance,
       };
     });
     return res.status(200).json({
