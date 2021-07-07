@@ -1,7 +1,10 @@
 import Transaction from '../models/transactionModel';
 import Account from '../models/accountModel';
+import sendMail from '../helpers/sendMail';
+
 
 export default class TransactionController {
+
   static async debit(req, res) {
     const { accountnumber } = req.params;
     const accountExists = await Account.getAccount(accountnumber);
@@ -25,8 +28,8 @@ export default class TransactionController {
         error: 'Insufficient fund',
       });
     }
-
     transaction.accountnumber = accountnumber;
+    transaction.type = (req.route.path.indexOf('transfer') !== -1) ? 'transfer' : 'debit';
     transaction.cashier = req.user.id;
     transaction.oldbalance = balance;
     transaction.newbalance = balance - transaction.amount;
@@ -36,6 +39,18 @@ export default class TransactionController {
       id, amount, cashier, type, newbalance,
     } = newTransaction;
 
+   const emaildata = {
+     account: accountExists.accountnumber,
+     amount: transaction.amount,
+     oldbalance: transaction.oldbalance,
+     newbalance: transaction.newbalance,
+     email: accountExists.owneremail,
+     Transactiontype: type,
+   };
+    sendMail(emaildata, res);
+    if (typeof accountNumber === 'string') {
+      return newTransaction;
+    }
     return res.status(201).json({
       status: 201,
       data: {
@@ -49,13 +64,14 @@ export default class TransactionController {
     });
   }
 
-  static async credit(req, res) {
-    const { accountnumber } = req.params;
+  static async credit(req, res, accountNumber) {
+    const accountnumber = (typeof accountNumber === 'string') ? accountNumber : req.params.accountnumber;
     const accountExists = await Account.getAccount(accountnumber);
     if (!accountExists) {
+      const error = (typeof accountNumber === 'string') ? 'Account to be transfered to doesnt exist' : 'Account does not exist.'
       return res.status(404).json({
         status: 404,
-        error: 'Account does not exist.',
+        error,
       });
     }
     const { balance } = accountExists;
@@ -65,15 +81,31 @@ export default class TransactionController {
     } catch (error) {
       return error.message;
     }
-
     transaction.accountnumber = accountnumber;
+    transaction.type = (req.route.path.indexOf('transfer') !== -1) ? 'transfer' : 'credit';
     transaction.cashier = req.user.id;
-    transaction.oldbalance = balance;
-    transaction.newbalance = balance + transaction.amount;
+    transaction.oldbalance = parseFloat(balance);
+    transaction.newbalance = parseFloat(balance) + parseFloat(transaction.amount);
     const newTransaction = await transaction.credit(balance);
     const {
       id, amount, cashier, type, newbalance,
     } = newTransaction;
+
+
+   const emaildata = {
+     account: accountExists.accountnumber,
+     amount: transaction.amount,
+     oldbalance: transaction.oldbalance,
+     newbalance: transaction.newbalance,
+     email: accountExists.owneremail,
+     Transactiontype: type,
+   };
+
+ sendMail(emaildata, res);
+
+    if (typeof accountNumber === 'string') {
+      return newTransaction;
+    }
 
     return res.status(201).json({
       status: 201,
@@ -86,6 +118,23 @@ export default class TransactionController {
         accountBalance: newbalance,
       },
     });
+  }
+
+  static async transfer(req, res) {
+    const accountExists = await Account.getAccount(req.params.accountnumber);
+    if (!accountExists) {
+      return res.status(404).json({
+        status: 404,
+        error: 'Account to does not exist.',
+      });
+    }
+
+    const creditAccount = await TransactionController.credit(req, res, req.body.acctNo);
+    if (creditAccount.id) {
+      const debitAccount = await TransactionController.debit(req, res);
+      return debitAccount;
+    }
+    return creditAccount;
   }
 
   static async getTransaction(req, res) {
